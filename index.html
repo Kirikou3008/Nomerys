@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Travel AI Planner – Itinéraires sur-mesure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Itinéraires de voyage sur-mesure générés par IA : vols, hôtels et activités optimisés au meilleur prix.">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">Travel<span>AI</span></div>
+
+      <nav class="nav" id="mainNav">
+        <a href="#how">Comment ça marche</a>
+        <a href="#destinations">Destinations</a>
+        <a href="#guides">Guides</a>
+        <a href="#about">À propos</a>
+        <a href="#form" class="nav-cta">Commencer</a>
+      </nav>
+
+      <button class="burger" id="burgerBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h1>Ton voyage sur-mesure, optimisé par l’IA</h1>
+        <p>
+          Remplis un court questionnaire et reçois un itinéraire ultra optimisé :
+          vols, hôtels et activités sélectionnés pour ton budget et ton style de voyage.
+        </p>
+        <ul class="hero-bullets">
+          <li>✨ Optimisation prix (low cost intelligent, pas low cost pourri)</li>
+          <li>🧠 IA + recherches manuelles sur des sources fiables</li>
+          <li>📄 PDF clair + liens pour réserver en quelques clics</li>
+        </ul>
+        <div class="hero-actions">
+          <a href="#form" class="btn-primary">Créer mon itinéraire</a>
+          <a href="#guides" class="btn-secondary">Voir les conseils voyage</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h2>Exemple : 10 jours au Japon</h2>
+        <p class="hero-card-text">
+          Tokyo, Osaka, temples, quartiers futuristes…  
+          Un itinéraire complet avec vols optimisés, hôtels bien placés et activités originales.
+        </p>
+        <ul class="hero-card-list">
+          <li>Vol A/R optimisé sur les meilleures dates</li>
+          <li>Hôtels bien notés proche des transports</li>
+          <li>Activités locales (quartiers, food, spots cachés)</li>
+        </ul>
+        <a href="#form" class="btn-outline">Je veux le même type de voyage</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="container">
+      <h2 class="section-title">Comment ça marche ?</h2>
+      <p class="section-subtitle">
+        Un process simple, pensé pour que tu gagnes du temps et de l’argent.
+      </p>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Tu remplis le formulaire</h3>
+          <p>
+            Dates, budget, destinations rêvées, style de voyage, contraintes…
+            Tu nous donnes le maximum d’infos pour que l’IA puisse te comprendre.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>On analyse & on optimise</h3>
+          <p>
+            L’IA génère une base d’itinéraire, puis on la retravaille à la main :
+            cohérence des trajets, météo, temps sur place, fatigue, horaires des vols.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Tu reçois ton PDF + liens</h3>
+          <p>
+            Itinéraire détaillé jour par jour, estimation de budget, suggestions d’hôtels
+            et d’activités, avec liens de réservation sécurisés.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="destinations">
+    <div class="container">
+      <h2 class="section-title">Inspiration & destinations</h2>
+      <p class="section-subtitle">
+        Quelques exemples de voyages que tu peux nous confier.
+      </p>
+
+      <div class="cards-grid">
+        <article class="card">
+          <h3>Japon : Tokyo & Osaka</h3>
+          <p>
+            10 à 14 jours entre mégalopole futuriste et quartiers traditionnels.
+            Optimisation des trajets en train, pass transports, quartiers où loger.
+          </p>
+          <ul class="card-tags">
+            <li>🇯🇵 Japon</li>
+            <li>Food & culture</li>
+            <li>Budget maîtrisé</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>City-trip Europe low cost</h3>
+          <p>
+            3 à 5 jours dans une grande capitale européenne : vols, hôtel central,
+            suggestions de visites et d’activités selon ton style.
+          </p>
+          <ul class="card-tags">
+            <li>✈️ Vols courts</li>
+            <li>Petits budgets</li>
+            <li>Weekend prolongé</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Road-trip nature & spots cachés</h3>
+          <p>
+            Road-trip en Europe ou ailleurs avec étapes optimisées, hébergements bien notés
+            et activités uniques loin des pièges à touristes.
+          </p>
+          <ul class="card-tags">
+            <li>🚗 Road-trip</li>
+            <li>Nature</li>
+            <li>Spots locaux</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="guides">
+    <div class="container">
+      <h2 class="section-title">Guides & conseils voyage</h2>
+      <p class="section-subtitle">
+        Du contenu éditorial que les programmes d’affiliation aiment voir : astuces, budgets, destinations.
+      </p>
+
+      <div class="cards-grid">
+        <article class="card guide-card">
+          <h3>Préparer un premier voyage au Japon sans exploser le budget</h3>
+          <p>
+            Choix des dates, aéroports, pass transport, cartes SIM, astuces hébergement…
+            Tout ce qu’on regarde pour toi quand on prépare un itinéraire Japon.
+          </p>
+          <a href="#" class="guide-link">Lire bientôt</a>
+        </article>
+
+        <article class="card guide-card">
+          <h3>Comment trouver un vol vraiment pas cher (sans passer 5h sur les comparateurs)</h3>
+          <p>
+            Flexibilité sur les dates, aéroports alternatifs, durées d’escales acceptables…
+            Les règles qu’on applique avant de te proposer un vol.
+          </p>
+          <a href="#" class="guide-link">Lire bientôt</a>
+        </article>
+
+        <article class="card guide-card">
+          <h3>Exemple d’itinéraire 10 jours Tokyo / Osaka</h3>
+          <p>
+            Exemple partiel d’itinéraire pour montrer la structure de nos PDF :
+            rythme, quartiers, activités, temps de transport.
+          </p>
+          <a href="#" class="guide-link">Lire bientôt</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="about">
+    <div class="container about-grid">
+      <div>
+        <h2 class="section-title">À propos du projet</h2>
+        <p>
+          TravelAI est un service indépendant qui combine IA et expertise humaine
+          pour créer des itinéraires de voyage réalistes, optimisés et accessibles.
+        </p>
+        <p>
+          L’objectif : te faire gagner des heures de recherche et te permettre de
+          profiter d’un voyage bien pensé, sans exploser ton budget.
+        </p>
+      </div>
+      <div class="about-box">
+        <h3>Ce que nous ne faisons pas</h3>
+        <ul>
+          <li>❌ Vendre des “packs” génériques identiques pour tout le monde</li>
+          <li>❌ Afficher des prix impossibles puis te décevoir au moment de réserver</li>
+          <li>❌ Te pousser à réserver des choses que tu ne veux pas</li>
+        </ul>
+        <h3>Ce que nous faisons</h3>
+        <ul>
+          <li>✅ Adapter le voyage à ta vraie vie et ton vrai budget</li>
+          <li>✅ Chercher les combinaisons vols + hôtels les plus intelligentes</li>
+          <li>✅ Être transparent sur les prix et les sources utilisées</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULAIRE -->
+  <section class="section" id="form">
+    <div class="container form-section">
+      <div class="form-text">
+        <h2 class="section-title">Commencer ton itinéraire sur-mesure</h2>
+        <p>
+          Réponds à quelques questions (3–7 minutes).  
+          Plus tu es précis, plus l’itinéraire sera adapté à ton style de voyage.
+        </p>
+        <ul>
+          <li>Dates, durée, aéroports de départ possibles</li>
+          <li>Destination(s) rêvée(s), ambiance, rythme, contraintes</li>
+          <li>Budget global et niveau de confort souhaité</li>
+        </ul>
+      </div>
+
+      <div class="form-embed-card">
+        <!-- ⚠️ Remplace l’URL de src par celle de TON formulaire Jotform / Tally -->
+        <iframe
+          src="https://ton-lien-de-formulaire.com"
+          loading="lazy"
+          frameborder="0"
+          style="width: 100%; height: 650px; border: 0; border-radius: 18px; background: #000;"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="yearSpan"></span> TravelAI – Itinéraires sur-mesure.</p>
+      <div class="footer-links">
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+        <a href="#form">Commencer mon voyage</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
