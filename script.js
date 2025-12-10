@@ -1,29 +1,25 @@
-// Burger menu pour mobile
-const burgerBtn = document.getElementById('burgerBtn');
-const mainNav = document.getElementById('mainNav');
+// Menu mobile
+const navToggle = document.querySelector('.nav-toggle');
+const mainNav = document.querySelector('.main-nav');
 
-if (burgerBtn && mainNav) {
-  burgerBtn.addEventListener('click', () => {
-    mainNav.classList.toggle('nav-open');
+if (navToggle && mainNav) {
+  navToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('open');
   });
 }
 
-// Scroll doux pour les liens internes
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    const targetId = link.getAttribute('href').slice(1);
-    const targetEl = document.getElementById(targetId);
-    if (targetEl) {
-      e.preventDefault();
-      const y = targetEl.getBoundingClientRect().top + window.scrollY - 70;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-      mainNav?.classList.remove('nav-open');
-    }
+// Scroll doux pour les ancres internes (ex : #how)
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a[href^="#"]');
+  if (!link) return;
+
+  const targetId = link.getAttribute('href').slice(1);
+  const target = document.getElementById(targetId);
+  if (!target) return;
+
+  e.preventDefault();
+  window.scrollTo({
+    top: target.offsetTop - 80,
+    behavior: 'smooth',
   });
 });
-
-// Année dynamique dans le footer
-const yearSpan = document.getElementById('yearSpan');
-if (yearSpan) {
-  yearSpan.textContent = new Date().getFullYear().toString();
-}
