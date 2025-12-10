@@ -24,37 +24,55 @@
 
 <main>
   <!-- HERO avec planète interactive -->
-  <section class="hero">
-    <div class="container hero-inner">
-      <div class="hero-text">
-        <p class="tagline">Voyage & IA</p>
-        <h1>Ton voyage <span>sur-mesure</span>, optimisé par l’IA</h1>
-        <p class="hero-subtitle">
-          Remplis un court questionnaire et reçois un itinéraire ultra optimisé :
-          vols, hôtels et activités adaptés à ton budget et à ton style de voyage.
-        </p>
-        <div class="hero-actions">
-          <a href="#questionnaire" class="btn btn-primary">Commencer mon itinéraire</a>
-          <a href="#how-it-works" class="btn btn-ghost">Voir comment ça marche</a>
-        </div>
-        <ul class="hero-points">
-          <li>🔍 Recherche IA + vérifications humaines</li>
-          <li>💸 Optimisation prix (low cost intelligent, pas cheap nul)</li>
-          <li>📄 PDF clair + liens pour réserver en quelques clics</li>
-        </ul>
+  <section class="hero" id="accueil">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <p class="hero-kicker">Voyage & IA</p>
+      <h1 class="hero-title">
+        Ton voyage sur-mesure,<br />
+        <span class="hero-title-accent">optimisé par l’IA</span>
+      </h1>
+      <p class="hero-subtitle">
+        Remplis un court questionnaire et reçois un itinéraire ultra optimisé&nbsp;:
+        vols, hôtels et activités adaptés à ton budget et à ton style de voyage.
+      </p>
+
+      <div class="hero-actions">
+        <a href="commencer.html" class="btn btn-primary">
+          Commencer mon itinéraire
+        </a>
+        <a href="#comment-ca-marche" class="btn btn-ghost">
+          Voir comment ça marche
+        </a>
       </div>
 
-      <div class="hero-visual">
-        <div class="planet-orbit">
-          <div class="planet-glow"></div>
-          <div class="planet"></div>
-          <div class="planet-orb planet-orb--1"></div>
-          <div class="planet-orb planet-orb--2"></div>
-          <div class="planet-orb planet-orb--3"></div>
+      <ul class="hero-bullets">
+        <li>🔎 Recherche IA + vérifications humaines</li>
+        <li>💸 Optimisation prix (low cost intelligent, pas cheap nul)</li>
+        <li>📄 PDF clair + liens pour réserver en quelques clics</li>
+      </ul>
+    </div>
+
+    <div class="hero-planet-wrapper">
+      <div class="hero-planet" id="hero-planet">
+        <div class="hero-planet-core"></div>
+
+        <div class="hero-planet-ring hero-planet-ring--one"></div>
+        <div class="hero-planet-ring hero-planet-ring--two"></div>
+
+        <div class="hero-planet-orbit hero-planet-orbit--one">
+          <span class="hero-planet-orbit-dot"></span>
+        </div>
+        <div class="hero-planet-orbit hero-planet-orbit--two">
+          <span class="hero-planet-orbit-dot"></span>
+        </div>
+        <div class="hero-planet-orbit hero-planet-orbit--three">
+          <span class="hero-planet-orbit-dot"></span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- COMMENT ÇA MARCHE -->
   <section id="how-it-works" class="section">
