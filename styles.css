@@ -147,140 +147,219 @@ body {
 /* Hero */
 
 .hero {
-  padding: 4rem 0 4.5rem;
-  color: #e5e7eb;
-  background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 80%);
+  padding: 5rem 0 4rem;
+  background: radial-gradient(circle at top left, #e4f2ff 0, #f5f8ff 45%, #ffffff 100%);
 }
 
 .hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-  gap: 2.5rem;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 1fr);
+  gap: 3.5rem;
   align-items: center;
 }
 
-.hero-text h1 {
-  font-size: clamp(2.4rem, 3vw, 3rem);
-  margin: 0.3rem 0 0.8rem;
-  letter-spacing: -0.03em;
+.hero-content {
+  max-width: 560px;
 }
 
-.hero-text h1 span {
-  background: linear-gradient(135deg, #38bdf8, #a855f7);
+.hero-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: 0.75rem;
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 4vw, 3.1rem);
+  line-height: 1.1;
+  margin: 0 0 1rem;
+  color: #0f172a;
+}
+
+.hero-title-accent {
+  background: linear-gradient(135deg, #2563eb, #0ea5e9, #6366f1);
   -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
 }
 
 .hero-subtitle {
-  color: #cbd5f5;
-  max-width: 32rem;
+  font-size: 1rem;
   line-height: 1.6;
-}
-
-.tagline {
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: #93c5fd;
-  margin: 0;
+  color: #4b5563;
+  margin-bottom: 1.75rem;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.9rem;
-  margin: 1.5rem 0 1.25rem;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
 }
 
-.hero-points {
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.3rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb, #0ea5e9);
+  color: #ffffff;
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.32);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.4);
+}
+
+.btn-ghost {
+  background: #e5edff;
+  color: #1e293b;
+}
+
+.btn-ghost:hover {
+  background: #dbe5ff;
+}
+
+.hero-bullets {
   list-style: none;
   padding: 0;
   margin: 0;
   font-size: 0.9rem;
-  color: #9ca3af;
+  color: #4b5563;
 }
 
-.hero-points li + li {
+.hero-bullets li + li {
   margin-top: 0.35rem;
 }
 
-/* Planet */
+/* ---------- PLANÈTE ---------- */
 
-.hero-visual {
+.hero-planet-wrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.planet-orbit {
+.hero-planet {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
   position: relative;
-  width: 280px;
-  height: 280px;
-  border-radius: 999px;
-  background: radial-gradient(circle at 30% 20%, #e0f2fe 0, #0f172a 55%, #020617 100%);
-  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.8);
+  background: radial-gradient(circle at 30% 20%, #ffffff 0, #4f46e5 40%, #0ea5e9 72%, #1d4ed8 100%);
+  box-shadow:
+    0 24px 60px rgba(15, 23, 42, 0.25),
+    0 0 0 12px rgba(59, 130, 246, 0.18);
   overflow: visible;
   transform-style: preserve-3d;
-  transition: transform 0.15s ease-out;
+  transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
 }
 
-.planet {
+/* coeur lumineux au centre */
+.hero-planet-core {
   position: absolute;
-  inset: 18%;
-  border-radius: 999px;
-  background: conic-gradient(
-    from 220deg,
-    #0ea5e9,
-    #22d3ee,
-    #6366f1,
-    #0ea5e9
-  );
-  box-shadow: inset 0 0 40px rgba(15, 23, 42, 0.9);
-  animation: spinPlanet 20s linear infinite;
-}
-
-.planet-glow {
-  position: absolute;
-  inset: 6%;
-  border-radius: inherit;
-  background: radial-gradient(circle at 25% 20%, rgba(248, 250, 252, 0.9), transparent 55%);
+  inset: 22%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffffff 0, #a5b4fc 40%, transparent 75%);
   mix-blend-mode: screen;
-  opacity: 0.75;
 }
 
-.planet-orb {
+/* halos / anneaux */
+
+.hero-planet-ring {
   position: absolute;
-  width: 16px;
-  height: 16px;
-  border-radius: 999px;
-  background: #38bdf8;
-  box-shadow: 0 0 18px rgba(56, 189, 248, 0.9);
+  inset: -12%;
+  border-radius: 50%;
+  border: 2px solid rgba(191, 219, 254, 0.6);
+  box-shadow: 0 0 40px rgba(96, 165, 250, 0.45);
 }
 
-.planet-orb--1 {
-  top: 10%;
-  left: -8%;
+.hero-planet-ring--two {
+  inset: -20%;
+  opacity: 0.5;
 }
 
-.planet-orb--2 {
-  bottom: 12%;
-  right: -10%;
+/* orbites et petits points qui tournent */
+
+.hero-planet-orbit {
+  position: absolute;
+  inset: -5%;
+  border-radius: 50%;
+  border: 1px dashed rgba(191, 219, 254, 0.6);
+  animation: orbit-spin 18s linear infinite;
 }
 
-.planet-orb--3 {
+.hero-planet-orbit--two {
+  inset: -12%;
+  animation-duration: 22s;
+}
+
+.hero-planet-orbit--three {
+  inset: -19%;
+  animation-duration: 28s;
+}
+
+.hero-planet-orbit-dot {
+  position: absolute;
   top: 50%;
-  right: 20%;
-  width: 12px;
-  height: 12px;
-  background: #a855f7;
-  box-shadow: 0 0 18px rgba(168, 85, 247, 0.8);
+  left: 100%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0, #38bdf8 60%, #0f172a 100%);
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.8);
+  transform: translate(-50%, -50%);
 }
 
-@keyframes spinPlanet {
+@keyframes orbit-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* état « survol » / interaction (complété avec JS) */
+.hero-planet.is-active {
+  box-shadow:
+    0 26px 70px rgba(15, 23, 42, 0.35),
+    0 0 0 16px rgba(59, 130, 246, 0.24);
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .hero-planet-wrapper {
+    order: -1;
+    margin-bottom: 2rem;
+  }
+
+  .hero-planet {
+    width: 260px;
+    height: 260px;
   }
 }
 
