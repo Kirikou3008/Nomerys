@@ -1,25 +1,22 @@
-// Menu mobile
-const navToggle = document.querySelector('.nav-toggle');
-const mainNav = document.querySelector('.main-nav');
+document.addEventListener("DOMContentLoaded", () => {
+  const yearSpan = document.getElementById("year");
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
 
-if (navToggle && mainNav) {
-  navToggle.addEventListener('click', () => {
-    mainNav.classList.toggle('open');
-  });
-}
+  const yearContact = document.getElementById("year-contact");
+  if (yearContact) {
+    yearContact.textContent = new Date().getFullYear();
+  }
+});
 
-// Scroll doux pour les ancres internes (ex : #how)
-document.addEventListener('click', (e) => {
-  const link = e.target.closest('a[href^="#"]');
-  if (!link) return;
+// Effet parallax léger sur la planète
+document.addEventListener("mousemove", (event) => {
+  const orbit = document.querySelector(".planet-orbit");
+  if (!orbit) return;
 
-  const targetId = link.getAttribute('href').slice(1);
-  const target = document.getElementById(targetId);
-  if (!target) return;
+  const x = (event.clientX / window.innerWidth - 0.5) * 18;
+  const y = (event.clientY / window.innerHeight - 0.5) * 18;
 
-  e.preventDefault();
-  window.scrollTo({
-    top: target.offsetTop - 80,
-    behavior: 'smooth',
-  });
+  orbit.style.transform = `translate3d(${x}px, ${y}px, 0)`;
 });
