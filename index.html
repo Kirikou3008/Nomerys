@@ -5,15 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TravelAI – Ton voyage optimisé par l’IA</title>
   <link rel="stylesheet" href="styles.css" />
+
   <!-- Three.js pour la planète 3D -->
   <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
   <script src="https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
 </head>
 <body>
-  <!-- NAVBAR -->
+  <!-- HEADER CLAIR -->
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo">Travel<span>AI</span></div>
+
       <nav class="main-nav">
         <a href="#hero">Accueil</a>
         <a href="#sections-destinations">Destinations</a>
@@ -21,6 +23,7 @@
         <a href="mentions-legales.html">Mentions légales</a>
         <a href="contact.html">Nous contacter</a>
       </nav>
+
       <a href="#form-section" class="btn btn-primary header-cta">Commencer</a>
     </div>
   </header>
@@ -30,13 +33,15 @@
     <div class="container hero-inner">
       <section class="hero-content">
         <p class="eyebrow">VOYAGE & IA</p>
+
         <h1>
           Ton voyage sur-mesure,<br />
           <span class="gradient-text">optimisé par l’IA</span>
         </h1>
+
         <p class="hero-subtitle">
-          Remplis un court questionnaire et reçois un itinéraire ultra optimisé&nbsp;:
-          vols, hôtels et activités adaptés à ton budget et à ton style de voyage.
+          Remplis un court questionnaire et reçois un itinéraire ultra optimisé : vols, hôtels
+          et activités adaptés à ton budget et à ton style de voyage.
         </p>
 
         <div class="hero-actions">
@@ -52,14 +57,13 @@
       </section>
 
       <section class="hero-globe">
-        <!-- Canvas 3D Three.js -->
         <div id="globe-container"></div>
       </section>
     </div>
   </main>
 
-  <!-- SECTION COMMENT ÇA MARCHE -->
-  <section id="how-it-works" class="section section-light">
+  <!-- COMMENT ÇA MARCHE (fond blanc) -->
+  <section id="how-it-works" class="section">
     <div class="container">
       <h2>Comment ça marche ?</h2>
       <div class="steps-grid">
@@ -75,39 +79,41 @@
           <div class="step-number">2</div>
           <h3>On analyse & on optimise</h3>
           <p>
-            L’IA génère une base d’itinéraire, puis on la retravaille à la main :
-            cohérence des trajets, météo, temps sur place, fatigue, horaires des vols.
+            L’IA génère une base d’itinéraire, puis on la retravaille à la main : cohérence des trajets,
+            météo, temps sur place, fatigue, horaires des vols.
           </p>
         </div>
         <div class="step-card">
           <div class="step-number">3</div>
           <h3>Tu reçois ton PDF + liens</h3>
           <p>
-            Itinéraire détaillé jour par jour, estimation de budget, sélection d’hôtels
-            et d’activités avec liens de réservation sécurisés.
+            Itinéraire détaillé jour par jour, estimation de budget, sélection d’hôtels et d’activités
+            avec liens de réservation sécurisés.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PLACEHOLDER DESTINATIONS -->
+  <!-- DESTINATIONS (fond blanc) -->
   <section id="sections-destinations" class="section">
     <div class="container">
       <h2>Inspiration & destinations</h2>
-      <p class="section-subtitle">Quelques types de voyages que tu peux nous confier.</p>
-      <!-- Tu complèteras ici comme tu veux -->
+      <p class="section-subtitle">
+        Quelques types de voyages que tu peux nous confier.
+      </p>
+      <!-- Tu complèteras ici -->
     </div>
   </section>
 
-  <!-- PLACEHOLDER GUIDES -->
-  <section id="sections-guides" class="section section-light">
+  <!-- GUIDES (fond blanc) -->
+  <section id="sections-guides" class="section">
     <div class="container">
       <h2>Guides & conseils voyage</h2>
       <p class="section-subtitle">
         Du contenu utile sur les vols pas chers, les hébergements malins et les destinations.
       </p>
-      <!-- Tu complèteras ici comme tu veux -->
+      <!-- Tu complèteras ici -->
     </div>
   </section>
 
