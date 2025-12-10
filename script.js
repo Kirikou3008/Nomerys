@@ -22,37 +22,112 @@ document.addEventListener("mousemove", (event) => {
 });
 
 (function () {
-  const planet = document.getElementById("hero-planet");
-  const hero = document.querySelector(".hero");
+  const canvas = document.getElementById("hero-globe");
+  if (!canvas || typeof THREE === "undefined") return;
 
-  if (!planet || !hero) return;
+  const scene = new THREE.Scene();
 
-  const maxRotate = 16; // angle max en degrés
-  const maxTranslate = 18; // déplacement max en px
+  // Taille de base (sera recalculée)
+  let width = canvas.clientWidth;
+  let height = canvas.clientHeight;
 
-  hero.addEventListener("mousemove", (event) => {
-    const rect = hero.getBoundingClientRect();
-    const x = event.clientX - rect.left; // position dans la hero
-    const y = event.clientY - rect.top;
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    antialias: true,
+    alpha: true,
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(width, height, false);
+  renderer.setClearColor(0x000000, 0); // fond transparent
 
-    const percentX = (x / rect.width - 0.5) * 2; // -1 à 1
-    const percentY = (y / rect.height - 0.5) * 2;
+  const camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 100);
+  camera.position.set(0, 0, 3.6);
+  scene.add(camera);
 
-    const rotateY = -percentX * maxRotate;
-    const rotateX = percentY * maxRotate;
-    const translateX = percentX * maxTranslate;
-    const translateY = percentY * maxTranslate;
+  // Sphère (planète)
+  const geometry = new THREE.SphereGeometry(1.1, 64, 64);
 
-    planet.style.transform = `
-      translate3d(${translateX}px, ${translateY}px, 0)
-      rotateX(${rotateX}deg)
-      rotateY(${rotateY}deg)
-    `;
-    planet.classList.add("is-active");
+  // Matériau stylisé bleu / violet, légèrement "glossy"
+  const material = new THREE.MeshPhysicalMaterial({
+    color: new THREE.Color("#2563eb"),
+    emissive: new THREE.Color("#1d4ed8"),
+    roughness: 0.15,
+    metalness: 0.4,
+    clearcoat: 0.6,
+    clearcoatRoughness: 0.15,
+    sheen: 0.5,
+    sheenColor: new THREE.Color("#93c5fd"),
   });
 
-  hero.addEventListener("mouseleave", () => {
-    planet.style.transform = "translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg)";
-    planet.classList.remove("is-active");
-  });
+  const globe = new THREE.Mesh(geometry, material);
+  scene.add(globe);
+
+  // Légère "tache lumineuse" avec un spot
+  const light1 = new THREE.DirectionalLight(0xffffff, 1.1);
+  light1.position.set(2.5, 2, 2);
+  scene.add(light1);
+
+  const light2 = new THREE.DirectionalLight(0x60a5fa, 0.8);
+  light2.position.set(-3, -2, -1.5);
+  scene.add(light2);
+
+  const ambient = new THREE.AmbientLight(0xffffff, 0.45);
+  scene.add(ambient);
+
+  // Animation & interaction souris
+  let targetRotX = 0.3;
+  let targetRotY = -0.4;
+  let currentRotX = targetRotX;
+  let currentRotY = targetRotY;
+
+  const maxTilt = 0.4; // inclinaison max ajoutée par la souris
+
+  function onMouseMove(event) {
+    const rect = canvas.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width; // 0 -> 1
+    const y = (event.clientY - rect.top) / rect.height;
+
+    const dx = (x - 0.5) * 2; // -1 -> 1
+    const dy = (y - 0.5) * 2;
+
+    targetRotY = -0.6 + dx * maxTilt;
+    targetRotX = 0.3 + dy * maxTilt;
+  }
+
+  canvas.addEventListener("mousemove", onMouseMove);
+
+  function onResize() {
+    width = canvas.clientWidth;
+    height = canvas.clientHeight;
+
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(width, height, false);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+  }
+
+  window.addEventListener("resize", onResize);
+
+  const clock = new THREE.Clock();
+
+  function animate() {
+    requestAnimationFrame(animate);
+
+    const t = clock.getDelta();
+
+    // Rotation automatique de base
+    targetRotY -= t * 0.12;
+
+    // Lissage vers la cible
+    currentRotX += (targetRotX - currentRotX) * 0.08;
+    currentRotY += (targetRotY - currentRotY) * 0.08;
+
+    globe.rotation.x = currentRotX;
+    globe.rotation.y = currentRotY;
+
+    renderer.render(scene, camera);
+  }
+
+  onResize();
+  animate();
 })();
