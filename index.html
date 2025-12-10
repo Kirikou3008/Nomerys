@@ -1,172 +1,352 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title> Nomerys – Itinéraires de voyage sur-mesure optimisés par l’IA</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Nomerys te créer des itinéraires de voyage sur-mesure : vols, hôtels et activités optimisés pour que tu puisse voyager à n'importe quel prix." />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <title>TravelAI – Itinéraires de voyage sur-mesure optimisés par l’IA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <div class="logo">Travel<span>AI</span></div>
+    <nav class="main-nav">
+      <a href="#top">Accueil</a>
+      <a href="#destinations">Destinations</a>
+      <a href="#guides">Guides</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="contact.html">Nous contacter</a>
+    </nav>
+    <!-- >>> ce bouton scroll vers le formulaire ↓ -->
+    <a href="#questionnaire" class="btn btn-primary nav-cta">Commencer</a>
+  </div>
+</header>
 
-  <!-- HEADER / NAVBAR -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="logo">Travel<span>AI</span></a>
-
-      <nav class="main-nav">
-        <a href="index.html" class="active">Accueil</a>
-        <a href="destinations.html">Destinations</a>
-        <a href="guides.html">Guides</a>
-        <a href="legal.html">Mentions légales</a>
-      </nav>
-
-      <a href="questionnaire.html" class="btn btn-primary">Commencer</a>
-
-      <button class="nav-toggle" aria-label="Ouvrir le menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
-
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <p class="badge">Voyages personnalisés · IA + expertise humaine</p>
-          <h1>Voyage ou tu le souhaite,<br>sans te soucier du budget.</h1>
-          <p class="hero-subtitle">
-            Tu remplis le formulaire avec tes informations, on te trouve vols, hôtels et activités
-            grâce à l'IA sur des sources fiables ou tu pourras trouver et reserver en quelques clics sur les meilleurs prix 
-          </p>
-
-          <div class="hero-actions">
-            <a href="questionnaire.html" class="btn btn-primary">Créer mon itinéraire</a>
-            <a href="#how" class="btn btn-ghost">Voir comment ça marche</a>
-          </div>
-
-          <ul class="hero-bullets">
-            <li>🎯 Prix optimisés pour un voyage low-cost</li>
-            <li>🧠 IA + recherches automatisées sur des sources fiables</li>
-            <li>📄 PDF détaillé + liens directs pour réserver rapidement</li>
-          </ul>
-        </div>
-
-        <aside class="hero-card">
-          <h2>Exemple : 10 jours au Japon</h2>
-          <p class="hero-card-text">
-            Tokyo, Osaka, temples, quartiers futuristes et ruelles traditionnelles.  
-            Un itinéraire complet avec transports optimisés et hôtels bien placés.
-          </p>
-          <ul class="hero-card-list">
-            <li>Vol A/R optimisé sur les meilleures dates</li>
-            <li>Hôtels bien notés près des transports et quartiers intéressants</li>
-            <li>Activités locales : food, spots cachés, quartiers vivants</li>
-          </ul>
-          <a href="questionnaire.html" class="btn btn-secondary">
-            Je veux ce type de voyage
-          </a>
-        </aside>
-      </div>
-    </section>
-
-    <!-- COMMENT ÇA MARCHE -->
-    <section id="how" class="section">
-      <div class="container">
-        <h2>Comment ça marche ?</h2>
-        <p class="section-intro">
-          Un process simple, pensé pour que tu gagnes du temps, de l’énergie et de l’argent.
+<main>
+  <!-- HERO avec planète interactive -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <p class="tagline">Voyage & IA</p>
+        <h1>Ton voyage <span>sur-mesure</span>, optimisé par l’IA</h1>
+        <p class="hero-subtitle">
+          Remplis un court questionnaire et reçois un itinéraire ultra optimisé :
+          vols, hôtels et activités adaptés à ton budget et à ton style de voyage.
         </p>
+        <div class="hero-actions">
+          <a href="#questionnaire" class="btn btn-primary">Commencer mon itinéraire</a>
+          <a href="#how-it-works" class="btn btn-ghost">Voir comment ça marche</a>
+        </div>
+        <ul class="hero-points">
+          <li>🔍 Recherche IA + vérifications humaines</li>
+          <li>💸 Optimisation prix (low cost intelligent, pas cheap nul)</li>
+          <li>📄 PDF clair + liens pour réserver en quelques clics</li>
+        </ul>
+      </div>
 
-        <div class="steps-grid">
-          <article class="step">
-            <span class="step-number">1</span>
-            <h3>Tu remplis le questionnaire</h3>
-            <p>
-              Dates, budget, destinations rêvées, envies, niveau de confort, contraintes…
-              Tu nous donnes le maximum d’infos pour que l’IA comprenne ton style de voyage.
-              Si tu n'as pas de destination précise en tête on te proposes même une destination 
-              selon ce que tu aimes
-            </p>
-          </article>
-
-          <article class="step">
-            <span class="step-number">2</span>
-            <h3>On analyse & on optimise</h3>
-            <p>
-              on te propose une base d’itinéraire : cohérence des trajets,
-              temps sur place, conseil, présentation des lieux, logistique, rapport qualité-prix des hôtels et vols.
-            </p>
-          </article>
-
-          <article class="step">
-            <span class="step-number">3</span>
-            <h3>Tu reçois ton PDF + liens</h3>
-            <p>
-              estimation de budget,recherche optimisée des vols, suggestions d’hôtels et d’activités
-              avec liens sécurisés pour réserver en quelques clics.
-            </p>
-          </article>
+      <div class="hero-visual">
+        <div class="planet-orbit">
+          <div class="planet-glow"></div>
+          <div class="planet"></div>
+          <div class="planet-orb planet-orb--1"></div>
+          <div class="planet-orb planet-orb--2"></div>
+          <div class="planet-orb planet-orb--3"></div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- À PROPOS -->
-    <section class="section alt">
-      <div class="container about-grid">
-        <div>
-          <h2>À propos du projet</h2>
+  <!-- COMMENT ÇA MARCHE -->
+  <section id="how-it-works" class="section">
+    <div class="container">
+      <h2>Comment ça marche ?</h2>
+      <p class="section-subtitle">
+        Un process simple, pensé pour que tu gagnes du temps et de l’argent.
+      </p>
+      <div class="steps-grid">
+        <article class="step-card">
+          <span class="step-number">1</span>
+          <h3>Tu remplis le formulaire</h3>
           <p>
-            TravelAI est un service indépendant qui combine IA et expertise humaine pour
-            créer des itinéraires de voyage réalistes, optimisés et accessibles.
+            Dates, budget, destinations rêvées, style de voyage, contraintes…
+            Tu nous donnes le maximum d’infos pour que l’IA puisse te comprendre.
           </p>
+        </article>
+        <article class="step-card">
+          <span class="step-number">2</span>
+          <h3>On analyse & on optimise</h3>
           <p>
-            L’objectif : te faire gagner des heures de recherche, t’éviter les itinéraires
-            impossibles et te permettre de profiter d’un voyage bien pensé, sans exploser ton budget.
+            L’IA génère une base d’itinéraire, puis on la retravaille à la main :
+            cohérence des trajets, météo, temps sur place, fatigue, horaires des vols.
           </p>
-        </div>
+        </article>
+        <article class="step-card">
+          <span class="step-number">3</span>
+          <h3>Tu reçois ton PDF + liens</h3>
+          <p>
+            Itinéraire détaillé jour par jour, estimation de budget, suggestions
+            d’hôtels et d’activités, avec liens de réservation sécurisés.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-        <aside class="about-box">
+  <!-- INSPIRATION / DESTINATIONS -->
+  <section id="destinations" class="section alt">
+    <div class="container">
+      <h2>Inspiration & destinations</h2>
+      <p class="section-subtitle">
+        Quelques exemples de voyages que tu peux nous confier.
+      </p>
+      <div class="cards-grid">
+        <article class="travel-card">
+          <h3>Japon : Tokyo & Osaka</h3>
+          <p>
+            10 à 14 jours entre mégalopole futuriste et quartiers traditionnels.
+            Optimisation des trajets en train, pass transports et quartiers où loger.
+          </p>
+          <div class="chip-row">
+            <span class="chip">JP Japon</span>
+            <span class="chip">Food & culture</span>
+            <span class="chip">Budget maîtrisé</span>
+          </div>
+        </article>
+
+        <article class="travel-card">
+          <h3>City-trip Europe low cost</h3>
+          <p>
+            3 à 5 jours dans une grande capitale européenne : vols, hôtel central,
+            suggestions de visites et d’activités selon ton style.
+          </p>
+          <div class="chip-row">
+            <span class="chip">Vols courts</span>
+            <span class="chip">Petits budgets</span>
+            <span class="chip">Weekend prolongé</span>
+          </div>
+        </article>
+
+        <article class="travel-card">
+          <h3>Road-trip nature & spots cachés</h3>
+          <p>
+            Road-trip en Europe ou ailleurs avec étapes optimisées,
+            hébergements bien notés et activités loin des pièges à touristes.
+          </p>
+          <div class="chip-row">
+            <span class="chip">Road-trip</span>
+            <span class="chip">Nature</span>
+            <span class="chip">Spots locaux</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIDES / BLOG -->
+  <section id="guides" class="section">
+    <div class="container">
+      <h2>Guides & conseils voyage</h2>
+      <p class="section-subtitle">
+        Du contenu éditorial que les programmes d’affiliation aiment voir :
+        astuces, budgets, destinations.
+      </p>
+      <div class="cards-grid">
+        <article class="guide-card">
+          <h3>Préparer un premier voyage au Japon sans exploser le budget</h3>
+          <p>
+            Choix des dates, aéroports, pass transport, cartes SIM, astuces
+            hébergement… Tout ce qu’on regarde pour toi quand on prépare un
+            itinéraire Japon.
+          </p>
+          <span class="link-fake">Lire bientôt</span>
+        </article>
+
+        <article class="guide-card">
+          <h3>Comment trouver un vol vraiment pas cher</h3>
+          <p>
+            Stratégies sur la flexibilité des dates, aéroports alternatifs,
+            durées d’escales acceptables… Les règles qu’on applique avant de
+            te proposer un vol.
+          </p>
+          <span class="link-fake">Lire bientôt</span>
+        </article>
+
+        <article class="guide-card">
+          <h3>Exemple d’itinéraire 10 jours Tokyo / Osaka</h3>
+          <p>
+            Exemple partiel pour montrer la structure de nos PDF :
+            rythme, quartiers, activités, temps de transport.
+          </p>
+          <span class="link-fake">Lire bientôt</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- À PROPOS / VALEURS -->
+  <section class="section alt">
+    <div class="container about-grid">
+      <div>
+        <h2>À propos du projet</h2>
+        <p>
+          TravelAI est un service indépendant qui combine IA et expertise humaine
+          pour créer des itinéraires de voyage réalistes, optimisés et accessibles.
+        </p>
+        <p>
+          L’objectif : te faire gagner des heures de recherche et te permettre de
+          profiter d’un voyage bien pensé, sans exploser ton budget.
+        </p>
+      </div>
+
+      <div class="about-panels">
+        <div class="about-panel">
           <h3>Ce que nous ne faisons pas</h3>
-          <ul class="list-bad">
-            <li>❌ Vendre un itinéraire identique pour tout le monde</li>
-            <li>❌ Te donner de fausses informations et de décevoir au moment de la réservation</li>
+          <ul>
+            <li>❌ Vendre des “packs” génériques identiques pour tout le monde</li>
+            <li>❌ Afficher des faux prix impossibles puis te décevoir au moment de réserver</li>
             <li>❌ Te pousser à réserver des choses que tu ne veux pas</li>
           </ul>
-
-          <h3>Ce que nous faisons</h3>
-          <ul class="list-good">
-            <li>✅ Adapter le voyage pour que tu puisse vraiment avoir une expérience unique à bas prix</li>
-            <li>✅ Chercher les combinaisons vols + hôtels et activités les plus intelligentes</li>
-            <li>✅ Être transparents sur les sources utilisées</li>
-          </ul>
-        </aside>
-      </div>
-    </section>
-
-    <!-- CTA FINAL -->
-    <section class="section">
-      <div class="container cta-final">
-        <div>
-          <h2>Prêt à commencer ton itinéraire sur-mesure ?</h2>
-          <p>
-            Réponds à quelques questions (3–7 minutes).  
-            Plus tu es précis, plus l’itinéraire sera adapté à ton style de voyage.
-          </p>
         </div>
-        <a href="questionnaire.html" class="btn btn-primary">Remplir le questionnaire</a>
+        <div class="about-panel">
+          <h3>Ce que nous faisons</h3>
+          <ul>
+            <li>✅ Adapter le voyage à ta vraie vie et ton vrai budget</li>
+            <li>✅ Chercher les combinaisons vols + hôtels les plus intelligentes</li>
+            <li>✅ Être transparents sur les prix et les sources utilisées</li>
+          </ul>
+        </div>
       </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© 2025 TravelAI – Tous droits réservés.</p>
-      <a href="legal.html">Mentions légales &amp; RGPD</a>
     </div>
-  </footer>
+  </section>
 
-  <script src="script.js"></script>
+  <!-- QUESTIONNAIRE / FORMULAIRE -->
+  <section id="questionnaire" class="section questionnaire-section">
+    <div class="container questionnaire-grid">
+      <div class="questionnaire-intro">
+        <h2>Commencer ton itinéraire sur-mesure</h2>
+        <p>
+          Ce questionnaire nous permet de comprendre ton projet et ton style de voyage.
+          Compte 3 à 7 minutes pour le remplir. Plus tu es précis, plus l’itinéraire
+          sera pertinent.
+        </p>
+        <ul class="questionnaire-points">
+          <li>Dates, durée et aéroports de départ possibles</li>
+          <li>Destination(s) rêvée(s) ou idées générales</li>
+          <li>Budget global et niveau de confort souhaité</li>
+          <li>Ambiance, rythme, contraintes particulières</li>
+        </ul>
+        <p class="questionnaire-note">
+          Tu recevras ensuite ton itinéraire par email, avec un PDF clair et des liens
+          directs pour réserver vols, hôtels et activités.
+        </p>
+      </div>
+
+      <!-- ICI : ton VRAI formulaire interne.
+           Tu peux adapter les "name" pour qu’ils correspondent à ce que tu utilises côté n8n. -->
+      <form id="travel-form" class="questionnaire-form">
+        <h3>Tes infos de base</h3>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="firstName">Prénom</label>
+            <input id="firstName" name="firstName" type="text" placeholder="Ex : Baptiste" required>
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="Ex : toi@email.com" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="departureAirport">Aéroport / ville de départ</label>
+            <input id="departureAirport" name="departureAirport" type="text" placeholder="Ex : Paris (CDG / ORY)">
+          </div>
+          <div class="form-field">
+            <label for="travelers">Nombre de voyageurs</label>
+            <input id="travelers" name="travelers" type="number" min="1" value="1">
+          </div>
+        </div>
+
+        <h3>Dates & destination</h3>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="startDate">Date de départ souhaitée</label>
+            <input id="startDate" name="startDate" type="date">
+          </div>
+          <div class="form-field">
+            <label for="endDate">Date de retour souhaitée</label>
+            <input id="endDate" name="endDate" type="date">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="destinations">Destination(s) souhaitée(s)</label>
+          <input id="destinations" name="destinations" type="text"
+                 placeholder="Ex : Japon (Tokyo & Osaka), ou 'Europe du Sud, plage + villes'">
+        </div>
+
+        <h3>Budget & style de voyage</h3>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="budget">Budget global approximatif</label>
+            <input id="budget" name="budget" type="text" placeholder="Ex : 1500€ par personne">
+          </div>
+          <div class="form-field">
+            <label for="comfort">Niveau de confort</label>
+            <select id="comfort" name="comfort">
+              <option value="">Choisir</option>
+              <option value="lowcost">Low cost intelligent</option>
+              <option value="standard">Standard confort</option>
+              <option value="premium">Confort + quelques extras</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="style">Ambiance & style de voyage</label>
+          <textarea id="style" name="style" rows="3"
+                    placeholder="Ex : Beaucoup de visites, quartiers animés, food local, quelques journées plus chill…"></textarea>
+        </div>
+
+        <div class="form-field">
+          <label for="constraints">Contraintes ou envies particulières</label>
+          <textarea id="constraints" name="constraints" rows="3"
+                    placeholder="Ex : éviter les vols de nuit, pas trop de changements d’hôtel, voyager avec enfants…"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">
+          Envoyer mes infos
+        </button>
+
+        <p class="form-note">
+          Pour l’instant, ce formulaire n’envoie pas encore les données. Tu pourras
+          le connecter à ton workflow n8n (webhook) dès que tu veux.
+        </p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <div class="logo">Travel<span>AI</span></div>
+      <p>Itinéraires de voyage optimisés par l’IA et affinés à la main.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#top">Accueil</a>
+      <a href="#destinations">Destinations</a>
+      <a href="#guides">Guides</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="contact.html">Nous contacter</a>
+    </div>
+    <p class="footer-copy">© <span id="year"></span> TravelAI. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
