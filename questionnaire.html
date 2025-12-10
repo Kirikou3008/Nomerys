@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>TravelAI – Questionnaire itinéraire sur-mesure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Questionnaire TravelAI pour créer ton itinéraire de voyage personnalisé." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Travel<span>AI</span></a>
+
+      <nav class="main-nav">
+        <a href="index.html">Accueil</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="guides.html">Guides</a>
+        <a href="legal.html">Mentions légales</a>
+      </nav>
+
+      <a href="questionnaire.html" class="btn btn-primary active-nav-btn">Commencer</a>
+
+      <button class="nav-toggle" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container form-layout">
+        <div>
+          <h1>Commencer ton itinéraire sur-mesure</h1>
+          <p class="section-intro">
+            Ce questionnaire nous permet de comprendre ton projet et ton style de voyage.
+            Compte 3 à 7 minutes pour le remplir.  
+            Plus tu es précis, plus l’itinéraire sera pertinent.
+          </p>
+
+          <ul class="hero-bullets">
+            <li>Dates, durée et aéroports de départ possibles</li>
+            <li>Destination(s) rêvée(s) ou idées générales</li>
+            <li>Budget global et niveau de confort souhaité</li>
+            <li>Ambiance, rythme, contraintes particulières</li>
+          </ul>
+
+          <p class="small-muted">
+            Tu recevras ensuite ton itinéraire par email, avec un PDF clair et des liens directs
+            pour réserver vols, hôtels et activités.
+          </p>
+        </div>
+
+        <div class="form-wrapper">
+          <!-- SI TU VEUX GARDER TON PROPRE FORMULAIRE HTML -->
+          <form class="travel-form">
+            <h2>Tes infos de base</h2>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom" placeholder="Ex : Baptiste" required />
+              </div>
+              <div class="form-field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Ex : toi@email.com" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="depart">Aéroport / ville de départ</label>
+                <input type="text" id="depart" name="depart" placeholder="Ex : Paris (CDG / ORY)" />
+              </div>
+              <div class="form-field">
+                <label for="voyageurs">Nombre de voyageurs</label>
+                <input type="number" id="voyageurs" name="voyageurs" min="1" value="1" />
+              </div>
+            </div>
+
+            <h2>Dates & destination</h2>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="date_debut">Date de départ souhaitée</label>
+                <input type="date" id="date_debut" name="date_debut" />
+              </div>
+              <div class="form-field">
+                <label for="date_fin">Date de retour souhaitée</label>
+                <input type="date" id="date_fin" name="date_fin" />
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="destinations">Destination(s) souhaitée(s)</label>
+              <input type="text" id="destinations" name="destinations"
+                     placeholder="Ex : Japon (Tokyo & Osaka), ou 'Europe du Sud, plage + villes'" />
+            </div>
+
+            <h2>Budget & style de voyage</h2>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="budget">Budget global approximatif</label>
+                <input type="text" id="budget" name="budget"
+                       placeholder="Ex : 1500 € par personne, vols inclus" />
+              </div>
+              <div class="form-field">
+                <label for="confort">Niveau de confort</label>
+                <select id="confort" name="confort">
+                  <option value="">Choisir…</option>
+                  <option value="eco">🛌 Simple & économique</option>
+                  <option value="standard">⚖️ Confort standard</option>
+                  <option value="confort">✨ Confort + quelques extras</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="style">Style de voyage</label>
+              <textarea id="style" name="style" rows="3"
+                placeholder="Ex : plutôt visites & quartiers animés, un peu de nature, pas trop de musées..."></textarea>
+            </div>
+
+            <div class="form-field">
+              <label for="contraintes">Contraintes ou points importants</label>
+              <textarea id="contraintes" name="contraintes" rows="3"
+                placeholder="Ex : éviter les vols très tôt le matin, voyager avec enfants, mobilité réduite, etc."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary full-width">
+              Envoyer mon projet (exemple – à connecter derrière)
+            </button>
+
+            <p class="small-muted mt-12">
+              En envoyant ce formulaire, tu acceptes que nous utilisions ces informations pour te proposer
+              un itinéraire personnalisé.  
+              Plus d’infos dans les <a href="legal.html">mentions légales & RGPD</a>.
+            </p>
+          </form>
+
+          <!-- SI TU PRÉFÈRES UN IFRAME JOTFORM / TALLY :
+          <iframe
+            src="https://TON-LIEN-DE-FORMULAIRE"
+            frameborder="0"
+            style="width:100%;min-height:900px;border-radius:16px;background:#fff;"
+            allowfullscreen>
+          </iframe>
+          -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2025 TravelAI – Tous droits réservés.</p>
+      <a href="legal.html">Mentions légales &amp; RGPD</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
