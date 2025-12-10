@@ -250,100 +250,49 @@ body {
   margin-top: 0.35rem;
 }
 
-/* ---------- PLANÈTE ---------- */
+/* --------- GLOBE 3D --------- */
 
-.hero-planet-wrapper {
+.hero-globe-wrapper {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.hero-planet {
-  width: 320px;
-  height: 320px;
+#hero-globe {
+  width: 340px;
+  height: 340px;
+  max-width: 100%;
   border-radius: 50%;
-  position: relative;
-  background: radial-gradient(circle at 30% 20%, #ffffff 0, #4f46e5 40%, #0ea5e9 72%, #1d4ed8 100%);
+  display: block;
+  /* petit glow autour du canvas */
   box-shadow:
-    0 24px 60px rgba(15, 23, 42, 0.25),
-    0 0 0 12px rgba(59, 130, 246, 0.18);
-  overflow: visible;
-  transform-style: preserve-3d;
-  transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
+    0 32px 80px rgba(15, 23, 42, 0.35),
+    0 0 0 18px rgba(191, 219, 254, 0.7);
+  background: radial-gradient(circle at 30% 20%, #ffffff 0, #dbeafe 40%, #bfdbfe 70%, #93c5fd 100%);
 }
 
-/* coeur lumineux au centre */
-.hero-planet-core {
-  position: absolute;
-  inset: 22%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #ffffff 0, #a5b4fc 40%, transparent 75%);
-  mix-blend-mode: screen;
-}
+/* responsive */
 
-/* halos / anneaux */
-
-.hero-planet-ring {
-  position: absolute;
-  inset: -12%;
-  border-radius: 50%;
-  border: 2px solid rgba(191, 219, 254, 0.6);
-  box-shadow: 0 0 40px rgba(96, 165, 250, 0.45);
-}
-
-.hero-planet-ring--two {
-  inset: -20%;
-  opacity: 0.5;
-}
-
-/* orbites et petits points qui tournent */
-
-.hero-planet-orbit {
-  position: absolute;
-  inset: -5%;
-  border-radius: 50%;
-  border: 1px dashed rgba(191, 219, 254, 0.6);
-  animation: orbit-spin 18s linear infinite;
-}
-
-.hero-planet-orbit--two {
-  inset: -12%;
-  animation-duration: 22s;
-}
-
-.hero-planet-orbit--three {
-  inset: -19%;
-  animation-duration: 28s;
-}
-
-.hero-planet-orbit-dot {
-  position: absolute;
-  top: 50%;
-  left: 100%;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #ffffff 0, #38bdf8 60%, #0f172a 100%);
-  box-shadow: 0 0 14px rgba(59, 130, 246, 0.8);
-  transform: translate(-50%, -50%);
-}
-
-@keyframes orbit-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: left;
   }
-  to {
-    transform: rotate(360deg);
+
+  .hero-globe-wrapper {
+    order: -1;
+    margin-bottom: 2.5rem;
+  }
+
+  #hero-globe {
+    width: 260px;
+    height: 260px;
+    box-shadow:
+      0 24px 60px rgba(15, 23, 42, 0.28),
+      0 0 0 14px rgba(191, 219, 254, 0.7);
   }
 }
-
-/* état « survol » / interaction (complété avec JS) */
-.hero-planet.is-active {
-  box-shadow:
-    0 26px 70px rgba(15, 23, 42, 0.35),
-    0 0 0 16px rgba(59, 130, 246, 0.24);
-}
-
 /* ---------- RESPONSIVE ---------- */
 
 @media (max-width: 900px) {
