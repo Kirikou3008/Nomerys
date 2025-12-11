@@ -2,89 +2,185 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Nous contacter – TravelAI</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TravelAI – Nous contacter</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .page-main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem 4rem;
+    }
+
+    .page-header-kicker {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #38bdf8;
+      margin-bottom: 0.6rem;
+    }
+
+    .page-title {
+      font-size: clamp(2.2rem, 3vw, 2.6rem);
+      margin-bottom: 0.8rem;
+    }
+
+    .page-intro {
+      max-width: 720px;
+      color: #a5b4fc;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin-bottom: 2.2rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: 3rem;
+      align-items: flex-start;
+    }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem 0;
+    }
+
+    .contact-list li {
+      margin-bottom: 0.9rem;
+      font-size: 0.95rem;
+      color: #e5e7eb;
+    }
+
+    .contact-list span {
+      margin-right: 0.5rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .form-field label {
+      font-size: 0.9rem;
+      color: #e5e7eb;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      background: rgba(15,23,42,0.9);
+      border-radius: 0.9rem;
+      border: 1px solid rgba(148,163,184,0.6);
+      padding: 0.7rem 1rem;
+      color: #f9fafb;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color: #60a5fa;
+      box-shadow: 0 0 0 1px rgba(96,165,250,0.4);
+    }
+
+    .form-field small {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .contact-note {
+      font-size: 0.85rem;
+      color: #9ca3af;
+      margin-top: 0.4rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- HEADER -->
   <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
         <span class="logo-dot"></span>
         <span class="logo-text">Travel<span>AI</span></span>
-      </div>
+      </a>
       <nav class="main-nav">
         <a href="index.html" class="nav-link">Accueil</a>
         <a href="destinations.html" class="nav-link">Destinations</a>
         <a href="guides.html" class="nav-link">Guides</a>
         <a href="legal.html" class="nav-link">Mentions légales</a>
-        <a href="contact.html" class="nav-link nav-link--active">Nous contacter</a>
+        <a href="contact.html" class="nav-link nav-link-active">Nous contacter</a>
       </nav>
-      <a href="questionnaire.html" class="btn btn-primary header-cta">Commencer</a>
+      <a href="questionnaire.html" class="btn-primary header-cta">Commencer</a>
     </div>
   </header>
 
-  <main>
-    <!-- SECTION CONTACT -->
-    <section class="page-section contact-section">
-      <div class="container contact-grid">
-        <div class="contact-intro">
-          <p class="eyebrow">Contact</p>
-          <h1>Nous contacter</h1>
-          <p class="page-intro">
-            Une question sur un projet, un partenariat ou le fonctionnement de TravelAI&nbsp;?
-            Tu peux nous écrire directement via ce formulaire.  
-            On revient vers toi dès que possible.
-          </p>
+  <main class="page-main">
+    <header class="section">
+      <div class="page-header-kicker">Contact</div>
+      <h1 class="page-title">Nous contacter</h1>
+      <p class="page-intro">
+        Une question sur un projet, un partenariat ou le fonctionnement de TravelAI ?
+        Tu peux nous écrire directement via ce formulaire. On revient vers toi dès que possible.
+      </p>
+    </header>
 
-          <ul class="contact-points">
-            <li><span>💬</span> Questions sur un itinéraire ou un devis.</li>
-            <li><span>🤝</span> Partenariats, collaborations, affiliation.</li>
-            <li><span>🛠</span> Remarques sur le site ou idées d’évolution.</li>
-          </ul>
-        </div>
-
-        <div class="contact-card">
-          <form class="contact-form">
-            <div class="field-group">
-              <label for="name">Prénom / Nom</label>
-              <input id="name" type="text" placeholder="Ex : Baptiste" />
-            </div>
-
-            <div class="field-group">
-              <label for="email">Email</label>
-              <input id="email" type="email" placeholder="toi@email.com" />
-            </div>
-
-            <div class="field-group">
-              <label for="subject">Sujet</label>
-              <input id="subject" type="text" placeholder="Ex : Question sur un itinéraire Japon" />
-            </div>
-
-            <div class="field-group">
-              <label for="message">Message</label>
-              <textarea id="message" rows="5" placeholder="Explique-nous en quelques lignes ce que tu souhaites."></textarea>
-            </div>
-
-            <p class="contact-note">
-              Pour l’instant, ce formulaire n’envoie pas encore d’email automatique.  
-              Tu pourras le connecter plus tard à un webhook / n8n / Zapier quand tu seras prêt.
-            </p>
-
-            <button type="submit" class="btn btn-primary contact-submit">
-              Envoyer mon message
-            </button>
-          </form>
-        </div>
+    <section class="section contact-grid">
+      <div>
+        <ul class="contact-list">
+          <li>💬 Questions sur un itinéraire ou un devis.</li>
+          <li>🤝 Partenariats, collaborations, affiliation.</li>
+          <li>🛠 Remarques sur le site ou idées d’évolution.</li>
+        </ul>
+        <p class="contact-note">
+          Pour l’instant, ce formulaire n’envoie pas encore d’email automatique.
+          Tu pourras le connecter plus tard à un webhook / n8n / Zapier quand tu seras prêt.
+        </p>
       </div>
+
+      <form class="contact-form">
+        <div class="form-field">
+          <label for="name">Prénom / Nom</label>
+          <input id="name" type="text" placeholder="Ex : Baptiste" />
+        </div>
+
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="toi@email.com" />
+        </div>
+
+        <div class="form-field">
+          <label for="subject">Sujet</label>
+          <input id="subject" type="text" placeholder="Ex : Question sur un itinéraire" />
+        </div>
+
+        <div class="form-field">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Explique-nous en quelques lignes ce que tu souhaites."></textarea>
+        </div>
+
+        <button type="button" class="btn-primary">
+          Envoyer mon message
+        </button>
+      </form>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <p class="footer-copy">© 2025 TravelAI – Tous droits réservés.</p>
+    <div class="footer-inner">
+      <p>© 2025 TravelAI – Tous droits réservés.</p>
       <div class="footer-links">
         <a href="legal.html">Mentions légales &amp; RGPD</a>
         <a href="contact.html">Nous contacter</a>
