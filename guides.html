@@ -2,97 +2,82 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>TravelAI – Guides & conseils voyage</title>
+  <title>Guides & conseils voyage – TravelAI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="page-dark">
+<body>
   <!-- HEADER -->
   <header class="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="logo">
+      <div class="logo">
         <span class="logo-dot"></span>
         <span class="logo-text">Travel<span>AI</span></span>
-      </a>
-
+      </div>
       <nav class="main-nav">
         <a href="index.html" class="nav-link">Accueil</a>
         <a href="destinations.html" class="nav-link">Destinations</a>
-        <a href="guides.html" class="nav-link active">Guides</a>
+        <a href="guides.html" class="nav-link nav-link--active">Guides</a>
         <a href="legal.html" class="nav-link">Mentions légales</a>
         <a href="contact.html" class="nav-link">Nous contacter</a>
       </nav>
-
-      <a href="questionnaire.html" class="btn btn-primary">Commencer</a>
+      <a href="questionnaire.html" class="btn btn-primary header-cta">Commencer</a>
     </div>
   </header>
 
-  <!-- MAIN -->
   <main>
-    <section class="section hero-simple">
+    <section class="page-section">
       <div class="container">
-        <div class="hero-simple-inner">
-          <div>
-            <p class="eyebrow">Guides & conseils voyage</p>
-            <h1>Guides & conseils voyage</h1>
-            <p class="hero-lead">
-              Ici, tu trouveras des articles concrets pour préparer tes voyages :
-              budgets réalistes, astuces pour payer tes vols moins cher, exemples d’itinéraires
-              et retours d’expérience.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+        <p class="eyebrow">Guides & conseils</p>
+        <h1>Guides & conseils voyage</h1>
+        <p class="page-intro">
+          Ici, tu trouveras bientôt des articles concrets pour préparer tes voyages :
+          budgets réalistes, astuces pour payer tes vols moins cher, exemples d’itinéraires
+          et retours d’expérience.
+        </p>
 
-    <!-- Grid de guides (on reprend tes titres de guides) -->
-    <section class="section">
-      <div class="container">
+        <!-- CARTES DE GUIDES -->
         <div class="card-grid">
           <article class="idea-card">
             <h2>Préparer un premier voyage au Japon sans exploser le budget</h2>
             <p>
-              Choix des dates, aéroports, pass transport, cartes SIM, astuces hébergement...
+              Choix des dates, aéroports, pass transport, cartes SIM, astuces hébergement…
               Tout ce qu’on regarde pour toi quand on prépare un itinéraire Japon.
             </p>
-            <a href="#" class="card-link">Article en cours de rédaction.</a>
+            <p class="guide-status">Article en cours de rédaction.</p>
           </article>
 
           <article class="idea-card">
-            <h2>Comment trouver un vol vraiment pas cher</h2>
+            <h2>Comment trouver un vol vraiment pas cher (sans y passer la journée)</h2>
             <p>
-              Méthode simple pour comparer les vols intelligemment :
-              flexibilité sur les dates, aéroports alternatifs, durées d’escales acceptables,
-              outils à connaître.
+              Méthode simple pour comparer les vols intelligemment : flexibilité sur les dates,
+              aéroports alternatifs, durées d’escales acceptables, outils à connaître.
             </p>
-            <a href="#" class="card-link">Article en cours de rédaction.</a>
+            <p class="guide-status">Article en cours de rédaction.</p>
           </article>
 
           <article class="idea-card">
             <h2>Exemple d’itinéraire 10 jours Tokyo / Osaka</h2>
             <p>
-              Exemple d’itinéraire jour par jour pour illustrer ce que tu peux recevoir avec
-              TravelAI : structure, équilibre visites / temps libre, transports, estimation de budget.
+              Exemple partiel d’itinéraire pour montrer la structure de nos PDF :
+              rythme, quartiers, activités, temps de transport, estimation de budget.
             </p>
-            <a href="#" class="card-link">Article en cours de rédaction.</a>
+            <p class="guide-status">Article en cours de rédaction.</p>
           </article>
         </div>
 
-        <!-- CTA vers le formulaire -->
-        <div class="cta-miniform" style="margin-top: 3rem;">
-          <div class="mini-form-text">
-            <h3>Pas envie de lire des guides ?</h3>
+        <!-- CTA FINAL GUIDES -->
+        <div class="cta-row">
+          <div class="cta-text">
+            <h2>Pas envie de lire des guides ?</h2>
             <p>
-              Tu peux directement nous confier ton projet via le questionnaire. On te renverra un
-              itinéraire complet prêt à être réservé.
+              Tu peux directement nous confier ton projet via le questionnaire.
+              On te renverra un itinéraire complet prêt à être réservé.
             </p>
-         
           </div>
-          <div class="mini-form-actions">
-            <a href="questionnaire.html" class="btn btn-primary">
-              Me créer un itinéraire plutôt que lire des guides
-            </a>
-          </div>
+          <a href="questionnaire.html" class="btn btn-primary">
+            Me créer un itinéraire plutôt que lire des guides
+          </a>
         </div>
       </div>
     </section>
@@ -108,5 +93,7 @@
       </div>
     </div>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
