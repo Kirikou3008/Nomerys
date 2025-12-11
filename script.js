@@ -52,3 +52,110 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     }
   });
 });
+
+// =========================
+// INTRO GLOBE 3D AVEC THREE
+// =========================
+
+(function () {
+  const overlay = document.getElementById("intro-globe-overlay");
+  const container = document.getElementById("intro-globe-container");
+  if (!overlay || !container) return; // sécurité
+
+  document.body.classList.add("intro-active");
+
+  // --- Setup Three.js ---
+  const scene = new THREE.Scene();
+
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    container.clientWidth / container.clientHeight,
+    0.1,
+    100
+  );
+
+  // On démarre "près" de la Terre
+  camera.position.set(0, 0, 1.8);
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setPixelRatio(window.devicePixelRatio || 1);
+  container.appendChild(renderer.domElement);
+
+  // Lumière douce
+  const light = new THREE.DirectionalLight(0xffffff, 1.2);
+  light.position.set(2, 1, 2);
+  scene.add(light);
+
+  const ambient = new THREE.AmbientLight(0x404040, 0.6);
+  scene.add(ambient);
+
+  // Terre
+  const geometry = new THREE.SphereGeometry(1, 64, 64);
+  const textureLoader = new THREE.TextureLoader();
+
+  const earthTexture = textureLoader.load("assets/earth.jpg", () => {
+    renderer.render(scene, camera);
+  });
+
+  const earthMaterial = new THREE.MeshPhongMaterial({
+    map: earthTexture
+  });
+
+  const earth = new THREE.Mesh(geometry, earthMaterial);
+  scene.add(earth);
+
+  // On se place "au-dessus" d'une zone type Europe/Afrique
+  earth.rotation.y = -Math.PI / 3;
+
+  // Gestion redimensionnement
+  window.addEventListener("resize", () => {
+    if (!container) return;
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+  });
+
+  // --- Animation zoom + rotation ---
+  const start = performance.now();
+  const Z_START = 1.8; // très proche
+  const Z_END = 4.2;   // plus loin
+  const ZOOM_DURATION = 2800; // ms
+  const TOTAL_INTRO = 4200;   // ms avant de cacher l'intro
+
+  function animate(now) {
+    requestAnimationFrame(animate);
+    const elapsed = now - start;
+
+    // Zoom out progress 0 → 1
+    const t = Math.min(elapsed / ZOOM_DURATION, 1);
+
+    // Interpolation camera Z
+    const currentZ = Z_START + (Z_END - Z_START) * t;
+    camera.position.z = currentZ;
+
+    // Rotation de la planète (un peu plus rapide au début)
+    const baseSpeed = 0.002;
+    const extraSpeed = 0.01 * (1 - t); // plus rapide au début
+    earth.rotation.y += baseSpeed + extraSpeed;
+
+    renderer.render(scene, camera);
+
+    // Après la durée totale, on masque l'intro une seule fois
+    if (elapsed > TOTAL_INTRO && !overlay.classList.contains("hidden")) {
+      overlay.classList.add("hidden");
+      document.body.classList.remove("intro-active");
+
+      // On supprime le canvas après l'animation de disparition
+      setTimeout(() => {
+        overlay.remove();
+        renderer.dispose();
+        geometry.dispose();
+        earthMaterial.dispose();
+        earthTexture.dispose();
+      }, 1000);
+    }
+  }
+
+  requestAnimationFrame(animate);
+})();
