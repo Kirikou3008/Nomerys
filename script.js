@@ -31,12 +31,15 @@
   const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
   camera.position.z = 3.2;
 
-  // Lumières
-  const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
-  dirLight.position.set(5, 5, 5);
+  // 💡 Lumière plus douce + plus d'ambiance
+  const dirLight = new THREE.DirectionalLight(0xffffff, 0.7); // avant 1.2
+  dirLight.position.set(4, 3, 5);
   scene.add(dirLight);
 
-  const ambient = new THREE.AmbientLight(0xffffff, 0.35);
+  const hemiLight = new THREE.HemisphereLight(0xffffff, 0x111122, 0.6);
+  scene.add(hemiLight);
+
+  const ambient = new THREE.AmbientLight(0xffffff, 0.45); // avant 0.35
   scene.add(ambient);
 
   // Géométrie Terre
@@ -46,14 +49,15 @@
     renderOnce();
   });
 
-  const material = new THREE.MeshStandardMaterial({
+  // 🌍 Matériau un peu brillant, sans trop d’ombre ultra dure
+  const material = new THREE.MeshPhongMaterial({
     map: earthTexture,
+    shininess: 8,
   });
 
   const earth = new THREE.Mesh(geometry, material);
   scene.add(earth);
 
-  // Taille / ratio
   function resizeRenderer() {
     const width = canvas.clientWidth;
     const height = canvas.clientHeight || width;
@@ -68,14 +72,13 @@
   let targetRotationX = 0;
   let targetRotationY = 0;
 
-  // Interaction souris
   function onMouseMove(event) {
     const rect = canvas.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width - 0.5;
     const y = (event.clientY - rect.top) / rect.height - 0.5;
 
-    targetRotationY = x * 1.2; // gauche/droite
-    targetRotationX = -y * 0.8; // haut/bas
+    targetRotationY = x * 1.2;
+    targetRotationX = -y * 0.8;
   }
 
   canvas.addEventListener("mousemove", onMouseMove);
@@ -84,14 +87,10 @@
     renderer.render(scene, camera);
   }
 
-  // Animation
   function animate() {
     requestAnimationFrame(animate);
 
-    // rotation de base
     earth.rotation.y += 0.002;
-
-    // easing vers la position de la souris
     earth.rotation.x += (targetRotationX - earth.rotation.x) * 0.05;
     earth.rotation.y += (targetRotationY - earth.rotation.y) * 0.05;
 
