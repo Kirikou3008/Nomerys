@@ -1,43 +1,43 @@
-// ---------- PLANÈTE : effet de rotation au mouvement de la souris ----------
+// -------- PLANÈTE : tilt à la souris --------
 
 const planetInner = document.querySelector(".hero-planet-inner");
 const planetWrapper = document.querySelector(".hero-planet");
 
 if (planetInner && planetWrapper) {
-  const maxTilt = 18; // degrés max
+  const maxTilt = 25; // plus grand pour que tu voies bien l'effet
 
   planetWrapper.addEventListener("mousemove", (event) => {
     const rect = planetWrapper.getBoundingClientRect();
-    const x = event.clientX - rect.left; // position souris dans le bloc
+    const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    const percentX = (x / rect.width) - 0.5; // -0.5 à +0.5
-    const percentY = (y / rect.height) - 0.5;
+    const percentX = x / rect.width - 0.5; // -0.5 à +0.5
+    const percentY = y / rect.height - 0.5;
 
-    const rotateY = -percentX * maxTilt; // gauche/droite
-    const rotateX = percentY * maxTilt;  // haut/bas
+    const rotateY = -percentX * maxTilt;
+    const rotateX = percentY * maxTilt;
 
     planetInner.style.transform = `
-      perspective(700px)
+      perspective(800px)
       rotateX(${rotateX}deg)
       rotateY(${rotateY}deg)
-      scale(1.03)
+      scale(1.05)
     `;
-    planetInner.style.boxShadow = "0 25px 55px rgba(15,23,42,0.4)";
+    planetInner.style.boxShadow = "0 30px 70px rgba(0,0,0,0.9)";
   });
 
   planetWrapper.addEventListener("mouseleave", () => {
     planetInner.style.transform = `
-      perspective(700px)
+      perspective(800px)
       rotateX(0deg)
       rotateY(0deg)
       scale(1)
     `;
-    planetInner.style.boxShadow = "0 18px 40px rgba(15,23,42,0.35)";
+    planetInner.style.boxShadow = "0 22px 55px rgba(0,0,0,0.85)";
   });
 }
 
-// ---------- Scroll doux pour le lien "Voir comment ça marche" ----------
+// -------- Scroll doux vers les ancres (#process, etc.) --------
 
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (e) => {
