@@ -62,152 +62,55 @@
     </div>
   </main>
 
-  <!-- COMMENT ÇA MARCHE (fond blanc) -->
-  <section id="how-it-works" class="section">
-    <div class="container">
-      <h2>Comment ça marche ?</h2>
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-number">1</div>
-          <h3>Tu remplis le formulaire</h3>
-          <p>
-            Dates, budget, destinations rêvées, style de voyage, contraintes… Tu nous donnes
-            le maximum d’infos pour que l’IA comprenne ton projet.
-          </p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">2</div>
-          <h3>On analyse & on optimise</h3>
-          <p>
-            L’IA génère une base d’itinéraire, puis on la retravaille à la main : cohérence des trajets,
-            météo, temps sur place, fatigue, horaires des vols.
-          </p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">3</div>
-          <h3>Tu reçois ton PDF + liens</h3>
-          <p>
-            Itinéraire détaillé jour par jour, estimation de budget, sélection d’hôtels et d’activités
-            avec liens de réservation sécurisés.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DESTINATIONS (fond blanc) -->
-  <section id="sections-destinations" class="section">
-    <div class="container">
-      <h2>Inspiration & destinations</h2>
-      <p class="section-subtitle">
-        Quelques types de voyages que tu peux nous confier.
-      </p>
-      <!-- Tu complèteras ici -->
-    </div>
-  </section>
-
-  <!-- GUIDES (fond blanc) -->
-  <section id="sections-guides" class="section">
-    <div class="container">
-      <h2>Guides & conseils voyage</h2>
-      <p class="section-subtitle">
-        Du contenu utile sur les vols pas chers, les hébergements malins et les destinations.
-      </p>
-      <!-- Tu complèteras ici -->
-    </div>
-  </section>
-
-  <!-- FORMULAIRE -->
-  <section id="form-section" class="section">
-    <div class="container form-layout">
-      <div class="form-intro">
-        <h2>Commencer ton itinéraire sur-mesure</h2>
-        <p>
-          Ce questionnaire nous permet de comprendre ton projet et ton style de voyage.
-          Plus tu es précis, plus l’itinéraire sera adapté.
+  <!-- COMMENT ÇA MARCHE -->
+    <section id="how-it-works" class="section">
+      <div class="container">
+        <h2>Comment ça marche ?</h2>
+        <p class="section-intro">
+          Un process simple, pensé pour que tu gagnes du temps et de l’argent.
         </p>
-        <ul>
-          <li>Dates, durée et aéroports de départ possibles</li>
-          <li>Destinations rêvées ou idées générales</li>
-          <li>Budget global et niveau de confort souhaité</li>
-          <li>Ambiance, rythme, contraintes particulières</li>
-        </ul>
+
+        <div class="steps-grid">
+          <article class="step">
+            <span class="step-number">1</span>
+            <h3>Tu remplis le formulaire</h3>
+            <p>Dates, budget, destinations rêvées, style de voyage, contraintes…</p>
+          </article>
+          <article class="step">
+            <span class="step-number">2</span>
+            <h3>On analyse & on optimise</h3>
+            <p>L’IA propose une base, on la retravaille à la main pour la rendre réaliste.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">3</span>
+            <h3>Tu reçois ton PDF + liens</h3>
+            <p>Itinéraire détaillé jour par jour, budget, hôtels & activités avec liens.</p>
+          </article>
+        </div>
       </div>
+    </section>
 
-      <form class="trip-form">
-        <h3>Tes infos de base</h3>
-        <div class="form-grid">
-          <div class="field">
-            <label>Prénom</label>
-            <input type="text" placeholder="Ex : Baptiste" />
-          </div>
-          <div class="field">
-            <label>Email</label>
-            <input type="email" placeholder="Ex : toi@email.com" />
-          </div>
-          <div class="field">
-            <label>Aéroport / ville de départ</label>
-            <input type="text" placeholder="Ex : Paris (CDG / ORY)" />
-          </div>
-          <div class="field">
-            <label>Nombre de voyageurs</label>
-            <input type="number" min="1" value="1" />
-          </div>
+    <!-- INSPIRATION -->
+    <section class="section alt">
+      <div class="container">
+        <h2>Inspiration & destinations</h2>
+        <p class="section-intro">
+          Quelques exemples de voyages que tu peux nous confier.
+        </p>
+
+        <div class="cards-grid">
+          <!-- Tes cartes Japon / Europe / Roadtrip etc -->
         </div>
-
-        <h3>Dates & destination</h3>
-        <div class="form-grid">
-          <div class="field">
-            <label>Date de départ souhaitée</label>
-            <input type="date" />
-          </div>
-          <div class="field">
-            <label>Date de retour souhaitée</label>
-            <input type="date" />
-          </div>
-          <div class="field full">
-            <label>Destination(s) souhaitée(s)</label>
-            <input type="text" placeholder="Ex : Japon (Tokyo & Osaka), ou 'Europe du Sud, plage + villes'" />
-          </div>
-        </div>
-
-        <h3>Budget & style de voyage</h3>
-        <div class="form-grid">
-          <div class="field">
-            <label>Budget global approximatif</label>
-            <input type="text" placeholder="Ex : 1500–2000 € par personne" />
-          </div>
-          <div class="field">
-            <label>Niveau de confort</label>
-            <select>
-              <option>À petit budget</option>
-              <option>Confort normal</option>
-              <option>Confort ++</option>
-            </select>
-          </div>
-          <div class="field full">
-            <label>Ambiance & envies</label>
-            <textarea rows="3" placeholder="Ex : quartiers animés, food, temples, quelques jours chill…"></textarea>
-          </div>
-        </div>
-
-        <button type="submit" class="btn btn-primary form-submit">
-          Envoyer mon projet
-        </button>
-      </form>
-    </div>
-  </section>
+      </div>
+    </section>
+  </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>© 2025 TravelAI – Tous droits réservés.</p>
-      <div class="footer-links">
-        <a href="mentions-legales.html">Mentions légales</a>
-        <a href="contact.html">Nous contacter</a>
-      </div>
+      <a href="legal.html">Mentions légales &amp; RGPD</a>
     </div>
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>
