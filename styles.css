@@ -563,3 +563,49 @@ p {
 .legal-card li {
   margin-bottom: 0.4rem;
 }
+
+/* === CONTACT FORM === */
+
+.contact-form {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 1.5rem;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact-form .form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contact-form label {
+  font-size: 0.9rem;
+  color: #cbd5f5;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: rgba(15, 23, 42, 0.8);
+  border-radius: 0.9rem;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  padding: 0.7rem 0.9rem;
+  font-size: 0.95rem;
+  color: #e5edff;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #4fd1ff;
+  box-shadow: 0 0 0 1px #4fd1ff;
+}
+
+.contact-form .mini-note {
+  font-size: 0.8rem;
+  color: #9ca8cf;
+}
