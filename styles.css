@@ -528,3 +528,38 @@ p {
 .main-nav a:active {
   color: #c4d3ff;
 }
+
+/* === LEGAL PAGE === */
+
+.container-narrow {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.legal-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.legal-card {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 1.25rem;
+  padding: 1.75rem 2rem;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.legal-card h2 {
+  margin-bottom: 0.9rem;
+  font-size: 1.2rem;
+}
+
+.legal-card ul {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0 0;
+}
+
+.legal-card li {
+  margin-bottom: 0.4rem;
+}
