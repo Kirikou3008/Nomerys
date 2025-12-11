@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>TravelAI – Nous contacter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-dark">
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-dot"></span>
+        <span class="logo-text">Travel<span>AI</span></span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="destinations.html" class="nav-link">Destinations</a>
+        <a href="guides.html" class="nav-link">Guides</a>
+        <a href="legal.html" class="nav-link">Mentions légales</a>
+        <a href="contact.html" class="nav-link active">Nous contacter</a>
+      </nav>
+
+      <a href="questionnaire.html" class="btn btn-primary">Commencer</a>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <section class="section hero-simple">
+      <div class="container">
+        <div class="hero-simple-inner">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h1>Nous contacter</h1>
+            <p class="hero-lead">
+              Une question sur un projet, un partenariat ou le fonctionnement de TravelAI ?
+              Tu peux nous écrire directement via ce formulaire.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container-narrow">
+        <form class="contact-form">
+          <div class="form-row">
+            <label for="name">Prénom / Nom</label>
+            <input type="text" id="name" name="name" placeholder="Ex : Baptiste" required />
+          </div>
+
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="toi@email.com" required />
+          </div>
+
+          <div class="form-row">
+            <label for="subject">Sujet</label>
+            <input type="text" id="subject" name="subject" placeholder="Ex : Question sur un itinéraire" />
+          </div>
+
+          <div class="form-row">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5"
+              placeholder="Explique-nous en quelques lignes ce que tu souhaites."></textarea>
+          </div>
+
+          <p class="mini-note">
+            Pour l’instant, ce formulaire n’envoie pas encore d’email automatique.
+            Tu peux remplacer l’action par un webhook / n8n / Zapier quand tu seras prêt.
+          </p>
+
+          <button type="submit" class="btn btn-primary">Envoyer mon message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-copy">© 2025 TravelAI – Tous droits réservés.</p>
+      <div class="footer-links">
+        <a href="legal.html">Mentions légales &amp; RGPD</a>
+        <a href="contact.html">Nous contacter</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
