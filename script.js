@@ -1,197 +1,102 @@
-// script.js
+// ---- Navigation active ----
+(function setActiveNav() {
+  const path = window.location.pathname.split("/").pop() || "index.html";
+  const links = document.querySelectorAll(".main-nav .nav-link");
+  links.forEach((link) => {
+    const href = link.getAttribute("href");
+    if (
+      (path === "" && href === "index.html") ||
+      (path === "index.html" && href === "index.html") ||
+      href === path
+    ) {
+      link.classList.add("nav-link-active");
+    } else {
+      link.classList.remove("nav-link-active");
+    }
+  });
+})();
 
-document.addEventListener("DOMContentLoaded", () => {
-  /* --------- Smooth scroll sur les ancres internes --------- */
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const targetId = link.getAttribute("href");
-      if (!targetId || targetId === "#") return;
+// ---- Globe 3D Earth ----
+(function initEarth() {
+  const canvas = document.getElementById("earthCanvas");
+  if (!canvas || typeof THREE === "undefined") return;
 
-      const target = document.querySelector(targetId);
-      if (!target) return;
-
-      e.preventDefault();
-      const y = target.getBoundingClientRect().top + window.scrollY - 80;
-
-      window.scrollTo({
-        top: y,
-        behavior: "smooth",
-      });
-    });
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    antialias: true,
+    alpha: true,
   });
 
-  /* --------- Reveal sections --------- */
-  const revealElements = document.querySelectorAll(".reveal");
-  if ("IntersectionObserver" in window && revealElements.length) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+  camera.position.z = 3.2;
 
-    revealElements.forEach((el) => observer.observe(el));
-  } else {
-    revealElements.forEach((el) => el.classList.add("visible"));
+  // Lumières
+  const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+  dirLight.position.set(5, 5, 5);
+  scene.add(dirLight);
+
+  const ambient = new THREE.AmbientLight(0xffffff, 0.35);
+  scene.add(ambient);
+
+  // Géométrie Terre
+  const geometry = new THREE.SphereGeometry(1, 64, 64);
+  const loader = new THREE.TextureLoader();
+  const earthTexture = loader.load("assets/earth.jpg", () => {
+    renderOnce();
+  });
+
+  const material = new THREE.MeshStandardMaterial({
+    map: earthTexture,
+  });
+
+  const earth = new THREE.Mesh(geometry, material);
+  scene.add(earth);
+
+  // Taille / ratio
+  function resizeRenderer() {
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight || width;
+    renderer.setSize(width, height, false);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
   }
 
-  /* --------- Avion qui s'anime sur la section À propos --------- */
-  const plane = document.querySelector(".scroll-plane");
-  const aboutSection = document.querySelector("#about");
+  window.addEventListener("resize", resizeRenderer);
+  resizeRenderer();
 
-  if (plane && aboutSection && "IntersectionObserver" in window) {
-    const planeObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            plane.classList.add("animate");
-            planeObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.4 }
-    );
+  let targetRotationX = 0;
+  let targetRotationY = 0;
 
-    planeObserver.observe(aboutSection);
+  // Interaction souris
+  function onMouseMove(event) {
+    const rect = canvas.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+    targetRotationY = x * 1.2; // gauche/droite
+    targetRotationX = -y * 0.8; // haut/bas
   }
 
-  /* --------- Mini-form : on bloque le submit réel pour l'instant --------- */
-  const miniForm = document.querySelector(".mini-form form");
-  if (miniForm) {
-    miniForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      alert(
-        "Merci ! Quand tu voudras, tu pourras connecter ce formulaire à n8n / Zapier pour recevoir les projets automatiquement."
-      );
-    });
+  canvas.addEventListener("mousemove", onMouseMove);
+
+  function renderOnce() {
+    renderer.render(scene, camera);
   }
 
-  /* =========================================================
-     TERRE 3D AVEC THREE.JS
-     ========================================================= */
+  // Animation
+  function animate() {
+    requestAnimationFrame(animate);
 
-  const canvas = document.getElementById("earth-canvas");
-  const wrapper = document.querySelector(".hero-planet-wrapper");
+    // rotation de base
+    earth.rotation.y += 0.002;
 
-  if (canvas && wrapper && window.THREE) {
-    const scene = new THREE.Scene();
+    // easing vers la position de la souris
+    earth.rotation.x += (targetRotationX - earth.rotation.x) * 0.05;
+    earth.rotation.y += (targetRotationY - earth.rotation.y) * 0.05;
 
-    const camera = new THREE.PerspectiveCamera(
-      35,
-      wrapper.clientWidth / wrapper.clientHeight,
-      0.1,
-      100
-    );
-    camera.position.set(0, 0, 3.2);
-
-    const renderer = new THREE.WebGLRenderer({
-      canvas,
-      antialias: true,
-      alpha: true,
-    });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(wrapper.clientWidth, wrapper.clientHeight);
-
-    // Lumières
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-    scene.add(ambientLight);
-
-    const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-    dirLight.position.set(3, 2, 3);
-    scene.add(dirLight);
-
-    // Terre
-    const geometry = new THREE.SphereGeometry(1, 64, 64);
-    const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load("assets/earth.jpg");
-
-    const material = new THREE.MeshPhongMaterial({
-      map: texture,
-      shininess: 12,
-    });
-
-    const earth = new THREE.Mesh(geometry, material);
-    scene.add(earth);
-
-    // Léger halo autour
-    const glowGeometry = new THREE.SphereGeometry(1.05, 64, 64);
-    const glowMaterial = new THREE.MeshBasicMaterial({
-      color: 0x1d4ed8,
-      transparent: true,
-      opacity: 0.45,
-      side: THREE.BackSide,
-    });
-    const glow = new THREE.Mesh(glowGeometry, glowMaterial);
-    scene.add(glow);
-
-    // Rotation automatique + drag souris
-    let autoRotate = true;
-    let isDragging = false;
-    let prevX = 0;
-    let prevY = 0;
-
-    function onPointerDown(e) {
-      isDragging = true;
-      autoRotate = false;
-      const point = e.touches ? e.touches[0] : e;
-      prevX = point.clientX;
-      prevY = point.clientY;
-    }
-
-    function onPointerMove(e) {
-      if (!isDragging) return;
-      const point = e.touches ? e.touches[0] : e;
-      const deltaX = point.clientX - prevX;
-      const deltaY = point.clientY - prevY;
-      prevX = point.clientX;
-      prevY = point.clientY;
-
-      const rotSpeed = 0.005;
-      earth.rotation.y += deltaX * rotSpeed;
-      earth.rotation.x += deltaY * rotSpeed;
-      earth.rotation.x = Math.max(
-        -Math.PI / 2,
-        Math.min(Math.PI / 2, earth.rotation.x)
-      );
-    }
-
-    function onPointerUp() {
-      isDragging = false;
-      autoRotate = true;
-    }
-
-    wrapper.addEventListener("mousedown", onPointerDown);
-    wrapper.addEventListener("mousemove", onPointerMove);
-    wrapper.addEventListener("mouseup", onPointerUp);
-    wrapper.addEventListener("mouseleave", onPointerUp);
-
-    wrapper.addEventListener("touchstart", onPointerDown, { passive: true });
-    wrapper.addEventListener("touchmove", onPointerMove, { passive: true });
-    wrapper.addEventListener("touchend", onPointerUp);
-
-    // Resize
-    window.addEventListener("resize", () => {
-      const w = wrapper.clientWidth;
-      const h = wrapper.clientHeight;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
-    });
-
-    // Animation
-    function animate() {
-      requestAnimationFrame(animate);
-      if (autoRotate) {
-        earth.rotation.y += 0.0009 * 60 / 60; // rotation douce
-      }
-      renderer.render(scene, camera);
-    }
-
-    animate();
+    renderer.render(scene, camera);
   }
-});
+
+  animate();
+})();
