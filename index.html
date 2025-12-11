@@ -1,302 +1,508 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TravelAI – Itinéraires de voyage sur-mesure</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link
-    rel="icon"
-    type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%232563eb'/%3E%3Cpath d='M20 60 Q50 10 80 60' stroke='white' stroke-width='4' fill='none'/%3E%3C/svg%3E"
-  />
-  <script src="script.js" defer></script>
-</head>
-<body>
-  <!-- HEADER / NAV -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="logo">
-        <span class="logo-dot"></span>
-        <span class="logo-text">Travel<span>AI</span></span>
-      </a>
+/* --------- RESET --------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-      <nav class="main-nav">
-        <a href="index.html" class="nav-link active">Accueil</a>
-        <a href="destinations.html" class="nav-link">Destinations</a>
-        <a href="guides.html" class="nav-link">Guides</a>
-        <a href="legal.html" class="nav-link">Mentions légales</a>
-        <a href="questionnaire.html" class="nav-link">Nous contacter</a>
-      </nav>
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
 
-      <a href="questionnaire.html" class="btn btn-primary header-cta">
-        Commencer
-      </a>
-    </div>
-  </header>
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  background: #020617;
+  color: #e5e7eb;
+  line-height: 1.6;
+}
 
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Voyage & IA</p>
-          <h1>
-            Ton voyage sur-mesure,<br />
-            <span class="text-gradient">optimisé par l’IA</span>
-          </h1>
-          <p class="hero-subtitle">
-            Remplis un court questionnaire et reçois un itinéraire ultra optimisé :
-            vols, hôtels et activités adaptés à ton budget et à ton style de voyage.
-          </p>
+/* --------- UTILS --------- */
 
-          <div class="hero-actions">
-            <a href="questionnaire.html" class="btn btn-primary">
-              Commencer mon itinéraire
-            </a>
-            <a href="#process" class="btn btn-ghost">
-              Voir comment ça marche
-            </a>
-          </div>
+.container {
+  width: min(1120px, 100% - 2.5rem);
+  margin: 0 auto;
+}
 
-          <ul class="hero-bullets">
-            <li>🔍 Recherche IA + vérifications humaines</li>
-            <li>💸 Optimisation prix (low cost intelligent, pas cheap nul)</li>
-            <li>📄 PDF clair + liens pour réserver en quelques clics</li>
-          </ul>
-        </div>
+h1,
+h2,
+h3 {
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+  color: #f9fafb;
+}
 
-        <!-- PLANÈTE : grand, sans halo ni points -->
-        <div class="hero-planet-wrapper">
-          <div class="hero-planet" id="hero-planet">
-            <div class="hero-planet-inner">
-              <img src="assets/earth.jpg" alt="Planète Terre stylisée" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+p {
+  margin: 0 0 0.5rem;
+}
 
-    <!-- COMMENT ÇA MARCHE -->
-    <section id="process" class="section">
-      <div class="container">
-        <h2>Comment ça marche ?</h2>
-        <p class="section-intro">
-          Un process simple, pensé pour que tu gagnes du temps et de l’argent.
-        </p>
+/* --------- HEADER --------- */
 
-        <div class="steps-grid">
-          <article class="step-card">
-            <span class="step-number">1</span>
-            <h3>Tu remplis le formulaire</h3>
-            <p>
-              Dates, budget, destinations rêvées, style de voyage, contraintes…
-              Tu nous donnes le maximum d’infos pour que l’IA comprenne ton projet.
-            </p>
-          </article>
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(15, 23, 42, 0.96);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(30, 64, 175, 0.6);
+}
 
-          <article class="step-card">
-            <span class="step-number">2</span>
-            <h3>On analyse & on optimise</h3>
-            <p>
-              L’IA génère une base d’itinéraire, puis on la retravaille à la main :
-              cohérence des trajets, météo, temps sur place, fatigue, horaires des vols.
-            </p>
-          </article>
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 0;
+}
 
-          <article class="step-card">
-            <span class="step-number">3</span>
-            <h3>Tu reçois ton PDF + liens</h3>
-            <p>
-              Itinéraire détaillé jour par jour, estimation de budget, suggestions
-              d’hôtels et d’activités, avec liens de réservation sécurisés.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+}
 
-    <!-- INSPIRATION & DESTINATIONS -->
-    <section class="section">
-      <div class="container">
-        <h2>Inspiration & destinations</h2>
-        <p class="section-intro">
-          Quelques types de voyages que tu peux nous confier.
-        </p>
+.logo-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: radial-gradient(circle, #22d3ee, #6366f1);
+}
 
-        <div class="card-grid">
-          <article class="idea-card">
-            <h3>Japon : Tokyo & Osaka</h3>
-            <p>
-              10 à 14 jours entre mégalopole futuriste, temples et quartiers
-              traditionnels. Optimisation des trajets en train, pass transports
-              et quartiers où loger.
-            </p>
-            <div class="tag-row">
-              <span class="tag">🇯🇵 Japon</span>
-              <span class="tag">Food & culture</span>
-              <span class="tag">Budget maîtrisé</span>
-            </div>
-          </article>
+.logo-text {
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  color: #f9fafb;
+}
 
-          <article class="idea-card">
-            <h3>City-trip Europe low cost</h3>
-            <p>
-              3 à 5 jours dans une grande capitale européenne : vols, hôtel central,
-              suggestions de visites et d’activités selon ton style.
-            </p>
-            <div class="tag-row">
-              <span class="tag">✈ Vols courts</span>
-              <span class="tag">Petits budgets</span>
-              <span class="tag">Weekend prolongé</span>
-            </div>
-          </article>
+.logo-text span {
+  color: #38bdf8;
+}
 
-          <article class="idea-card">
-            <h3>Road-trip nature & spots cachés</h3>
-            <p>
-              Road-trip en Europe ou ailleurs avec étapes optimisées, hébergements
-              bien notés et activités uniques loin des pièges à touristes.
-            </p>
-            <div class="tag-row">
-              <span class="tag">🚗 Road-trip</span>
-              <span class="tag">Nature</span>
-              <span class="tag">Spots locaux</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+/* NAV */
 
-    <!-- GUIDES & CONSEILS -->
-    <section class="section">
-      <div class="container">
-        <h2>Guides & conseils voyage</h2>
-        <p class="section-intro">
-          Du contenu utile sur les vols pas chers, les hébergements malins
-          et les destinations.
-        </p>
+.main-nav {
+  display: flex;
+  gap: 1.25rem;
+  font-size: 0.95rem;
+}
 
-        <div class="card-grid">
-          <article class="guide-card">
-            <h3>Préparer un premier voyage au Japon sans exploser le budget</h3>
-            <p>
-              Pass transports, cartes SIM, astuces hébergement… Tout ce qu’on
-              regarde pour toi quand on prépare un itinéraire Japon.
-            </p>
-            <a href="guides.html" class="card-link">Lire bientôt</a>
-          </article>
+.nav-link {
+  text-decoration: none;
+  color: #e5e7eb;
+  position: relative;
+  padding-bottom: 0.15rem;
+}
 
-          <article class="guide-card">
-            <h3>Comment trouver un vol vraiment pas cher</h3>
-            <p>
-              Flexibilité sur les dates, aéroports alternatifs, durées d’escales
-              acceptables… Les règles qu’on applique avant de te proposer un vol.
-            </p>
-            <a href="guides.html" class="card-link">Lire bientôt</a>
-          </article>
+.nav-link:hover::after,
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #22d3ee, #6366f1);
+}
 
-          <article class="guide-card">
-            <h3>Exemple d’itinéraire 10 jours Tokyo / Osaka</h3>
-            <p>
-              Exemple partiel d’itinéraire pour montrer la structure de nos PDF :
-              rythme, quartiers, activités, temps de transport.
-            </p>
-            <a href="guides.html" class="card-link">Lire bientôt</a>
-          </article>
-        </div>
-      </div>
-    </section>
+/* BUTTONS */
 
-    <!-- À PROPOS -->
-    <section class="section section-muted">
-      <div class="container about-grid">
-        <div>
-          <h2>À propos du projet</h2>
-          <p>
-            TravelAI est un service indépendant qui combine IA et expertise
-            humaine pour créer des itinéraires de voyage réalistes, optimisés
-            et accessibles.
-          </p>
-          <p>
-            L’objectif : te faire gagner des heures de recherche et te permettre
-            de profiter d’un voyage bien pensé, sans exploser ton budget.
-          </p>
-        </div>
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.7rem 1.4rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  white-space: nowrap;
+}
 
-        <div class="about-list">
-          <h3>Ce que nous ne faisons pas</h3>
-          <ul>
-            <li>❌ Vendre des “packs” génériques identiques pour tout le monde</li>
-            <li>❌ Afficher des prix impossibles puis te décevoir au moment de réserver</li>
-            <li>❌ Te pousser à réserver des choses que tu ne veux pas</li>
-          </ul>
+.btn-primary {
+  background: linear-gradient(135deg, #22d3ee, #3b82f6);
+  color: #f9fafb;
+  box-shadow: 0 14px 32px rgba(37, 99, 235, 0.5);
+}
 
-          <h3>Ce que nous faisons</h3>
-          <ul>
-            <li>✅ Adapter le voyage à ta vraie vie et ton vrai budget</li>
-            <li>✅ Chercher les combinaisons vols + hôtels les plus intelligentes</li>
-            <li>✅ Être transparents sur les prix et les sources utilisées</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 45px rgba(37, 99, 235, 0.7);
+}
 
-    <!-- CTA FINAL -->
-    <section class="section">
-      <div class="container cta-grid">
-        <div>
-          <h2>Commencer ton itinéraire sur-mesure</h2>
-          <p>
-            Réponds à quelques questions (3–7 minutes). Plus tu es précis, plus
-            l’itinéraire sera adapté à ton style de voyage.
-          </p>
-          <ul class="hero-bullets">
-            <li>Dates, durée et aéroports de départ possibles</li>
-            <li>Destination(s) rêvée(s), ambiance, rythme, contraintes</li>
-            <li>Budget global et niveau de confort souhaité</li>
-          </ul>
-          <a href="questionnaire.html" class="btn btn-primary cta-bottom-btn">
-            Accéder au questionnaire complet
-          </a>
-        </div>
+.btn-ghost {
+  background: rgba(148, 163, 184, 0.12);
+  color: #e5e7eb;
+}
 
-        <div class="mini-form">
-          <h3>Un aperçu rapide</h3>
-          <p class="mini-form-text">
-            Laisse ton email et ta destination rêvée, on te répond avec quelques
-            idées d’itinéraire possibles.
-          </p>
-          <form action="https://formspree.io/f/your-id" method="POST">
-            <label>
-              Email
-              <input type="email" name="email" placeholder="Ex : toi@email.com" required />
-            </label>
-            <label>
-              Destination(s) rêvée(s)
-              <input type="text" name="destinations" placeholder="Ex : Japon, Thaïlande, USA…" />
-            </label>
-            <button type="submit" class="btn btn-primary btn-full">
-              Envoyer
-            </button>
-          </form>
-          <p class="mini-form-note">
-            Pour le détail complet de ton projet, utilise le questionnaire principal.
-          </p>
-        </div>
-      </div>
-    </section>
-  </main>
+.btn-ghost:hover {
+  background: rgba(148, 163, 184, 0.24);
+}
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© 2025 TravelAI – Tous droits réservés.</p>
-      <div class="footer-links">
-        <a href="legal.html">Mentions légales</a>
-        <a href="questionnaire.html">Nous contacter</a>
-      </div>
-    </div>
-  </footer>
-</body>
-</html>
+.header-cta {
+  padding-inline: 1.6rem;
+}
+
+/* --------- HERO --------- */
+
+.hero {
+  padding: 4.5rem 0 3.5rem;
+  background: radial-gradient(circle at top left, #0f172a 0, #020617 55%);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 3rem;
+}
+
+.hero-copy h1 {
+  font-size: clamp(2.6rem, 3.2vw + 1.8rem, 3.4rem);
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, #22d3ee, #6366f1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #9ca3af;
+  margin-bottom: 0.7rem;
+}
+
+.hero-subtitle {
+  margin-top: 0.9rem;
+  font-size: 1rem;
+  color: #9ca3af;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.8rem;
+  margin: 1.6rem 0 1.2rem;
+}
+
+.hero-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+.hero-bullets li + li {
+  margin-top: 0.25rem;
+}
+
+/* PLANÈTE : grande, sans halo/dots */
+
+.hero-planet-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-planet {
+  position: relative;
+  width: min(420px, 80vw);
+  aspect-ratio: 1 / 1;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 30% 10%, #0f172a, #020617);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.8),
+    0 0 0 16px rgba(15, 23, 42, 0.9);
+}
+
+.hero-planet-inner {
+  width: 84%;
+  height: 84%;
+  border-radius: 999px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.12s ease-out, box-shadow 0.12s ease-out;
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.85);
+}
+
+.hero-planet-inner img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  /* rotation continue de la planète */
+  animation: spin 40s linear infinite;
+}
+
+/* rotation continue */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --------- SECTIONS --------- */
+
+.section {
+  padding: 3.5rem 0;
+  background: #020617;
+}
+
+.section:nth-of-type(even) {
+  background: #020617;
+}
+
+.section-muted {
+  background: radial-gradient(circle at top left, #111827 0, #020617 55%);
+}
+
+.section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.section-intro {
+  max-width: 600px;
+  color: #9ca3af;
+  margin-bottom: 1.6rem;
+}
+
+/* COMMENT ÇA MARCHE / STEPS */
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.6rem;
+}
+
+.step-card {
+  background: #020617;
+  border-radius: 1.25rem;
+  padding: 1.4rem 1.3rem 1.4rem;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(55, 65, 81, 0.9);
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.25);
+  color: #bae6fd;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+/* CARD GRIDS */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.6rem;
+}
+
+.idea-card,
+.guide-card {
+  background: #020617;
+  border-radius: 1.25rem;
+  padding: 1.4rem 1.3rem 1.5rem;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(55, 65, 81, 0.9);
+}
+
+.idea-card p,
+.guide-card p {
+  color: #d1d5db;
+}
+
+.tag-row {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  font-size: 0.78rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.15);
+  color: #bfdbfe;
+}
+
+.card-link {
+  display: inline-block;
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  color: #60a5fa;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+/* À PROPOS */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.about-list h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.about-list ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 0.75rem;
+  color: #d1d5db;
+}
+
+.about-list li + li {
+  margin-top: 0.3rem;
+}
+
+/* CTA + MINI FORM */
+
+.cta-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.mini-form {
+  background: #020617;
+  border-radius: 1.5rem;
+  padding: 1.6rem 1.4rem 1.6rem;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(55, 65, 81, 0.9);
+}
+
+.mini-form-text {
+  color: #d1d5db;
+  margin-bottom: 1rem;
+}
+
+.mini-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.mini-form label {
+  font-size: 0.85rem;
+  color: #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mini-form input {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(75, 85, 99, 0.9);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.9rem;
+  background: #020617;
+  color: #f9fafb;
+}
+
+.mini-form input::placeholder {
+  color: #6b7280;
+}
+
+.btn-full {
+  width: 100%;
+  margin-top: 0.3rem;
+}
+
+.mini-form-note {
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.cta-bottom-btn {
+  margin-top: 1rem;
+}
+
+/* --------- FOOTER --------- */
+
+.site-footer {
+  border-top: 1px solid rgba(31, 41, 55, 0.9);
+  background: #020617;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+.footer-links {
+  display: flex;
+  gap: 0.9rem;
+}
+
+.footer-links a {
+  color: #e5e7eb;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* --------- RESPONSIVE --------- */
+
+@media (max-width: 900px) {
+  .main-nav {
+    display: none; /* menu mobile simple pour l'instant */
+  }
+
+  .hero-grid,
+  .steps-grid,
+  .card-grid,
+  .about-grid,
+  .cta-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero {
+    padding-top: 3.2rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-planet {
+    width: min(320px, 80vw);
+  }
+}
