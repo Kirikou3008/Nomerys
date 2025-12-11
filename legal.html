@@ -3,206 +3,166 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TravelAI – Itinéraires de voyage sur-mesure</title>
-  <meta name="description" content="Itinéraires de voyage optimisés par l'IA : vols, hôtels et activités adaptés à ton budget et ton style de voyage." />
+  <title>TravelAI – Mentions légales & RGPD</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .page-main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem 4rem;
+    }
+
+    .page-header-kicker {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #38bdf8;
+      margin-bottom: 0.6rem;
+    }
+
+    .page-title {
+      font-size: clamp(2.2rem, 3vw, 2.6rem);
+      margin-bottom: 0.8rem;
+    }
+
+    .page-intro {
+      max-width: 720px;
+      color: #a5b4fc;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .legal-grid {
+      display: grid;
+      gap: 2.5rem;
+      max-width: 900px;
+    }
+
+    .legal-section h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .legal-section p,
+    .legal-section li {
+      font-size: 0.93rem;
+      line-height: 1.7;
+      color: #e5e7eb;
+    }
+
+    .legal-section ul {
+      padding-left: 1.2rem;
+      margin: 0.6rem 0 0;
+    }
+
+    .legal-section strong {
+      color: #c7d2fe;
+    }
+  </style>
 </head>
 <body>
-  <!-- HEADER / NAV -->
   <header class="site-header">
-    <div class="container header-inner">
+    <div class="header-inner">
       <a href="index.html" class="logo">
         <span class="logo-dot"></span>
         <span class="logo-text">Travel<span>AI</span></span>
       </a>
-
       <nav class="main-nav">
-        <a href="index.html" class="nav-link active">Accueil</a>
+        <a href="index.html" class="nav-link">Accueil</a>
         <a href="destinations.html" class="nav-link">Destinations</a>
         <a href="guides.html" class="nav-link">Guides</a>
-        <a href="legal.html" class="nav-link">Mentions légales</a>
+        <a href="legal.html" class="nav-link nav-link-active">Mentions légales</a>
         <a href="contact.html" class="nav-link">Nous contacter</a>
       </nav>
-
-      <a href="#start" class="btn btn-primary header-cta">Commencer</a>
+      <a href="questionnaire.html" class="btn-primary header-cta">Commencer</a>
     </div>
   </header>
 
-  <main>
-    <!-- HERO -->
-    <section id="hero" class="hero">
-      <div class="container hero-inner">
-        <div class="hero-content">
-          <p class="eyebrow">VOYAGE & IA</p>
-          <h1>
-            Ton voyage sur-mesure,<br />
-            <span>optimisé par l’IA</span>
-          </h1>
-          <p class="hero-subtitle">
-            Remplis un court questionnaire et reçois un itinéraire ultra optimisé :
-            vols, hôtels et activités adaptés à ton budget et à tes préférences.
-          </p>
+  <main class="page-main">
+    <header class="section">
+      <div class="page-header-kicker">Mentions légales & RGPD</div>
+      <h1 class="page-title">Informations légales du site TravelAI</h1>
+      <p class="page-intro">
+        Ces informations sont fournies conformément à la législation française, afin de préciser
+        qui est responsable du site, comment sont gérées les données et qui héberge la plateforme.
+      </p>
+    </header>
 
-          <div class="hero-actions">
-            <a href="#start" class="btn btn-primary">Commencer mon itinéraire</a>
-            <a href="#steps" class="btn btn-ghost">Voir comment ça marche</a>
-          </div>
+    <section class="legal-grid">
 
-          <ul class="hero-bullets">
-            <li>🔍 Recherche IA</li>
-            <li>💸 Optimisation prix pour un voyage low-cost</li>
-            <li>📄 PDF clair + liens pour réserver en quelques clics</li>
-          </ul>
-        </div>
+      <article class="legal-section">
+        <h2>Éditeur du site</h2>
+        <p><strong>Nom commercial :</strong> Astralis</p>
+        <p><strong>Statut :</strong> Micro-entreprise</p>
+        <p><strong>Responsable de publication :</strong> Baptiste Paixao</p>
+        <p><strong>Adresse :</strong> Ribécourt (France)</p>
+        <p><strong>Email :</strong> (à renseigner dans tes propres mentions)</p>
+      </article>
 
-        <div class="hero-visual">
-          <div class="hero-planet-wrapper">
-            <!-- Canvas 3D -->
-            <canvas id="earth-canvas"></canvas>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- COMMENT ÇA MARCHE -->
-    <section id="steps" class="section steps">
-      <div class="container">
-        <h2 class="section-title">Comment ça marche ?</h2>
-        <p class="section-subtitle">
-          Un process simple, pensé pour que tu gagnes du temps, de l’énergie et de l’argent.
+      <article class="legal-section">
+        <h2>Hébergement</h2>
+        <p>
+          Le site est hébergé par <strong>GitHub Pages – GitHub, Inc.</strong>,
+          88 Colin P Kelly Jr St, San Francisco, CA 94107, USA.
         </p>
+      </article>
 
-        <div class="steps-grid">
-          <article class="step-card reveal">
-            <div class="step-number">1</div>
-            <h3>Tu remplis le formulaire</h3>
-            <p>
-              Dates, budget, destinations, style de voyage, aéroport…
-              Tu nous donnes le maximum d’infos pour que l’IA comprenne ton projet.
-            </p>
-          </article>
+      <article class="legal-section">
+        <h2>Propriété intellectuelle</h2>
+        <p>
+          L’ensemble des contenus présents sur ce site (textes, visuels, logo, maquette) est
+          protégé par le droit d’auteur. Toute reproduction, même partielle, sans autorisation
+          préalable est interdite.
+        </p>
+      </article>
 
-          <article class="step-card reveal">
-            <div class="step-number">2</div>
-            <h3>On analyse &amp; on optimise</h3>
-            <p>
-              On te génère une base d’itinéraire, puis on trouve les meilleurs prix
-              pour que tu passes un séjour inoubliable : cohérence des trajets,
-              activités originales, temps sur place, horaires des vols.
-            </p>
-          </article>
+      <article class="legal-section">
+        <h2>Responsabilité</h2>
+        <p>
+          TravelAI propose des suggestions de voyages, vols, hôtels et activités. Les
+          réservations finales se font auprès de plateformes tierces (compagnies aériennes,
+          agences, sites de réservation, etc.). Les prix et disponibilités peuvent évoluer à tout
+          moment. TravelAI ne peut être tenu responsable des modifications, annulations ou
+          problèmes survenus auprès de ces prestataires.
+        </p>
+      </article>
 
-          <article class="step-card reveal">
-            <div class="step-number">3</div>
-            <h3>Tu reçois ton PDF + liens</h3>
-            <p>
-              Itinéraire détaillé, estimation de budget, suggestions d’hôtels et
-              d’activités, avec des liens de réservation sécurisés.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
+      <article class="legal-section">
+        <h2>Données personnelles & RGPD</h2>
+        <p>
+          Les informations collectées via les formulaires (par exemple : prénom, email,
+          détails de projet de voyage) sont utilisées uniquement pour répondre aux demandes
+          d’itinéraires ou de contact.
+        </p>
+        <ul>
+          <li>Les données ne sont ni revendues, ni utilisées pour du spam.</li>
+          <li>Tu peux demander la suppression ou la modification de tes données à tout moment.</li>
+          <li>Les données peuvent être traitées via des outils tiers (IA, automatisation) uniquement pour ton projet.</li>
+        </ul>
+      </article>
 
-    <!-- AVION ANIMÉ (fond) -->
-    <div class="scroll-plane" aria-hidden="true">✈</div>
+      <article class="legal-section">
+        <h2>Cookies</h2>
+        <p>
+          Le site peut utiliser des cookies techniques (par exemple pour les statistiques
+          anonymes de visite). Tu peux les gérer via les paramètres de ton navigateur.
+        </p>
+      </article>
 
-    <!-- À PROPOS DU PROJET -->
-    <section id="about" class="section about">
-      <div class="container about-grid">
-        <div class="about-text">
-          <h2 class="section-title">À propos du projet</h2>
-          <p>
-            TravelAI est un service indépendant qui combine IA et automatisation en se
-            basant sur des sources fiables pour créer des itinéraires de voyage
-            réalistes, optimisés et accessibles.
-          </p>
-          <p>
-            L’objectif : te faire gagner des heures de recherche et te permettre de
-            profiter d’un voyage bien pensé, sans exploser ton budget.
-          </p>
-        </div>
+      <article class="legal-section">
+        <h2>Contact légal</h2>
+        <p>
+          Pour toute question relative aux mentions légales ou au traitement des données,
+          tu peux utiliser la page <strong>« Nous contacter »</strong> du site.
+        </p>
+      </article>
 
-        <div class="about-lists">
-          <div class="about-list">
-            <h3>Ce que nous ne faisons pas</h3>
-            <ul>
-              <li>❌ Vendre un service identique pour tout le monde</li>
-              <li>
-                ❌ Afficher des prix impossibles puis te décevoir au moment de réserver
-              </li>
-              <li>❌ Te pousser à réserver des choses que tu ne veux pas</li>
-            </ul>
-          </div>
-
-          <div class="about-list">
-            <h3>Ce que nous faisons</h3>
-            <ul>
-              <li>
-                ✅ S’adapter à tes critères pour t’offrir le voyage de tes rêves
-                avec un budget raisonnable pour tout le séjour
-              </li>
-              <li>✅ Chercher les combinaisons vols + hôtels les plus fiables</li>
-              <li>✅ Être transparents sur les prix et les sources utilisées</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- COMMENCER TON ITINÉRAIRE -->
-    <section id="start" class="section start">
-      <div class="container start-grid">
-        <div class="start-text">
-          <h2 class="section-title">Commencer ton itinéraire sur-mesure</h2>
-          <p>
-            Réponds à quelques questions (3–7 minutes). Plus tu es précis, plus
-            l’itinéraire sera adapté à ton style de voyage.
-          </p>
-          <ul class="start-bullets">
-            <li>📆 Dates, durée et aéroports de départ possibles</li>
-            <li>🌍 Destination(s) rêvée(s), ambiance, rythme, contraintes</li>
-            <li>💶 Budget global et niveau de confort souhaité</li>
-          </ul>
-          <p class="start-note">
-            Ensuite, tu recevras ton itinéraire détaillé par email, prêt à être réservé.
-          </p>
-        </div>
-
-        <aside class="mini-form reveal">
-          <h3>Un aperçu rapide</h3>
-          <p>
-            Laisse ton email et la destination rêvée, on te répond avec quelques
-            idées d’itinéraire possibles.
-          </p>
-
-          <form>
-            <label>
-              Email
-              <input type="email" name="email" placeholder="Ex : toi@email.com" required />
-            </label>
-
-            <label>
-              Destination rêvée
-              <input type="text" name="destination" placeholder="Ex : Japon, Thaïlande, New York…" />
-            </label>
-
-            <button type="submit" class="btn btn-primary mini-form-btn">
-              Envoyer mon projet
-            </button>
-
-            <p class="mini-form-hint">
-              Plus tard, tu pourras connecter ce formulaire à un webhook n8n / Zapier.
-            </p>
-          </form>
-        </aside>
-      </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
-    <div class="container footer-inner">
+    <div class="footer-inner">
       <p>© 2025 TravelAI – Tous droits réservés.</p>
       <div class="footer-links">
         <a href="legal.html">Mentions légales &amp; RGPD</a>
@@ -211,10 +171,6 @@
     </div>
   </footer>
 
-  <!-- THREE.JS CDN -->
-  <script src="https://unpkg.com/three@0.161.0/build/three.min.js"></script>
-
-  <!-- TON JS -->
   <script src="script.js"></script>
 </body>
 </html>
