@@ -4,66 +4,73 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>TravelAI — Mentions légales</title>
-  <link rel="stylesheet" href="./style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/global.css" />
 </head>
+
 <body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="../index.html">
+        <span class="brand-dot"></span>
+        <span>TravelAI</span>
+      </a>
 
-<header class="header">
-  <div class="container">
-    <div class="nav">
-      <a class="brand" href="./index.html"><span class="dot"></span><span>TravelAI</span></a>
-
-      <nav class="menu">
-        <a href="./index.html">Accueil</a>
-        <a href="./destinations.html">Destinations</a>
-        <a href="./guides.html">Guides</a>
-        <a class="active" href="./legal.html">Mentions légales</a>
-        <a href="./contact.html">Nous contacter</a>
+      <nav class="nav-links">
+        <a href="../index.html">Accueil</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="guides.html">Guides</a>
+        <a class="active" href="legal.html">Mentions légales</a>
+        <a href="contact.html">Nous contacter</a>
       </nav>
 
-      <div class="ctaTop">
-        <a class="btn btnPrimary" href="./index.html#commencer">Commencer</a>
-      </div>
+      <a class="btn btn-primary" href="../index.html#commencer">Commencer</a>
     </div>
-  </div>
-</header>
+  </header>
 
-<main>
-  <section class="section pageHero">
+  <section class="section">
     <div class="container">
-      <p class="kicker reveal">Mentions légales & RGPD</p>
-      <h1 class="pageHero h2 reveal">Informations légales du site TravelAI</h1>
-      <p class="pageHero sub reveal">
+      <div class="kicker reveal">Mentions légales &amp; RGPD</div>
+      <h1 class="h2 reveal">Informations légales du site TravelAI</h1>
+
+      <p class="lead reveal">
         Ces informations sont fournies conformément à la législation française, afin de préciser qui est responsable du site, comment sont gérées les données et qui héberge la plateforme.
       </p>
-    </div>
-  </section>
 
-  <section class="section" style="padding-top:0;">
-    <div class="container">
-      <div class="card reveal">
-        <h3>Éditeur du site</h3>
-        <div class="checklist" style="margin-top:10px;">
-          <span><strong>Nom commercial :</strong> Astralis</span>
-          <span><strong>Statut :</strong> Micro-entreprise</span>
-          <span><strong>Responsable de publication :</strong> Baptiste Paixao</span>
-          <span><strong>Adresse :</strong> Ribécourt (France)</span>
+      <div class="card reveal" style="margin-top:22px;">
+        <h3 class="card-title">Éditeur du site</h3>
+        <div class="checklist">
+          <div class="check">• <span><b>Nom commercial :</b> Astralis</span></div>
+          <div class="check">• <span><b>Statut :</b> Micro-entreprise</span></div>
+          <div class="check">• <span><b>Responsable de publication :</b> Baptiste Paixao</span></div>
+          <div class="check">• <span><b>Adresse :</b> Ribécourt (France)</span></div>
         </div>
       </div>
+
+      <!-- Tu peux coller ici la suite de ton texte légal EXACT sans le modifier -->
+      <!-- Exemple:
+      <div class="card reveal" style="margin-top:18px;">
+        <h3 class="card-title">Hébergement</h3>
+        <p class="card-text"> ... </p>
+      </div>
+      -->
     </div>
   </section>
-</main>
 
-<footer class="footer">
-  <div class="container footerRow">
-    <div>© 2025 TravelAI – Tous droits réservés.</div>
-    <div class="footerLinks">
-      <a href="./legal.html">Mentions légales & RGPD</a>
-      <a href="./contact.html">Nous contacter</a>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2025 TravelAI – Tous droits réservés.</div>
+      <div style="display:flex; gap:18px;">
+        <a href="legal.html">Mentions légales &amp; RGPD</a>
+        <a href="contact.html">Nous contacter</a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-<script src="./script.js"></script>
+  <script src="../js/global.js" defer></script>
 </body>
 </html>
