@@ -1,6 +1,15 @@
-// ---------- CONFIG DE BASE ----------
-const canvas = document.getElementById("earthCanvas");
-const scene = new THREE.Scene();
+document.addEventListener('DOMContentLoaded', () => {
+  const canvas = document.getElementById('earthCanvas');
+  const heroPlanet = document.querySelector('.hero-planet');
+
+  // Si on n'est pas sur la page d'accueil (pas de planète), on arrête là
+  if (!canvas || !heroPlanet) {
+    return;
+  }
+
+  // --- à partir d'ici, tu mets tout ton code Three.js comme avant ---
+  // création de la scène, caméra, renderer, sphère, texture, etc.
+});
 
 const camera = new THREE.PerspectiveCamera(
   35,
