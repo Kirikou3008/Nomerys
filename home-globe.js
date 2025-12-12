@@ -1,89 +1,122 @@
+// home-globe.js
 import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
 import { OrbitControls } from "https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js";
 
 const canvas = document.getElementById("globeCanvas");
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+if (!canvas) {
+  console.warn("[Globe] canvas #globeCanvas introuvable.");
+} else {
+  // SCENE
+  const scene = new THREE.Scene();
 
-const scene = new THREE.Scene();
+  // CAMERA
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    canvas.clientWidth / canvas.clientHeight,
+    0.1,
+    100
+  );
+  camera.position.set(0, 0, 3.2);
 
-const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
-camera.position.set(0, 0, 4.2);
+  // RENDERER
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    antialias: true,
+    alpha: true,
+    powerPreference: "high-performance",
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
 
-// Lumières
-scene.add(new THREE.AmbientLight(0xffffff, 0.55));
-const dir = new THREE.DirectionalLight(0xffffff, 1.15);
-dir.position.set(4, 2, 3);
-scene.add(dir);
+  // IMPORTANT (couleurs correctes)
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-// Géométrie globe
-const geo = new THREE.SphereGeometry(1.35, 96, 96);
+  // LIGHTS
+  const ambient = new THREE.AmbientLight(0xffffff, 0.55);
+  scene.add(ambient);
 
-const loader = new THREE.TextureLoader();
-const earthMap = loader.load("./assets/earth.jpg"); // IMPORTANT: chemin relatif
-earthMap.colorSpace = THREE.SRGBColorSpace;
-earthMap.anisotropy = 8;
+  const dir = new THREE.DirectionalLight(0xffffff, 1.15);
+  dir.position.set(2.5, 1.2, 2.0);
+  scene.add(dir);
 
-// Matériau : mesh standard (joli avec lumière)
-const mat = new THREE.MeshStandardMaterial({
-  map: earthMap,
-  roughness: 1.0,
-  metalness: 0.0
-});
+  // SPHERE
+  const geometry = new THREE.SphereGeometry(1, 64, 64);
 
-const globe = new THREE.Mesh(geo, mat);
-scene.add(globe);
+  // Matériau par défaut (bleu) → sera remplacé par la texture si elle charge
+  const material = new THREE.MeshStandardMaterial({
+    color: 0x2a7cff,
+    roughness: 1.0,
+    metalness: 0.0,
+  });
 
-// Petit fond étoilé léger (points)
-const starsGeo = new THREE.BufferGeometry();
-const starCount = 900;
-const positions = new Float32Array(starCount * 3);
-for (let i=0;i<starCount;i++){
-  const r = 18 * Math.random() + 6;
-  const theta = Math.random() * Math.PI * 2;
-  const phi = Math.acos((Math.random()*2)-1);
-  positions[i*3+0] = r * Math.sin(phi) * Math.cos(theta);
-  positions[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
-  positions[i*3+2] = r * Math.cos(phi);
-}
-starsGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-const starsMat = new THREE.PointsMaterial({ size: 0.03, opacity: 0.65, transparent:true });
-const stars = new THREE.Points(starsGeo, starsMat);
-scene.add(stars);
+  const globe = new THREE.Mesh(geometry, material);
+  scene.add(globe);
 
-// Controls = rotation libre
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.dampingFactor = 0.06;
-controls.enablePan = false;
-controls.enableZoom = false;
+  // TEXTURE LOADER
+  const loader = new THREE.TextureLoader();
+  // si tu utilises parfois des URLs externes : loader.crossOrigin = "anonymous";
 
-// ✅ IMPORTANT: pas de limite de rotation
-controls.minPolarAngle = 0;
-controls.maxPolarAngle = Math.PI;
+  const texturePath = "assets/earth.jpg"; // <<< CHEMIN IMPORTANT
+  loader.load(
+    texturePath,
+    (tex) => {
+      // Couleurs correctes
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
 
-// Petite auto-rotation douce quand tu ne touches pas
-let userInteracting = false;
-controls.addEventListener("start", () => userInteracting = true);
-controls.addEventListener("end", () => userInteracting = false);
+      material.map = tex;
+      material.color.set(0xffffff); // enlève la teinte bleue
+      material.needsUpdate = true;
 
-function resize(){
-  const rect = canvas.getBoundingClientRect();
-  const w = Math.max(1, Math.floor(rect.width));
-  const h = Math.max(1, Math.floor(rect.height));
-  renderer.setSize(w, h, false);
-  camera.aspect = w / h;
-  camera.updateProjectionMatrix();
-}
-window.addEventListener("resize", resize);
-resize();
+      console.log("[Globe] Texture chargée OK :", texturePath);
+    },
+    undefined,
+    (err) => {
+      console.error("[Globe] ERREUR chargement texture :", texturePath, err);
+      console.error(
+        "➡️ Vérifie que le fichier existe exactement ici: /assets/earth.jpg (même orthographe/majuscules)."
+      );
+    }
+  );
 
-function tick(){
-  if (!userInteracting){
-    globe.rotation.y += 0.0022;
+  // CONTROLS (rotation illimitée)
+  const controls = new OrbitControls(camera, canvas);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.08;
+
+  controls.enablePan = false;
+  controls.enableZoom = false;
+
+  // Ne PAS mettre min/maxAzimuthAngle → sinon ça bloque la rotation
+  // controls.minAzimuthAngle = -Infinity; // inutile
+  // controls.maxAzimuthAngle = Infinity;  // inutile
+
+  // Tu peux limiter juste le haut/bas si tu veux éviter de retourner la planète :
+  controls.minPolarAngle = 0.15;
+  controls.maxPolarAngle = Math.PI - 0.15;
+
+  // Petite rotation auto "wow" + l'utilisateur peut reprendre à la souris
+  let autoRotate = true;
+  controls.addEventListener("start", () => (autoRotate = false));
+  controls.addEventListener("end", () => (autoRotate = true));
+
+  function resize() {
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
   }
-  controls.update();
-  renderer.render(scene, camera);
-  requestAnimationFrame(tick);
+  window.addEventListener("resize", resize);
+
+  // ANIMATE
+  function animate() {
+    requestAnimationFrame(animate);
+
+    if (autoRotate) globe.rotation.y += 0.0022;
+
+    controls.update();
+    renderer.render(scene, camera);
+  }
+  animate();
 }
-tick();
