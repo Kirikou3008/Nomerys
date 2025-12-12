@@ -2,130 +2,93 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TravelAI — Destinations</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="./global.css" />
 </head>
-
 <body>
-  <header class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="../index.html">
-        <span class="brand-dot"></span>
-        <span>TravelAI</span>
-      </a>
+<header>
+  <div class="container nav">
+    <a class="brand" href="./index.html"><span class="dot"></span><span>TravelAI</span></a>
+    <nav class="navlinks">
+      <a data-nav href="./index.html">Accueil</a>
+      <a data-nav href="./destinations.html">Destinations</a>
+      <a data-nav href="./guides.html">Guides</a>
+      <a data-nav href="./legal.html">Mentions légales</a>
+      <a data-nav href="./contact.html">Nous contacter</a>
+    </nav>
+    <a class="cta" href="./questionnaire.html">Commencer</a>
+  </div>
+</header>
 
-      <nav class="nav-links">
-        <a href="../index.html">Accueil</a>
-        <a class="active" href="destinations.html">Destinations</a>
-        <a href="guides.html">Guides</a>
-        <a href="legal.html">Mentions légales</a>
-        <a href="contact.html">Nous contacter</a>
-      </nav>
+<main class="container">
+  <div class="kicker">INSPIRATION &amp; VOYAGES</div>
+  <h1 class="h1">Inspiration &amp; idées de voyages</h1>
+  <p class="p">
+    Ce ne sont que des exemples : chaque projet est ensuite adapté à ton profil, ton budget et tes dates.
+    Tu peux nous demander quelque chose de très précis ou nous laisser proposer.
+  </p>
 
-      <a class="btn btn-primary" href="../index.html#commencer">Commencer</a>
-    </div>
-  </header>
-
-  <section class="section">
-    <div class="container">
-      <div class="kicker reveal">Inspiration & voyages</div>
-      <h1 class="h2 reveal">Inspiration & idées de voyages</h1>
-      <p class="lead reveal">
-        Ce ne sont que des exemples : chaque projet est ensuite adapté à ton profil, ton budget et tes dates. Tu peux nous demander quelque chose de très précis ou nous laisser proposer.
-      </p>
-
-      <div class="grid-3" style="margin-top:22px;">
-        <div class="card reveal">
-          <h3 class="card-title">Japon : Tokyo, Osaka &amp; Kyoto</h3>
-          <p class="card-text">
-            10 à 14 jours pour combiner mégalopole futuriste, quartiers rétro, temples, onsen et food tours. Les meilleurs quartiers pour loger et les trains optimisés pour ne pas perdre de temps.
-          </p>
-          <div class="tags">
-            <span class="tag">JP Japon</span>
-            <span class="tag">Culture &amp; food</span>
-            <span class="tag">Voyage de rêve</span>
-          </div>
-        </div>
-
-        <div class="card reveal">
-          <h3 class="card-title">City-trip Europe low cost</h3>
-          <p class="card-text">
-            3 à 5 jours dans une grande capitale européenne : vols, hôtel central, suggestions de visites et d’activités selon ton style (musées, food, nightlife, quartiers cool, etc.).
-          </p>
-          <div class="tags">
-            <span class="tag">Vols courts</span>
-            <span class="tag">Petits budgets</span>
-            <span class="tag">Weekend prolongé</span>
-          </div>
-        </div>
-
-        <div class="card reveal">
-          <h3 class="card-title">Road-trip nature &amp; spots cachés</h3>
-          <p class="card-text">
-            Road-trip en Europe ou ailleurs avec étapes optimisées, hébergements bien notés et activités originales loin des pièges à touristes. Parcours pensé pour limiter les heures de route.
-          </p>
-          <div class="tags">
-            <span class="tag">Road-trip</span>
-            <span class="tag">Nature</span>
-            <span class="tag">Spots locaux</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid-2" style="margin-top:18px;">
-        <div class="card reveal">
-          <h3 class="card-title">Voyage combiné : ville + plages</h3>
-          <p class="card-text">
-            Quelques jours en ville pour les visites et la food, puis quelques jours plus calmes au bord de la mer. Idéal pour un voyage en couple ou entre amis.
-          </p>
-          <div class="tags">
-            <span class="tag">Soleil</span>
-            <span class="tag">Détente</span>
-            <span class="tag">Mix ville &amp; plage</span>
-          </div>
-        </div>
-
-        <div class="card reveal">
-          <h3 class="card-title">“Première fois à l’étranger”</h3>
-          <p class="card-text">
-            Itinéraire pensé pour un premier gros voyage : destinations accessibles, transports simples, hôtels rassurants, rythme tranquille et budget maîtrisé. Zéro prise de tête.
-          </p>
-          <div class="tags">
-            <span class="tag">Débutant</span>
-            <span class="tag">Simple</span>
-            <span class="tag">Sans stress</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card reveal" style="margin-top:18px;">
-        <h3 class="card-title">Un projet sur-mesure 100 % personnalisé</h3>
-        <p class="card-text">
-          Tu as une idée ultra précise, ou au contraire aucune idée ? On peut partir de zéro et construire un itinéraire cohérent autour de ton budget et de ton style de voyage.
-        </p>
-        <div style="margin-top:16px;">
-          <a class="btn btn-primary" href="../index.html#commencer">Me créer un itinéraire sur-mesure</a>
-        </div>
+  <div class="grid-3" style="margin-top:20px;">
+    <div class="card">
+      <h3>Japon : Tokyo, Osaka &amp; Kyoto</h3>
+      <p>10 à 14 jours pour combiner mégalopole futuriste, quartiers rétro, temples, onsen et food tours. Les meilleurs quartiers pour loger et les trains optimisés pour ne pas perdre de temps.</p>
+      <div class="tags">
+        <span class="tag">JP Japon</span><span class="tag">Culture &amp; food</span><span class="tag">Budget maîtrisé</span>
       </div>
     </div>
-  </section>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>© 2025 TravelAI – Tous droits réservés.</div>
-      <div style="display:flex; gap:18px;">
-        <a href="legal.html">Mentions légales &amp; RGPD</a>
-        <a href="contact.html">Nous contacter</a>
+    <div class="card">
+      <h3>City-trip Europe low cost</h3>
+      <p>3 à 5 jours dans une grande capitale européenne : vols, hôtel central, suggestions de visites et d’activités selon ton style (musées, food, nightlife, quartiers cool, etc.).</p>
+      <div class="tags">
+        <span class="tag">Vols courts</span><span class="tag">Petits budgets</span><span class="tag">Weekend prolongé</span>
       </div>
     </div>
-  </footer>
 
-  <script src="../js/global.js" defer></script>
+    <div class="card">
+      <h3>Road-trip nature &amp; spots cachés</h3>
+      <p>Road-trip en Europe ou ailleurs avec étapes optimisées, hébergements bien notés et activités originales loin des pièges à touristes. Parcours pensé pour limiter les heures de route.</p>
+      <div class="tags">
+        <span class="tag">Road-trip</span><span class="tag">Nature</span><span class="tag">Spots locaux</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Voyage combiné : ville + plages</h3>
+      <p>Quelques jours en ville pour les visites et la food, puis quelques jours plus calmes au bord de la mer. Idéal pour un voyage en couple ou entre amis.</p>
+      <div class="tags">
+        <span class="tag">Soleil</span><span class="tag">Détente</span><span class="tag">Mix ville &amp; plage</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>“Première fois à l’étranger”</h3>
+      <p>Itinéraire pensé pour un premier gros voyage : destinations accessibles, transports simples, hôtels rassurants, rythme tranquille et budget maîtrisé. Zéro prise de tête.</p>
+      <div class="tags">
+        <span class="tag">Débutant</span><span class="tag">Simple</span><span class="tag">Sans stress</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Un projet sur-mesure 100 % personnalisé</h3>
+      <p>Tu as une idée ultra précise, ou au contraire aucune idée ? On peut partir de zéro et construire un itinéraire cohérent autour de ton budget et de ton style de voyage.</p>
+      <div style="height:12px"></div>
+      <a class="btn primary" href="./questionnaire.html">Me créer un itinéraire sur-mesure</a>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container footer-row">
+    <div>© 2025 TravelAI — Tous droits réservés.</div>
+    <div style="display:flex; gap:16px;">
+      <a href="./legal.html">Mentions légales &amp; RGPD</a>
+      <a href="./contact.html">Nous contacter</a>
+    </div>
+  </div>
+</footer>
+
+<script src="./global.js"></script>
 </body>
 </html>
