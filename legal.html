@@ -1,176 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TravelAI – Mentions légales & RGPD</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    .page-main {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 5rem 1.5rem 4rem;
-    }
-
-    .page-header-kicker {
-      font-size: 0.8rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #38bdf8;
-      margin-bottom: 0.6rem;
-    }
-
-    .page-title {
-      font-size: clamp(2.2rem, 3vw, 2.6rem);
-      margin-bottom: 0.8rem;
-    }
-
-    .page-intro {
-      max-width: 720px;
-      color: #a5b4fc;
-      font-size: 0.98rem;
-      line-height: 1.7;
-      margin-bottom: 2.5rem;
-    }
-
-    .legal-grid {
-      display: grid;
-      gap: 2.5rem;
-      max-width: 900px;
-    }
-
-    .legal-section h2 {
-      font-size: 1.3rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .legal-section p,
-    .legal-section li {
-      font-size: 0.93rem;
-      line-height: 1.7;
-      color: #e5e7eb;
-    }
-
-    .legal-section ul {
-      padding-left: 1.2rem;
-      margin: 0.6rem 0 0;
-    }
-
-    .legal-section strong {
-      color: #c7d2fe;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TravelAI — Mentions légales</title>
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="index.html" class="logo">
-        <span class="logo-dot"></span>
-        <span class="logo-text">Travel<span>AI</span></span>
-      </a>
-      <nav class="main-nav">
-        <a href="index.html" class="nav-link">Accueil</a>
-        <a href="destinations.html" class="nav-link">Destinations</a>
-        <a href="guides.html" class="nav-link">Guides</a>
-        <a href="legal.html" class="nav-link nav-link-active">Mentions légales</a>
-        <a href="contact.html" class="nav-link">Nous contacter</a>
+
+<header class="header">
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="./index.html"><span class="dot"></span><span>TravelAI</span></a>
+
+      <nav class="menu">
+        <a href="./index.html">Accueil</a>
+        <a href="./destinations.html">Destinations</a>
+        <a href="./guides.html">Guides</a>
+        <a class="active" href="./legal.html">Mentions légales</a>
+        <a href="./contact.html">Nous contacter</a>
       </nav>
-      <a href="questionnaire.html" class="btn-primary header-cta">Commencer</a>
-    </div>
-  </header>
 
-  <main class="page-main">
-    <header class="section">
-      <div class="page-header-kicker">Mentions légales & RGPD</div>
-      <h1 class="page-title">Informations légales du site TravelAI</h1>
-      <p class="page-intro">
-        Ces informations sont fournies conformément à la législation française, afin de préciser
-        qui est responsable du site, comment sont gérées les données et qui héberge la plateforme.
-      </p>
-    </header>
-
-    <section class="legal-grid">
-
-      <article class="legal-section">
-        <h2>Éditeur du site</h2>
-        <p><strong>Nom commercial :</strong> Astralis</p>
-        <p><strong>Statut :</strong> Micro-entreprise</p>
-        <p><strong>Responsable de publication :</strong> Baptiste Paixao</p>
-        <p><strong>Adresse :</strong> Ribécourt (France)</p>
-        <p><strong>Email :</strong> (à renseigner dans tes propres mentions)</p>
-      </article>
-
-      <article class="legal-section">
-        <h2>Hébergement</h2>
-        <p>
-          Le site est hébergé par <strong>GitHub Pages – GitHub, Inc.</strong>,
-          88 Colin P Kelly Jr St, San Francisco, CA 94107, USA.
-        </p>
-      </article>
-
-      <article class="legal-section">
-        <h2>Propriété intellectuelle</h2>
-        <p>
-          L’ensemble des contenus présents sur ce site (textes, visuels, logo, maquette) est
-          protégé par le droit d’auteur. Toute reproduction, même partielle, sans autorisation
-          préalable est interdite.
-        </p>
-      </article>
-
-      <article class="legal-section">
-        <h2>Responsabilité</h2>
-        <p>
-          TravelAI propose des suggestions de voyages, vols, hôtels et activités. Les
-          réservations finales se font auprès de plateformes tierces (compagnies aériennes,
-          agences, sites de réservation, etc.). Les prix et disponibilités peuvent évoluer à tout
-          moment. TravelAI ne peut être tenu responsable des modifications, annulations ou
-          problèmes survenus auprès de ces prestataires.
-        </p>
-      </article>
-
-      <article class="legal-section">
-        <h2>Données personnelles & RGPD</h2>
-        <p>
-          Les informations collectées via les formulaires (par exemple : prénom, email,
-          détails de projet de voyage) sont utilisées uniquement pour répondre aux demandes
-          d’itinéraires ou de contact.
-        </p>
-        <ul>
-          <li>Les données ne sont ni revendues, ni utilisées pour du spam.</li>
-          <li>Tu peux demander la suppression ou la modification de tes données à tout moment.</li>
-          <li>Les données peuvent être traitées via des outils tiers (IA, automatisation) uniquement pour ton projet.</li>
-        </ul>
-      </article>
-
-      <article class="legal-section">
-        <h2>Cookies</h2>
-        <p>
-          Le site peut utiliser des cookies techniques (par exemple pour les statistiques
-          anonymes de visite). Tu peux les gérer via les paramètres de ton navigateur.
-        </p>
-      </article>
-
-      <article class="legal-section">
-        <h2>Contact légal</h2>
-        <p>
-          Pour toute question relative aux mentions légales ou au traitement des données,
-          tu peux utiliser la page <strong>« Nous contacter »</strong> du site.
-        </p>
-      </article>
-
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <p>© 2025 TravelAI – Tous droits réservés.</p>
-      <div class="footer-links">
-        <a href="legal.html">Mentions légales &amp; RGPD</a>
-        <a href="contact.html">Nous contacter</a>
+      <div class="ctaTop">
+        <a class="btn btnPrimary" href="./index.html#commencer">Commencer</a>
       </div>
     </div>
-  </footer>
+  </div>
+</header>
 
-  <script src="script.js"></script>
+<main>
+  <section class="section pageHero">
+    <div class="container">
+      <p class="kicker reveal">Mentions légales & RGPD</p>
+      <h1 class="pageHero h2 reveal">Informations légales du site TravelAI</h1>
+      <p class="pageHero sub reveal">
+        Ces informations sont fournies conformément à la législation française, afin de préciser qui est responsable du site, comment sont gérées les données et qui héberge la plateforme.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="card reveal">
+        <h3>Éditeur du site</h3>
+        <div class="checklist" style="margin-top:10px;">
+          <span><strong>Nom commercial :</strong> Astralis</span>
+          <span><strong>Statut :</strong> Micro-entreprise</span>
+          <span><strong>Responsable de publication :</strong> Baptiste Paixao</span>
+          <span><strong>Adresse :</strong> Ribécourt (France)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footerRow">
+    <div>© 2025 TravelAI – Tous droits réservés.</div>
+    <div class="footerLinks">
+      <a href="./legal.html">Mentions légales & RGPD</a>
+      <a href="./contact.html">Nous contacter</a>
+    </div>
+  </div>
+</footer>
+
+<script src="./script.js"></script>
 </body>
 </html>
