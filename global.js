@@ -1,13 +1,4 @@
-// Active link auto (selon URL)
-(() => {
-  const path = location.pathname.split("/").pop() || "index.html";
-  document.querySelectorAll("[data-nav]").forEach(a => {
-    const href = a.getAttribute("href");
-    if (href === path) a.classList.add("active");
-  });
-})();
-
-// Smooth scroll pour les ancres (index)
+// Petit helper : scroll doux vers une section (#comment-ca-marche)
 document.addEventListener("click", (e) => {
   const a = e.target.closest('a[href^="#"]');
   if (!a) return;
