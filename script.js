@@ -1,140 +1,205 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const canvas = document.getElementById('earthCanvas');
-  const heroPlanet = document.querySelector('.hero-planet');
+/* =========================
+   TravelAI — script.js
+   - Globe 3D only if #globe-canvas exists
+   - Reveal animations
+   ========================= */
 
-  // Si on n'est pas sur la page d'accueil (pas de planète), on arrête là
-  if (!canvas || !heroPlanet) {
-    return;
+(function () {
+  // -------- Reveal on scroll --------
+  const reveals = document.querySelectorAll(".reveal");
+  if (reveals.length) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add("show");
+        });
+      },
+      { threshold: 0.10 }
+    );
+    reveals.forEach((el) => io.observe(el));
   }
 
-  // --- à partir d'ici, tu mets tout ton code Three.js comme avant ---
-  // création de la scène, caméra, renderer, sphère, texture, etc.
-});
+  // -------- Globe 3D (safe) --------
+  const canvas = document.getElementById("globe-canvas");
+  if (!canvas) return;
 
-const camera = new THREE.PerspectiveCamera(
-  35,
-  canvas.clientWidth / canvas.clientHeight,
-  0.1,
-  100
-);
-camera.position.set(0, 0, 6);
+  // If THREE not loaded, stop silently
+  if (typeof THREE === "undefined") return;
 
-const renderer = new THREE.WebGLRenderer({
-  canvas,
-  alpha: true,
-  antialias: true,
-});
-renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    antialias: true,
+    alpha: true,
+    powerPreference: "high-performance",
+  });
 
-// ---------- LUMIÈRES ----------
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-scene.add(ambientLight);
+  const scene = new THREE.Scene();
 
-const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
-dirLight.position.set(5, 3, 5);
-scene.add(dirLight);
+  // Camera
+  const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+  camera.position.set(0, 0, 4.0);
 
-// ---------- TERRE ----------
-const textureLoader = new THREE.TextureLoader();
+  // Lights (soft premium)
+  const ambient = new THREE.AmbientLight(0xffffff, 0.65);
+  scene.add(ambient);
 
-// mets ici le BON chemin vers ta texture
-// ex: "assets/earth_night_4k.jpg"
-const earthTexture = textureLoader.load("assets/earth_night_4k.jpg");
+  const key = new THREE.DirectionalLight(0xffffff, 1.05);
+  key.position.set(3, 2, 4);
+  scene.add(key);
 
-const earthGeometry = new THREE.SphereGeometry(1.8, 64, 64);
-const earthMaterial = new THREE.MeshStandardMaterial({
-  map: earthTexture,
-  roughness: 1,
-  metalness: 0,
-});
+  const rim = new THREE.DirectionalLight(0x66ccff, 0.55);
+  rim.position.set(-4, 0.5, -2);
+  scene.add(rim);
 
-const earth = new THREE.Mesh(earthGeometry, earthMaterial);
+  // Texture loader
+  const loader = new THREE.TextureLoader();
+  const earthTex = loader.load(
+    "./assets/earth_night.jpg",
+    () => {
+      // success
+    },
+    undefined,
+    () => {
+      // If texture fails, keep a dark fallback
+      console.warn("Texture globe introuvable. Vérifie /assets/earth_night.jpg");
+    }
+  );
+  earthTex.colorSpace = THREE.SRGBColorSpace;
+  earthTex.wrapS = THREE.RepeatWrapping;
+  earthTex.wrapT = THREE.ClampToEdgeWrapping;
+  earthTex.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
 
-// règle l'orientation de départ (plus de continents, moins de Pacifique)
-earth.rotation.y = -Math.PI * 0.6; // teste -0.6, -0.8, etc. jusqu'à ce que tu aimes
-scene.add(earth);
+  // Sphere geometry/material
+  const geo = new THREE.SphereGeometry(1.25, 96, 96);
+  const mat = new THREE.MeshStandardMaterial({
+    map: earthTex,
+    roughness: 0.95,
+    metalness: 0.0,
+  });
 
-// ---------- GLOW BLEU AUTOUR ----------
-const glowGeometry = new THREE.SphereGeometry(2.1, 64, 64);
-const glowMaterial = new THREE.MeshBasicMaterial({
-  color: 0x1b4fff,
-  transparent: true,
-  opacity: 0.9,
-});
-const glow = new THREE.Mesh(glowGeometry, glowMaterial);
-scene.add(glow);
+  const earth = new THREE.Mesh(geo, mat);
+  scene.add(earth);
 
-// ---------- ROTATION : AUTO + DRAG ILLIMITÉ ----------
+  // Subtle atmosphere glow (cheap + nice)
+  const atmoGeo = new THREE.SphereGeometry(1.29, 96, 96);
+  const atmoMat = new THREE.MeshBasicMaterial({
+    color: 0x45c8ff,
+    transparent: true,
+    opacity: 0.08,
+    side: THREE.BackSide,
+  });
+  const atmo = new THREE.Mesh(atmoGeo, atmoMat);
+  scene.add(atmo);
 
-// rotation cible (on anime la vraie rotation vers celle-ci)
-let targetRotation = {
-  x: earth.rotation.x,
-  y: earth.rotation.y,
-};
+  // Star-ish background specks (simple)
+  // (keeps it lightweight)
+  const starsGeo = new THREE.BufferGeometry();
+  const starCount = 500;
+  const starPos = new Float32Array(starCount * 3);
+  for (let i = 0; i < starCount; i++) {
+    const r = 9 + Math.random() * 14;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(2 * Math.random() - 1);
+    starPos[i * 3 + 0] = r * Math.sin(phi) * Math.cos(theta);
+    starPos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+    starPos[i * 3 + 2] = r * Math.cos(phi);
+  }
+  starsGeo.setAttribute("position", new THREE.BufferAttribute(starPos, 3));
+  const starsMat = new THREE.PointsMaterial({
+    size: 0.015,
+    color: 0xffffff,
+    transparent: true,
+    opacity: 0.35,
+  });
+  const stars = new THREE.Points(starsGeo, starsMat);
+  scene.add(stars);
 
-let isDragging = false;
-let previousMousePosition = { x: 0, y: 0 };
+  // Resize properly (keeps perfect circle + crisp)
+  function resize() {
+    const rect = canvas.getBoundingClientRect();
+    const size = Math.min(rect.width, rect.height);
+    renderer.setSize(size, size, false);
+    camera.aspect = 1;
+    camera.updateProjectionMatrix();
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  }
+  window.addEventListener("resize", resize, { passive: true });
+  resize();
 
-// petite auto-rotation quand on ne touche pas à la souris
-const AUTO_ROTATION_SPEED = 0.002;
-const DRAG_SPEED = 0.005;
+  // Rotation control (infinite yaw + clamped pitch for comfort)
+  let dragging = false;
+  let lastX = 0;
+  let lastY = 0;
 
-canvas.addEventListener("mousedown", (event) => {
-  isDragging = true;
-  previousMousePosition.x = event.clientX;
-  previousMousePosition.y = event.clientY;
-});
+  let yawVel = 0;
+  let pitchVel = 0;
 
-window.addEventListener("mouseup", () => {
-  isDragging = false;
-});
+  const yawSpeed = 0.010;
+  const pitchSpeed = 0.010;
+  const friction = 0.92;
 
-window.addEventListener("mousemove", (event) => {
-  if (!isDragging) return;
+  // Starting nice angle
+  earth.rotation.y = 1.1;
+  earth.rotation.x = 0.12;
 
-  const deltaX = event.clientX - previousMousePosition.x;
-  const deltaY = event.clientY - previousMousePosition.y;
-
-  // on ajoute au lieu de recaler : rotation infinie possible
-  targetRotation.y += deltaX * DRAG_SPEED;
-  targetRotation.x += deltaY * DRAG_SPEED;
-
-  // on limite juste en haut / bas pour ne pas retourner totalement la Terre
-  const maxTilt = Math.PI / 2.2;
-  targetRotation.x = Math.max(-maxTilt, Math.min(maxTilt, targetRotation.x));
-
-  previousMousePosition.x = event.clientX;
-  previousMousePosition.y = event.clientY;
-});
-
-// ---------- ANIMATION ----------
-function animate() {
-  requestAnimationFrame(animate);
-
-  // auto rotation quand on ne drag pas
-  if (!isDragging) {
-    targetRotation.y += AUTO_ROTATION_SPEED;
+  function onDown(e) {
+    dragging = true;
+    lastX = e.clientX;
+    lastY = e.clientY;
+    canvas.setPointerCapture?.(e.pointerId);
   }
 
-  // interpolation douce vers la rotation cible
-  earth.rotation.y += (targetRotation.y - earth.rotation.y) * 0.1;
-  earth.rotation.x += (targetRotation.x - earth.rotation.x) * 0.1;
+  function onMove(e) {
+    if (!dragging) return;
+    const dx = e.clientX - lastX;
+    const dy = e.clientY - lastY;
+    lastX = e.clientX;
+    lastY = e.clientY;
 
-  glow.rotation.copy(earth.rotation);
+    // Infinite yaw
+    yawVel = dx * yawSpeed * 0.12;
+    pitchVel = dy * pitchSpeed * 0.12;
 
-  renderer.render(scene, camera);
-}
+    earth.rotation.y += dx * yawSpeed;
+    earth.rotation.x += dy * pitchSpeed;
 
-animate();
+    // Clamp pitch (prevents flipping)
+    const maxPitch = Math.PI * 0.48;
+    earth.rotation.x = Math.max(-maxPitch, Math.min(maxPitch, earth.rotation.x));
+  }
 
-// ---------- RESIZE ----------
-window.addEventListener("resize", () => {
-  const width = canvas.clientWidth;
-  const height = canvas.clientHeight;
+  function onUp() {
+    dragging = false;
+  }
 
-  camera.aspect = width / height;
-  camera.updateProjectionMatrix();
+  canvas.addEventListener("pointerdown", onDown);
+  window.addEventListener("pointermove", onMove, { passive: true });
+  window.addEventListener("pointerup", onUp, { passive: true });
 
-  renderer.setSize(width, height, false);
-});
+  // Animation loop
+  function animate() {
+    requestAnimationFrame(animate);
+
+    // Auto rotate when not dragging
+    if (!dragging) {
+      earth.rotation.y += 0.0022;
+    }
+
+    // Inertia
+    if (!dragging) {
+      yawVel *= friction;
+      pitchVel *= friction;
+      earth.rotation.y += yawVel;
+      earth.rotation.x += pitchVel;
+      const maxPitch = Math.PI * 0.48;
+      earth.rotation.x = Math.max(-maxPitch, Math.min(maxPitch, earth.rotation.x));
+    }
+
+    // Subtle atmo follow + stars drift
+    atmo.rotation.copy(earth.rotation);
+    stars.rotation.y += 0.00035;
+
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
