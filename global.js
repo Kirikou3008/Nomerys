@@ -1,26 +1,19 @@
-// ===========================
-// GLOBAL JS (toutes pages)
-// ===========================
-
-document.addEventListener("DOMContentLoaded", () => {
-  // Reveal on scroll
-  const els = document.querySelectorAll(".reveal");
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if(e.isIntersecting) e.target.classList.add("show");
-    });
-  }, { threshold: 0.12 });
-
-  els.forEach(el => io.observe(el));
-
-  // Smooth scroll for internal anchors
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener("click", (ev) => {
-      const id = a.getAttribute("href");
-      const target = document.querySelector(id);
-      if(!target) return;
-      ev.preventDefault();
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
+// Active link auto (selon URL)
+(() => {
+  const path = location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll("[data-nav]").forEach(a => {
+    const href = a.getAttribute("href");
+    if (href === path) a.classList.add("active");
   });
+})();
+
+// Smooth scroll pour les ancres (index)
+document.addEventListener("click", (e) => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const id = a.getAttribute("href");
+  const el = document.querySelector(id);
+  if (!el) return;
+  e.preventDefault();
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
 });
