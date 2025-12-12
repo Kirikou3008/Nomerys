@@ -3,126 +3,112 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TravelAI — Accueil</title>
+  <title>TravelAI</title>
+
   <link rel="stylesheet" href="./global.css" />
   <link rel="stylesheet" href="./home.css" />
 </head>
+
 <body>
-<header>
-  <div class="container nav">
-    <a class="brand" href="./index.html">
-      <span class="dot"></span>
-      <span>TravelAI</span>
-    </a>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="./index.html">
+        <span class="brand-dot"></span>
+        <span>TravelAI</span>
+      </a>
 
-    <nav class="navlinks">
-      <a data-nav href="./index.html">Accueil</a>
-      <a data-nav href="./destinations.html">Destinations</a>
-      <a data-nav href="./guides.html">Guides</a>
-      <a data-nav href="./legal.html">Mentions légales</a>
-      <a data-nav href="./contact.html">Nous contacter</a>
-    </nav>
+      <nav class="nav-links">
+        <a href="./index.html">Accueil</a>
+        <a href="./destinations.html">Destinations</a>
+        <a href="./guides.html">Guides</a>
+        <a href="./legal.html">Mentions légales</a>
+        <a href="./contact.html">Nous contacter</a>
+      </nav>
 
-    <a class="cta" href="./questionnaire.html">Commencer</a>
-  </div>
-</header>
-
-<main>
-  <div class="container hero">
-    <div>
-      <div class="kicker">Voyage &amp; IA</div>
-
-      <h1 class="h1">
-        Ton voyage sur-<br/>mesure,<br/>
-        <span class="accent">optimisé par l’IA</span>
-      </h1>
-
-      <p class="p">
-        Remplis un court questionnaire et reçois un itinéraire ultra optimisé :
-        vols, hôtels et activités adaptés à ton budget et tes préférences.
-      </p>
-
-      <div class="hero-actions">
-        <a class="btn primary" href="./questionnaire.html">Commencer mon itinéraire</a>
-        <a class="btn" href="#comment">Voir comment ça marche</a>
-      </div>
-
-      <div class="hero-bullets">
-        <span>🔎 Recherche IA + vérifications humaines</span>
-        <span>🧮 Optimisation prix pour un voyage low-cost intelligent</span>
-        <span>📄 PDF clair + liens pour réserver en quelques clics</span>
-      </div>
+      <a class="btn btn-primary" href="./questionnaire.html">Commencer</a>
     </div>
+  </header>
 
-   <div class="hero-globe">
-  <canvas id="globeCanvas"></canvas>
-</div>
-
-<script type="module" src="./home-globe.js"></script>
-
-  <!-- EXEMPLE SECTIONS (garde tes textes à toi si besoin) -->
-  <section id="comment" class="section anchor">
+  <main class="page">
     <div class="container">
-      <h2 class="h2">Comment ça marche ?</h2>
-      <p class="p">Un process simple, pour que tu gagnes du temps, de l’énergie et de l’argent.</p>
+      <section class="hero">
+        <div class="hero-left">
+          <p class="kicker">Voyage & IA</p>
 
-      <div class="grid-3" style="margin-top:18px;">
-        <div class="card">
-          <h3>1 — Tu remplis le formulaire</h3>
-          <p>Dates, budget, destinations, style de voyage, aéroport.. Tu nous donnes le maximum d’infos pour que l’IA comprenne ton projet.</p>
+          <h1 class="h1 hero-title">
+            Ton voyage sur-mesure,<br>
+            <span>optimisé par l’IA</span>
+          </h1>
+
+          <p class="p">
+            Remplis un court questionnaire et reçois un itinéraire ultra optimisé :
+            vols, hôtels et activités adaptés à ton budget et tes préférences.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="./questionnaire.html">Commencer mon itinéraire</a>
+            <a class="btn" href="#comment-ca-marche">Voir comment ça marche</a>
+          </div>
+
+          <div class="hero-points">
+            <div class="hero-point"><span class="ic">🔎</span><span>Recherche IA + vérifications humaines</span></div>
+            <div class="hero-point"><span class="ic">🧮</span><span>Optimisation prix pour un voyage low-cost intelligent</span></div>
+            <div class="hero-point"><span class="ic">📄</span><span>PDF clair + liens pour réserver en quelques clics</span></div>
+          </div>
         </div>
-        <div class="card">
-          <h3>2 — On analyse &amp; on optimise</h3>
-          <p>On te génère une base d’itinéraire, puis on trouve les meilleurs prix et tout pour que tu passes un séjour inoubliable : cohérence des trajets, activités originales, temps sur place, horaires des vols..</p>
+
+        <div class="hero-right">
+          <div class="globe-wrap">
+            <canvas id="globeCanvas"></canvas>
+          </div>
         </div>
-        <div class="card">
-          <h3>3 — Tu reçois ton PDF + liens</h3>
-          <p>informations détaillé, estimation de budget, suggestions d’hôtels et d’activités, avec liens de réservation sécurisés.</p>
+      </section>
+
+      <section id="comment-ca-marche" class="section">
+        <p class="kicker">Process</p>
+        <h2 class="h2">Comment ça marche ?</h2>
+        <p class="p">Un process simple, pour que tu gagnes du temps, de l’énergie et de l’argent.</p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="n">1</div>
+            <div>
+              <p class="t">Tu remplis le formulaire</p>
+              <p class="d">Dates, budget, destinations, style de voyage, aéroport… Tu nous donnes le maximum d’infos pour que l’IA comprenne ton projet.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="n">2</div>
+            <div>
+              <p class="t">On génère et on optimise</p>
+              <p class="d">On compare les options (vols, hôtels, activités), puis on te propose un itinéraire cohérent et optimisé selon ton budget.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="n">3</div>
+            <div>
+              <p class="t">Tu reçois ton PDF prêt à réserver</p>
+              <p class="d">Un document clair avec les étapes, les meilleurs quartiers, les liens et une logique de trajet pour éviter les pertes de temps.</p>
+            </div>
+          </div>
         </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2025 TravelAI — Tous droits réservés.</div>
+      <div style="display:flex; gap:18px; flex-wrap:wrap;">
+        <a href="./legal.html">Mentions légales & RGPD</a>
+        <a href="./contact.html">Nous contacter</a>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <section class="section anchor" id="apropos">
-    <div class="container" style="display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start;">
-      <div>
-        <h2 class="h2">À propos du projet</h2>
-        <p class="p">
-          TravelAI est un service indépendant qui combine IA et automatisation en se basant sur des sources fiables pour créer des itinéraires de voyage réalistes, optimisés et accessibles.
-        </p>
-        <p class="p" style="margin-top:10px;">
-          L’objectif : te faire gagner des heures de recherche et te permettre de profiter d’un voyage bien pensé, sans exploser ton budget.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Ce que nous ne faisons pas</h3>
-        <p>❌ Vendre un service identique pour tout le monde</p>
-        <p>❌ Afficher des prix impossibles puis te décevoir au moment de réserver</p>
-        <p>❌ Te pousser à réserver des choses que tu ne veux pas</p>
-
-        <div style="height:14px"></div>
-
-        <h3>Ce que nous faisons</h3>
-        <p>✅ S’adapter à tes critères pour t’offrir le voyage de tes rêves avec un budget raisonnable pour l’entièreté du séjour</p>
-        <p>✅ Chercher les combinaisons vols + hôtels les plus fiables</p>
-        <p>✅ Être transparents sur les prix et les sources utilisées</p>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="footer">
-  <div class="container footer-row">
-    <div>© 2025 TravelAI — Tous droits réservés.</div>
-    <div style="display:flex; gap:16px;">
-      <a href="./legal.html">Mentions légales &amp; RGPD</a>
-      <a href="./contact.html">Nous contacter</a>
-    </div>
-  </div>
-</footer>
-
-<script src="./global.js"></script>
-<script type="module" src="./home-globe.js"></script>
+  <script src="./global.js"></script>
+  <script type="module" src="./home-globe.js"></script>
 </body>
 </html>
