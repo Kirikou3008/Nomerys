@@ -4,130 +4,128 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>TravelAI — Destinations</title>
-  <link rel="stylesheet" href="./style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/global.css" />
 </head>
+
 <body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="../index.html">
+        <span class="brand-dot"></span>
+        <span>TravelAI</span>
+      </a>
 
-<header class="header">
-  <div class="container">
-    <div class="nav">
-      <a class="brand" href="./index.html"><span class="dot"></span><span>TravelAI</span></a>
-
-      <nav class="menu">
-        <a href="./index.html">Accueil</a>
-        <a class="active" href="./destinations.html">Destinations</a>
-        <a href="./guides.html">Guides</a>
-        <a href="./legal.html">Mentions légales</a>
-        <a href="./contact.html">Nous contacter</a>
+      <nav class="nav-links">
+        <a href="../index.html">Accueil</a>
+        <a class="active" href="destinations.html">Destinations</a>
+        <a href="guides.html">Guides</a>
+        <a href="legal.html">Mentions légales</a>
+        <a href="contact.html">Nous contacter</a>
       </nav>
 
-      <div class="ctaTop">
-        <a class="btn btnPrimary" href="./index.html#commencer">Commencer</a>
-      </div>
+      <a class="btn btn-primary" href="../index.html#commencer">Commencer</a>
     </div>
-  </div>
-</header>
+  </header>
 
-<main>
-  <section class="section pageHero">
+  <section class="section">
     <div class="container">
-      <p class="kicker reveal">Inspiration & voyages</p>
-      <h1 class="pageHero h2 reveal">Inspiration & idées de voyages</h1>
-      <p class="pageHero sub reveal">
-        Ce ne sont que des exemples : chaque projet est ensuite adapté à ton profil, ton budget et tes dates.
-        Tu peux nous demander quelque chose de très précis ou nous laisser proposer.
+      <div class="kicker reveal">Inspiration & voyages</div>
+      <h1 class="h2 reveal">Inspiration & idées de voyages</h1>
+      <p class="lead reveal">
+        Ce ne sont que des exemples : chaque projet est ensuite adapté à ton profil, ton budget et tes dates. Tu peux nous demander quelque chose de très précis ou nous laisser proposer.
       </p>
-    </div>
-  </section>
 
-  <section class="section" style="padding-top:0;">
-    <div class="container">
-      <div class="grid3" style="margin-top:10px;">
+      <div class="grid-3" style="margin-top:22px;">
         <div class="card reveal">
-          <h3>Japon : Tokyo, Osaka & Kyoto</h3>
-          <p>
-            10 à 14 jours pour combiner mégalopole futuriste, quartiers rétro, temples, onsen et food tours.
-            Les meilleurs quartiers pour loger et les trains optimisés pour ne pas perdre de temps.
+          <h3 class="card-title">Japon : Tokyo, Osaka &amp; Kyoto</h3>
+          <p class="card-text">
+            10 à 14 jours pour combiner mégalopole futuriste, quartiers rétro, temples, onsen et food tours. Les meilleurs quartiers pour loger et les trains optimisés pour ne pas perdre de temps.
           </p>
-          <div class="badgeRow">
-            <span class="badge">JP Japon</span>
-            <span class="badge">Culture & food</span>
-            <span class="badge">Voyage de rêve</span>
+          <div class="tags">
+            <span class="tag">JP Japon</span>
+            <span class="tag">Culture &amp; food</span>
+            <span class="tag">Voyage de rêve</span>
           </div>
         </div>
 
         <div class="card reveal">
-          <h3>City-trip Europe low cost</h3>
-          <p>
+          <h3 class="card-title">City-trip Europe low cost</h3>
+          <p class="card-text">
             3 à 5 jours dans une grande capitale européenne : vols, hôtel central, suggestions de visites et d’activités selon ton style (musées, food, nightlife, quartiers cool, etc.).
           </p>
-          <div class="badgeRow">
-            <span class="badge">Vols courts</span>
-            <span class="badge">Petits budgets</span>
-            <span class="badge">Weekend prolongé</span>
+          <div class="tags">
+            <span class="tag">Vols courts</span>
+            <span class="tag">Petits budgets</span>
+            <span class="tag">Weekend prolongé</span>
           </div>
         </div>
 
         <div class="card reveal">
-          <h3>Road-trip nature & spots cachés</h3>
-          <p>
+          <h3 class="card-title">Road-trip nature &amp; spots cachés</h3>
+          <p class="card-text">
             Road-trip en Europe ou ailleurs avec étapes optimisées, hébergements bien notés et activités originales loin des pièges à touristes. Parcours pensé pour limiter les heures de route.
           </p>
-          <div class="badgeRow">
-            <span class="badge">Road-trip</span>
-            <span class="badge">Nature</span>
-            <span class="badge">Spots locaux</span>
+          <div class="tags">
+            <span class="tag">Road-trip</span>
+            <span class="tag">Nature</span>
+            <span class="tag">Spots locaux</span>
           </div>
         </div>
+      </div>
 
+      <div class="grid-2" style="margin-top:18px;">
         <div class="card reveal">
-          <h3>Voyage combiné : ville + plages</h3>
-          <p>
+          <h3 class="card-title">Voyage combiné : ville + plages</h3>
+          <p class="card-text">
             Quelques jours en ville pour les visites et la food, puis quelques jours plus calmes au bord de la mer. Idéal pour un voyage en couple ou entre amis.
           </p>
-          <div class="badgeRow">
-            <span class="badge">Soleil</span>
-            <span class="badge">Détente</span>
-            <span class="badge">Mix ville & plage</span>
+          <div class="tags">
+            <span class="tag">Soleil</span>
+            <span class="tag">Détente</span>
+            <span class="tag">Mix ville &amp; plage</span>
           </div>
         </div>
 
         <div class="card reveal">
-          <h3>“Première fois à l’étranger”</h3>
-          <p>
+          <h3 class="card-title">“Première fois à l’étranger”</h3>
+          <p class="card-text">
             Itinéraire pensé pour un premier gros voyage : destinations accessibles, transports simples, hôtels rassurants, rythme tranquille et budget maîtrisé. Zéro prise de tête.
           </p>
-          <div class="badgeRow">
-            <span class="badge">Débutant</span>
-            <span class="badge">Simple</span>
-            <span class="badge">Sans stress</span>
+          <div class="tags">
+            <span class="tag">Débutant</span>
+            <span class="tag">Simple</span>
+            <span class="tag">Sans stress</span>
           </div>
         </div>
+      </div>
 
-        <div class="card reveal">
-          <h3>Un projet sur-mesure 100 % personnalisé</h3>
-          <p>
-            Tu as une idée ultra précise, ou au contraire aucune idée ? On peut partir de zéro et construire un itinéraire cohérent autour de ton budget et de ton style de voyage.
-          </p>
-          <div class="heroActions" style="margin-top:14px;">
-            <a class="btn btnPrimary" href="./index.html#commencer">Me créer un itinéraire sur-mesure</a>
-          </div>
+      <div class="card reveal" style="margin-top:18px;">
+        <h3 class="card-title">Un projet sur-mesure 100 % personnalisé</h3>
+        <p class="card-text">
+          Tu as une idée ultra précise, ou au contraire aucune idée ? On peut partir de zéro et construire un itinéraire cohérent autour de ton budget et de ton style de voyage.
+        </p>
+        <div style="margin-top:16px;">
+          <a class="btn btn-primary" href="../index.html#commencer">Me créer un itinéraire sur-mesure</a>
         </div>
       </div>
     </div>
   </section>
-</main>
 
-<footer class="footer">
-  <div class="container footerRow">
-    <div>© 2025 TravelAI – Tous droits réservés.</div>
-    <div class="footerLinks">
-      <a href="./legal.html">Mentions légales & RGPD</a>
-      <a href="./contact.html">Nous contacter</a>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2025 TravelAI – Tous droits réservés.</div>
+      <div style="display:flex; gap:18px;">
+        <a href="legal.html">Mentions légales &amp; RGPD</a>
+        <a href="contact.html">Nous contacter</a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-<script src="./script.js"></script>
+  <script src="../js/global.js" defer></script>
 </body>
 </html>
