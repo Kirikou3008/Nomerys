@@ -1,114 +1,41 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
   <title>TravelAI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="stylesheet" href="./global.css" />
-  <link rel="stylesheet" href="./home.css" />
+  <link rel="stylesheet" href="global.css">
+  <link rel="stylesheet" href="home.css">
 </head>
 
 <body>
-  <header class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="./index.html">
-        <span class="brand-dot"></span>
-        <span>TravelAI</span>
-      </a>
 
-      <nav class="nav-links">
-        <a href="./index.html">Accueil</a>
-        <a href="./destinations.html">Destinations</a>
-        <a href="./guides.html">Guides</a>
-        <a href="./legal.html">Mentions légales</a>
-        <a href="./contact.html">Nous contacter</a>
-      </nav>
+<header class="header">
+  <div class="logo">Nomerys</div>
+</header>
 
-      <a class="btn btn-primary" href="./questionnaire.html">Commencer</a>
-    </div>
-  </header>
+<section class="hero">
+  <div class="hero-text">
+    <span class="tag">VOYAGE & IA</span>
+    <h1>
+      Ton voyage sur-mesure,<br>
+      <span>optimisé par l’IA</span>
+    </h1>
 
-  <main class="page">
-    <div class="container">
-      <section class="hero">
-        <div class="hero-left">
-          <p class="kicker">Voyage & IA</p>
+    <p>
+      Remplis un court questionnaire et reçois un itinéraire ultra optimisé :
+      vols, hôtels et activités adaptés à ton budget et tes préférences.
+    </p>
+  </div>
 
-          <h1 class="h1 hero-title">
-            Ton voyage sur-mesure,<br>
-            <span>optimisé par l’IA</span>
-          </h1>
+  <!-- LE GLOBE -->
+  <div id="globe-container"></div>
+</section>
 
-          <p class="p">
-            Remplis un court questionnaire et reçois un itinéraire ultra optimisé :
-            vols, hôtels et activités adaptés à ton budget et tes préférences.
-          </p>
+<!-- THREE.JS CDN -->
+<script src="https://unpkg.com/three@0.152.2/build/three.min.js"></script>
+<script src="globe.js"></script>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="./questionnaire.html">Commencer mon itinéraire</a>
-            <a class="btn" href="#comment-ca-marche">Voir comment ça marche</a>
-          </div>
-
-          <div class="hero-points">
-            <div class="hero-point"><span class="ic">🔎</span><span>Recherche IA + vérifications humaines</span></div>
-            <div class="hero-point"><span class="ic">🧮</span><span>Optimisation prix pour un voyage low-cost intelligent</span></div>
-            <div class="hero-point"><span class="ic">📄</span><span>PDF clair + liens pour réserver en quelques clics</span></div>
-          </div>
-        </div>
-
-        <div class="hero-right">
-          <div class="globe-wrap">
-            <canvas id="globeCanvas"></canvas>
-          </div>
-        </div>
-      </section>
-
-      <section id="comment-ca-marche" class="section">
-        <p class="kicker">Process</p>
-        <h2 class="h2">Comment ça marche ?</h2>
-        <p class="p">Un process simple, pour que tu gagnes du temps, de l’énergie et de l’argent.</p>
-
-        <div class="steps">
-          <div class="step">
-            <div class="n">1</div>
-            <div>
-              <p class="t">Tu remplis le formulaire</p>
-              <p class="d">Dates, budget, destinations, style de voyage, aéroport… Tu nous donnes le maximum d’infos pour que l’IA comprenne ton projet.</p>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="n">2</div>
-            <div>
-              <p class="t">On génère et on optimise</p>
-              <p class="d">On compare les options (vols, hôtels, activités), puis on te propose un itinéraire cohérent et optimisé selon ton budget.</p>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="n">3</div>
-            <div>
-              <p class="t">Tu reçois ton PDF prêt à réserver</p>
-              <p class="d">Un document clair avec les étapes, les meilleurs quartiers, les liens et une logique de trajet pour éviter les pertes de temps.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>© 2025 TravelAI — Tous droits réservés.</div>
-      <div style="display:flex; gap:18px; flex-wrap:wrap;">
-        <a href="./legal.html">Mentions légales & RGPD</a>
-        <a href="./contact.html">Nous contacter</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="./global.js"></script>
-  <script type="module" src="./home-globe.js"></script>
 </body>
 </html>
