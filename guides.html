@@ -2,92 +2,70 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TravelAI — Guides</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="./global.css" />
 </head>
-
 <body>
-  <header class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="../index.html">
-        <span class="brand-dot"></span>
-        <span>TravelAI</span>
-      </a>
+<header>
+  <div class="container nav">
+    <a class="brand" href="./index.html"><span class="dot"></span><span>TravelAI</span></a>
+    <nav class="navlinks">
+      <a data-nav href="./index.html">Accueil</a>
+      <a data-nav href="./destinations.html">Destinations</a>
+      <a data-nav href="./guides.html">Guides</a>
+      <a data-nav href="./legal.html">Mentions légales</a>
+      <a data-nav href="./contact.html">Nous contacter</a>
+    </nav>
+    <a class="cta" href="./questionnaire.html">Commencer</a>
+  </div>
+</header>
 
-      <nav class="nav-links">
-        <a href="../index.html">Accueil</a>
-        <a href="destinations.html">Destinations</a>
-        <a class="active" href="guides.html">Guides</a>
-        <a href="legal.html">Mentions légales</a>
-        <a href="contact.html">Nous contacter</a>
-      </nav>
+<main class="container">
+  <div class="kicker">GUIDES &amp; CONSEILS</div>
+  <h1 class="h1">Guides &amp; conseils voyage</h1>
+  <p class="p">
+    Ici, tu trouveras bientôt des articles concrets pour préparer tes voyages : budgets réalistes, astuces pour payer tes vols moins cher, exemples d’itinéraires et retours d’expérience.
+  </p>
 
-      <a class="btn btn-primary" href="../index.html#commencer">Commencer</a>
+  <div class="grid-3" style="margin-top:20px;">
+    <div class="card">
+      <h3>Préparer un premier voyage au Japon sans exploser le budget</h3>
+      <p>Choix des dates, aéroports, pass transport, cartes SIM, astuces hébergement... Tout ce qu’on regarde pour toi quand on prépare un itinéraire Japon.</p>
+      <p style="margin-top:12px; color: rgba(52,198,255,.75);">Article en cours de rédaction.</p>
     </div>
-  </header>
 
-  <section class="section">
-    <div class="container">
-      <div class="kicker reveal">Guides & conseils</div>
-      <h1 class="h2 reveal">Guides & conseils voyage</h1>
-      <p class="lead reveal">
-        Ici, tu trouveras bientôt des articles concrets pour préparer tes voyages : budgets réalistes, astuces pour payer tes vols moins cher, exemples d’itinéraires et retours d’expérience.
-      </p>
-
-      <div class="grid-3" style="margin-top:22px;">
-        <div class="card reveal">
-          <h3 class="card-title">Préparer un premier voyage au Japon sans exploser le budget</h3>
-          <p class="card-text">
-            Choix des dates, aéroports, pass transport, cartes SIM, astuces hébergement... Tout ce qu’on regarde pour toi quand on prépare un itinéraire Japon.
-          </p>
-          <p class="card-text" style="margin-top:12px;">Article en cours de rédaction.</p>
-        </div>
-
-        <div class="card reveal">
-          <h3 class="card-title">Comment trouver un vol vraiment pas cher (sans y passer la journée)</h3>
-          <p class="card-text">
-            Méthode simple pour comparer les vols intelligemment : flexibilité sur les dates, aéroports alternatifs, durées d’escales acceptables, outils à connaître.
-          </p>
-          <p class="card-text" style="margin-top:12px;">Article en cours de rédaction.</p>
-        </div>
-
-        <div class="card reveal">
-          <h3 class="card-title">Exemple d’itinéraire 10 jours Tokyo / Osaka</h3>
-          <p class="card-text">
-            Exemple partiel d’itinéraire pour montrer la structure de nos PDF : rythme, quartiers, activités, temps de transport, estimation de budget.
-          </p>
-          <p class="card-text" style="margin-top:12px;">Article en cours de rédaction.</p>
-        </div>
-      </div>
-
-      <div class="card reveal" style="margin-top:18px;">
-        <h3 class="card-title">Pas envie de lire des guides ?</h3>
-        <p class="card-text">
-          Tu peux directement nous confier ton projet via le questionnaire. On te renverra un itinéraire complet prêt à être réservé.
-        </p>
-        <div style="margin-top:16px;">
-          <a class="btn btn-primary" href="../index.html#commencer">Me créer un itinéraire plutôt que lire des guides</a>
-        </div>
-      </div>
+    <div class="card">
+      <h3>Comment trouver un vol vraiment pas cher (sans y passer la journée)</h3>
+      <p>Méthode simple pour comparer les vols intelligemment : flexibilité sur les dates, aéroports alternatifs, durées d’escales acceptables, outils à connaître.</p>
+      <p style="margin-top:12px; color: rgba(52,198,255,.75);">Article en cours de rédaction.</p>
     </div>
-  </section>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>© 2025 TravelAI – Tous droits réservés.</div>
-      <div style="display:flex; gap:18px;">
-        <a href="legal.html">Mentions légales &amp; RGPD</a>
-        <a href="contact.html">Nous contacter</a>
-      </div>
+    <div class="card">
+      <h3>Exemple d’itinéraire 10 jours Tokyo / Osaka</h3>
+      <p>Exemple partiel d’itinéraire pour montrer la structure de nos PDF : rythme, quartiers, activités, temps de transport, estimation de budget.</p>
+      <p style="margin-top:12px; color: rgba(52,198,255,.75);">Article en cours de rédaction.</p>
     </div>
-  </footer>
+  </div>
 
-  <script src="../js/global.js" defer></script>
+  <div style="height:26px"></div>
+
+  <h2 class="h2">Pas envie de lire des guides ?</h2>
+  <p class="p">Tu peux directement nous confier ton projet via le questionnaire. On te renverra un itinéraire complet prêt à être réservé.</p>
+  <div style="height:14px"></div>
+  <a class="btn primary" href="./questionnaire.html">Me créer un itinéraire plutôt que lire des guides</a>
+</main>
+
+<footer class="footer">
+  <div class="container footer-row">
+    <div>© 2025 TravelAI — Tous droits réservés.</div>
+    <div style="display:flex; gap:16px;">
+      <a href="./legal.html">Mentions légales &amp; RGPD</a>
+      <a href="./contact.html">Nous contacter</a>
+    </div>
+  </div>
+</footer>
+
+<script src="./global.js"></script>
 </body>
 </html>
