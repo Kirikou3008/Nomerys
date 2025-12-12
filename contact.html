@@ -3,95 +3,100 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TravelAI — Nous contacter</title>
-  <link rel="stylesheet" href="./style.css" />
+  <title>TravelAI — Contact</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/global.css" />
 </head>
+
 <body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="../index.html">
+        <span class="brand-dot"></span>
+        <span>TravelAI</span>
+      </a>
 
-<header class="header">
-  <div class="container">
-    <div class="nav">
-      <a class="brand" href="./index.html"><span class="dot"></span><span>TravelAI</span></a>
-
-      <nav class="menu">
-        <a href="./index.html">Accueil</a>
-        <a href="./destinations.html">Destinations</a>
-        <a href="./guides.html">Guides</a>
-        <a href="./legal.html">Mentions légales</a>
-        <a class="active" href="./contact.html">Nous contacter</a>
+      <nav class="nav-links">
+        <a href="../index.html">Accueil</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="guides.html">Guides</a>
+        <a href="legal.html">Mentions légales</a>
+        <a class="active" href="contact.html">Nous contacter</a>
       </nav>
 
-      <div class="ctaTop">
-        <a class="btn btnPrimary" href="./index.html#commencer">Commencer</a>
-      </div>
+      <a class="btn btn-primary" href="../index.html#commencer">Commencer</a>
     </div>
-  </div>
-</header>
+  </header>
 
-<main>
-  <section class="section pageHero">
+  <section class="section">
     <div class="container">
-      <p class="kicker reveal">Contact</p>
-      <h1 class="pageHero h2 reveal">Nous contacter</h1>
-      <p class="pageHero sub reveal">
+      <div class="kicker reveal">Contact</div>
+      <h1 class="h2 reveal">Nous contacter</h1>
+
+      <p class="lead reveal">
         Une question sur un projet, un partenariat ou le fonctionnement de TravelAI ? Tu peux nous écrire directement via ce formulaire. On revient vers toi dès que possible.
       </p>
+
+      <div class="grid-2" style="margin-top:22px;">
+        <div class="reveal">
+          <div class="checklist">
+            <div class="check">💬 <span>Questions sur un itinéraire ou un devis.</span></div>
+            <div class="check">🤝 <span>Partenariats, collaborations, affiliation.</span></div>
+            <div class="check">🛠️ <span>Remarques sur le site ou idées d’évolution.</span></div>
+          </div>
+
+          <p class="lead" style="margin-top:18px;">
+            Pour l’instant, ce formulaire n’envoie pas encore d’email automatique. Tu pourras le connecter plus tard à un webhook / n8n / Zapier quand tu seras prêt.
+          </p>
+        </div>
+
+        <div class="card reveal">
+          <form style="display:grid; gap:12px;">
+            <label style="display:grid; gap:8px; color:var(--muted); font-size:14px;">
+              Prénom / Nom
+              <input type="text" placeholder="Ex : Baptiste"
+                style="padding:14px 14px; border-radius:14px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04); color:var(--text); outline:none;">
+            </label>
+
+            <label style="display:grid; gap:8px; color:var(--muted); font-size:14px;">
+              Email
+              <input type="email" placeholder="toi@email.com"
+                style="padding:14px 14px; border-radius:14px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04); color:var(--text); outline:none;">
+            </label>
+
+            <label style="display:grid; gap:8px; color:var(--muted); font-size:14px;">
+              Sujet
+              <input type="text" placeholder="Ex : Question sur un itinérai"
+                style="padding:14px 14px; border-radius:14px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04); color:var(--text); outline:none;">
+            </label>
+
+            <label style="display:grid; gap:8px; color:var(--muted); font-size:14px;">
+              Message
+              <textarea rows="5" placeholder="Explique-nous en quelques lignes ce que tu souhaites."
+                style="padding:14px 14px; border-radius:14px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04); color:var(--text); outline:none; resize:vertical;"></textarea>
+            </label>
+
+            <button class="btn btn-primary" type="button">Envoyer mon message</button>
+          </form>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="section" style="padding-top:0;">
-    <div class="container twoCol">
-      <div class="reveal">
-        <div class="checklist" style="margin-top:10px;">
-          <span>💬 Questions sur un itinéraire ou un devis.</span>
-          <span>🤝 Partenariats, collaborations, affiliation.</span>
-          <span>🛠️ Remarques sur le site ou idées d’évolution.</span>
-        </div>
-      </div>
-
-      <div class="formMini reveal">
-        <div class="field">
-          <label for="name">Prénom / Nom</label>
-          <input id="name" type="text" placeholder="Ex : Baptiste" />
-        </div>
-
-        <div class="field">
-          <label for="email">Email</label>
-          <input id="email" type="email" placeholder="toi@email.com" />
-        </div>
-
-        <div class="field">
-          <label for="subject">Sujet</label>
-          <input id="subject" type="text" placeholder="Ex : Question sur un itinérai" />
-        </div>
-
-        <div class="field">
-          <label for="message">Message</label>
-          <textarea id="message" placeholder="Explique-nous en quelques lignes ce que tu souhaites."></textarea>
-        </div>
-
-        <p style="margin:12px 0 0; color:var(--muted2); font-size:12.5px; line-height:1.5;">
-          Pour l’instant, ce formulaire n’envoie pas encore d’email automatique. Tu pourras le connecter plus tard à un webhook / n8n / Zapier quand tu seras prêt.
-        </p>
-
-        <div style="margin-top:16px;">
-          <button class="btn btnPrimary" type="button">Envoyer mon message</button>
-        </div>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2025 TravelAI – Tous droits réservés.</div>
+      <div style="display:flex; gap:18px;">
+        <a href="legal.html">Mentions légales &amp; RGPD</a>
+        <a href="contact.html">Nous contacter</a>
       </div>
     </div>
-  </section>
-</main>
+  </footer>
 
-<footer class="footer">
-  <div class="container footerRow">
-    <div>© 2025 TravelAI – Tous droits réservés.</div>
-    <div class="footerLinks">
-      <a href="./legal.html">Mentions légales & RGPD</a>
-      <a href="./contact.html">Nous contacter</a>
-    </div>
-  </div>
-</footer>
-
-<script src="./script.js"></script>
+  <script src="../js/global.js" defer></script>
 </body>
 </html>
