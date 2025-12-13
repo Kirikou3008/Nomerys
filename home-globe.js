@@ -1,22 +1,18 @@
-// home-globe.js (ES module)
-// Globe 3D interactif (drag souris) + texture /assets/earth.jpg
+// home-globe.js — version non-module (compatible GitHub Pages sans import ES modules)
+// Dépendances chargées dans index.html : three.min.js + OrbitControls.js
 
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js";
-import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/controls/OrbitControls.js";
+(function () {
+  const canvas = document.getElementById("globeCanvas");
+  if (!canvas) return;
 
-const canvas = document.getElementById("globeCanvas");
+  // Sécurité : si THREE pas chargé
+  if (typeof THREE === "undefined") {
+    console.error("[home-globe] THREE n'est pas chargé. Vérifie les <script src=...three.min.js>.");
+    return;
+  }
 
-// Sécurité : si canvas absent, on ne fait rien
-if (!canvas) {
-  console.warn("[home-globe] canvas #globeCanvas introuvable.");
-} else {
   const scene = new THREE.Scene();
 
-  // Camera
-  const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
-  camera.position.set(0, 0, 3.0);
-
-  // Renderer
   const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: true,
@@ -26,38 +22,34 @@ if (!canvas) {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.setClearColor(0x000000, 0);
 
-  // Lights
-  const ambient = new THREE.AmbientLight(0xffffff, 0.55);
-  scene.add(ambient);
+  const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+  camera.position.set(0, 0, 3);
 
-  const dir = new THREE.DirectionalLight(0xffffff, 1.0);
+  // Lights
+  scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+  const dir = new THREE.DirectionalLight(0xffffff, 1.05);
   dir.position.set(3, 2, 4);
   scene.add(dir);
 
-  // Globe mesh
+  // Globe
   const geometry = new THREE.SphereGeometry(1, 64, 64);
 
-  // Texture loader
   const loader = new THREE.TextureLoader();
-
-  // IMPORTANT : ton image doit être ici:
-  // /assets/earth.jpg
-  const earthTexture = loader.load(
+  const texture = loader.load(
     "./assets/earth.jpg",
-    () => {
-      // ok loaded
-    },
+    () => {},
     undefined,
-    (err) => {
-      console.error("[home-globe] Erreur texture earth.jpg:", err);
-    }
+    (e) => console.error("[home-globe] Texture introuvable: ./assets/earth.jpg", e)
   );
 
-  earthTexture.colorSpace = THREE.SRGBColorSpace;
-  earthTexture.anisotropy = 8;
+  // Meilleur rendu texture
+  if (texture) {
+    texture.anisotropy = 8;
+    texture.colorSpace = THREE.SRGBColorSpace ? THREE.SRGBColorSpace : undefined;
+  }
 
   const material = new THREE.MeshStandardMaterial({
-    map: earthTexture,
+    map: texture,
     roughness: 0.95,
     metalness: 0.0,
   });
@@ -65,32 +57,60 @@ if (!canvas) {
   const globe = new THREE.Mesh(geometry, material);
   scene.add(globe);
 
-  // Petit “halo” discret (optionnel mais joli)
-  const glowGeo = new THREE.SphereGeometry(1.02, 64, 64);
-  const glowMat = new THREE.MeshBasicMaterial({
-    color: 0x2f7bff,
-    transparent: true,
-    opacity: 0.08,
-  });
-  const glow = new THREE.Mesh(glowGeo, glowMat);
+  // Halo léger
+  const glow = new THREE.Mesh(
+    new THREE.SphereGeometry(1.02, 64, 64),
+    new THREE.MeshBasicMaterial({ color: 0x2f7bff, transparent: true, opacity: 0.08 })
+  );
   scene.add(glow);
 
-  // Controls: rotation à la souris (drag)
-  const controls = new OrbitControls(camera, renderer.domElement);
+  // OrbitControls (drag souris = rotation libre)
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.enablePan = false;
-  controls.enableZoom = false; // pour éviter le zoom qui casse le layout
+  controls.enableZoom = false;
   controls.enableDamping = true;
-  controls.dampingFactor = 0.07;
+  controls.dampingFactor = 0.08;
 
-  // On limite l'orbite pour rester “face” au globe et éviter de passer derrière
-  controls.minPolarAngle = Math.PI * 0.25;
-  controls.maxPolarAngle = Math.PI * 0.75;
+  // Limites pour éviter de passer "derrière" (reste propre)
+  controls.minPolarAngle = Math.PI * 0.18;
+  controls.maxPolarAngle = Math.PI * 0.82;
 
-  // Auto-rotation très légère (tu peux mettre false si tu veux 100% manuel)
+  // Auto-rotation très légère seulement au repos
   controls.autoRotate = true;
   controls.autoRotateSpeed = 0.35;
 
-  // Petit effet “suivi” au mouvement de souris (pas un drag, juste un tilt)
+  let isInteracting = false;
+  let lastInteract = performance.now();
+
+  function markInteract() {
+    isInteracting = true;
+    lastInteract = performance.now();
+  }
+
+  renderer.domElement.addEventListener("pointerdown", markInteract, { passive: true });
+  renderer.domElement.addEventListener("pointermove", markInteract, { passive: true });
+  window.addEventListener("pointerup", () => {
+    // on laisse un petit délai avant de remettre l'auto-rotate
+    isInteracting = false;
+    lastInteract = performance.now();
+  });
+
+  // Resize canvas au parent
+  function resize() {
+    const parent = renderer.domElement.parentElement;
+    const w = parent.clientWidth;
+    const h = parent.clientHeight;
+
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+
+  const ro = new ResizeObserver(resize);
+  ro.observe(renderer.domElement.parentElement);
+  resize();
+
+  // Petit tilt suivant la souris (léger, n’empêche PAS le drag)
   let mouseX = 0;
   let mouseY = 0;
 
@@ -98,46 +118,33 @@ if (!canvas) {
     const rect = renderer.domElement.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width; // 0..1
     const y = (e.clientY - rect.top) / rect.height; // 0..1
-
-    // -0.5..0.5
     mouseX = x - 0.5;
     mouseY = y - 0.5;
   }
-
   renderer.domElement.addEventListener("mousemove", onMouseMove);
 
-  // Resize
-  function resize() {
-    const parent = renderer.domElement.parentElement;
-    const w = parent.clientWidth;
-    const h = parent.clientHeight;
-
-    renderer.setSize(w, h, false);
-
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-  }
-
-  // Animation
   function animate() {
-    // Tilt léger (n’empêche PAS le drag)
-    // On applique un petit offset sur le mesh (pas sur la caméra) pour garder un effet subtil.
-    const targetTiltX = mouseY * 0.18; // vertical
-    const targetTiltY = mouseX * 0.22; // horizontal
+    const now = performance.now();
 
-    globe.rotation.x += (targetTiltX - globe.rotation.x) * 0.02;
-    // rotation.y est aussi pilotée par OrbitControls, donc on fait un petit add
-    globe.rotation.y += (targetTiltY - 0) * 0.002;
+    // Auto-rotate seulement si l’utilisateur ne touche plus depuis ~900ms
+    const idle = now - lastInteract > 900;
+    controls.autoRotate = idle;
+
+    // Tilt très léger (uniquement visuel)
+    const tiltX = mouseY * 0.12;
+    const tiltY = mouseX * 0.16;
+
+    globe.rotation.x += (tiltX - globe.rotation.x) * 0.02;
+    glow.rotation.x = globe.rotation.x;
+
+    // On n’écrase PAS la rotation du drag (controls), on fait un micro effet
+    globe.rotation.y += tiltY * 0.002;
+    glow.rotation.y = globe.rotation.y;
 
     controls.update();
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
   }
 
-  // Observers
-  const ro = new ResizeObserver(() => resize());
-  ro.observe(renderer.domElement.parentElement);
-
-  resize();
   animate();
-}
+})();
