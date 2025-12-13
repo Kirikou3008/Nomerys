@@ -400,3 +400,7 @@
   font-size: 12px;
   color: rgba(255,255,255,0.6);
 }
+
+#globe-canvas {
+  display: block; /* important: évite le canvas "inline" qui peut donner 0px */
+}
