@@ -1,0 +1,18 @@
+.page-head{padding-top:110px}
+.page-head h1{font-size:54px}
+.page-head .intro{max-width:900px;margin-top:14px}
+
+.card-title{font-size:22px;margin-bottom:10px}
+.card-link{color:rgba(57,194,255,.9);font-weight:700;margin-top:14px;display:inline-block}
+.form-grid{display:grid;gap:14px}
+label{font-size:13px;color:rgba(234,241,255,.78)}
+input,textarea{
+  width:100%;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(0,0,0,.18);
+  color:var(--text);
+  padding:12px 14px;
+  outline:none;
+}
+textarea{min-height:130px;resize:vertical}
