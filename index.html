@@ -1,191 +1,178 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TravelAI — Accueil</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TravelAI — Accueil</title>
 
-    <!-- Ton CSS global (les autres pages en dépendent) -->
-    <link rel="stylesheet" href="./global.css" />
+  <!-- Global (commun à toutes les pages) -->
+  <link rel="stylesheet" href="./global.css" />
 
-    <!-- CSS spécifique home (n’impacte pas les autres pages) -->
-    <link rel="stylesheet" href="./home.css" />
-  </head>
+  <!-- Accueil uniquement -->
+  <link rel="stylesheet" href="./home.css" />
+</head>
 
-  <body>
-    <!-- HEADER HOME (on ne dépend pas des classes globales) -->
-    <header class="home-header">
-      <div class="home-header__inner">
-        <a class="home-brand" href="./index.html">
-          <span class="home-brand__dot"></span>
-          <span class="home-brand__name">TravelAI</span>
-        </a>
+<body class="home-page">
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="./index.html" aria-label="TravelAI accueil">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span class="brand-name">TravelAI</span>
+      </a>
 
-        <nav class="home-nav">
-          <a class="home-nav__link is-active" href="./index.html">Accueil</a>
-          <a class="home-nav__link" href="./destinations.html">Destinations</a>
-          <a class="home-nav__link" href="./guides.html">Guides</a>
-          <a class="home-nav__link" href="./legal.html">Mentions légales</a>
-          <a class="home-nav__link" href="./contact.html">Nous contacter</a>
-        </nav>
+      <nav class="nav" aria-label="Navigation principale">
+        <a class="nav-link is-active" href="./index.html">Accueil</a>
+        <a class="nav-link" href="./destinations.html">Destinations</a>
+        <a class="nav-link" href="./guides.html">Guides</a>
+        <a class="nav-link" href="./legal.html">Mentions légales</a>
+        <a class="nav-link" href="./contact.html">Nous contacter</a>
+      </nav>
 
-        <a class="home-btn home-btn--primary home-header__cta" href="./questionnaire.html">Commencer</a>
+      <a class="cta-top" href="./questionnaire.html">Commencer</a>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <div class="kicker">VOYAGE &amp; IA</div>
+
+          <h1 class="hero-title">
+            Ton voyage sur-mesure,<br />
+            <span class="hero-accent">optimisé par l’IA</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Remplis un court questionnaire et reçois un itinéraire ultra optimisé : vols, hôtels et
+            activités adaptés à ton budget et tes préférences.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="./questionnaire.html">Commencer mon itinéraire</a>
+            <a class="btn btn-ghost" href="#comment-ca-marche">Voir comment ça marche</a>
+          </div>
+
+          <ul class="hero-bullets">
+            <li><span class="bullet-ico">🔎</span> Recherche IA <span class="muted">+ vérifications humaines</span></li>
+            <li><span class="bullet-ico">🧮</span> Optimisation prix <span class="muted">pour un voyage low-cost intelligent</span></li>
+            <li><span class="bullet-ico">📄</span> PDF clair <span class="muted">+ liens pour réserver en quelques clics</span></li>
+          </ul>
+        </div>
+
+        <div class="hero-right">
+          <div class="globe-card" aria-label="Globe interactif">
+            <canvas id="globe-canvas"></canvas>
+            <div class="globe-hint">Clique &amp; glisse pour tourner</div>
+          </div>
+        </div>
       </div>
-    </header>
+    </section>
 
-    <main class="home-main">
-      <!-- HERO -->
-      <section class="home-hero">
-        <div class="home-container home-hero__grid">
-          <div class="home-hero__content">
-            <div class="home-eyebrow">VOYAGE &amp; IA</div>
+    <!-- COMMENT ÇA MARCHE -->
+    <section id="comment-ca-marche" class="section">
+      <div class="container">
+        <div class="section-kicker">PROCESS</div>
+        <h2 class="section-title">Comment ça marche ?</h2>
+        <p class="section-subtitle">
+          Un process simple, pour que tu gagnes du temps, de l’énergie et de l’argent.
+        </p>
 
-            <h1 class="home-hero__title">
-              Ton voyage sur-<br />
-              mesure,<br />
-              <span class="home-hero__accent">optimisé</span>
-              <span class="home-hero__accent2">par l’IA</span>
-            </h1>
-
-            <p class="home-hero__subtitle">
-              Remplis un court questionnaire et reçois un itinéraire ultra optimisé : vols, hôtels et
-              activités adaptés à ton budget et tes préférences.
+        <div class="cards-3">
+          <article class="card">
+            <h3 class="card-title">Tu remplis le formulaire</h3>
+            <p class="card-text">
+              Dates, budget, destinations, style de voyage, aéroport… Tu nous donnes le maximum
+              d’infos pour que l’IA comprenne ton projet.
             </p>
+          </article>
 
-            <div class="home-hero__actions">
-              <a class="home-btn home-btn--primary" href="./questionnaire.html">Commencer mon itinéraire</a>
-              <a class="home-btn home-btn--ghost" href="#process">Voir comment ça marche</a>
-            </div>
+          <article class="card">
+            <h3 class="card-title">On optimise ton itinéraire</h3>
+            <p class="card-text">
+              Vols, hôtels, activités : on construit un parcours cohérent, avec temps de transport,
+              rythme, quartiers, et options selon tes priorités.
+            </p>
+          </article>
 
-            <ul class="home-hero__bullets">
-              <li><span class="home-bullet-ico">🔎</span> Recherche IA <span class="home-muted">+ vérifications humaines</span></li>
-              <li><span class="home-bullet-ico">🧮</span> Optimisation prix <span class="home-muted">pour un voyage low-cost intelligent</span></li>
-              <li><span class="home-bullet-ico">📄</span> PDF clair <span class="home-muted">+ liens pour réserver en quelques clics</span></li>
+          <article class="card">
+            <h3 class="card-title">Tu reçois un PDF prêt à réserver</h3>
+            <p class="card-text">
+              Un document clair, avec toutes les étapes + les liens utiles pour réserver sans y passer
+              des heures.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- À PROPOS -->
+    <section class="section">
+      <div class="container">
+        <div class="section-kicker">POURQUOI</div>
+        <h2 class="section-title">À propos</h2>
+        <p class="section-subtitle">
+          L’objectif : te proposer un itinéraire pertinent, optimisé, et adapté à ton budget, sans le stress des comparateurs,
+          des dizaines d’onglets et des pièges à touristes.
+        </p>
+
+        <div class="cards-2">
+          <article class="card">
+            <h3 class="card-title">Ce que nous faisons</h3>
+            <ul class="list">
+              <li>On structure ton voyage : quartiers, rythme, transports, étapes.</li>
+              <li>On compare intelligemment pour optimiser le budget (sans sacrifier le confort).</li>
+              <li>On prépare un PDF clair + liens de réservation.</li>
             </ul>
-          </div>
+          </article>
 
-          <!-- GLOBE -->
-          <div class="home-hero__globe">
-            <div class="home-globeCard">
-              <canvas id="globeCanvas" class="home-globeCanvas"></canvas>
-              <div class="home-globeHint">Clique &amp; glisse pour tourner</div>
-            </div>
-          </div>
+          <article class="card">
+            <h3 class="card-title">Ce que nous ne faisons pas</h3>
+            <ul class="list">
+              <li>Te balancer des listes de liens sans cohérence.</li>
+              <li>Te proposer un “copier-coller” générique identique pour tout le monde.</li>
+              <li>Te faire perdre du temps à tout recroiser toi-même.</li>
+            </ul>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- PROCESS -->
-      <section class="home-section" id="process">
-        <div class="home-container">
-          <div class="home-section__head">
-            <div class="home-eyebrow">PROCESS</div>
-            <h2 class="home-section__title">Comment ça marche ?</h2>
-            <p class="home-section__subtitle">
-              Un process simple, pour que tu gagnes du temps, de l’énergie et de l’argent.
+    <!-- CTA FIN -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2 class="cta-title">Prêt à créer ton itinéraire ?</h2>
+            <p class="cta-text">
+              Tu peux être très précis… ou nous laisser proposer. Dans tous les cas, on adapte à ton budget et à ton style de voyage.
             </p>
           </div>
-
-          <div class="home-cards home-cards--3">
-            <article class="home-card">
-              <h3 class="home-card__title">Tu remplis le formulaire</h3>
-              <p class="home-card__text">
-                Dates, budget, destinations, style de voyage, aéroport... Tu nous donnes le maximum
-                d’infos pour que l’IA comprenne ton projet.
-              </p>
-            </article>
-
-            <article class="home-card">
-              <h3 class="home-card__title">On optimise ton itinéraire</h3>
-              <p class="home-card__text">
-                Vols, hôtels, activités : on construit un parcours cohérent, avec temps de transport,
-                rythme, quartiers, et options selon tes priorités.
-              </p>
-            </article>
-
-            <article class="home-card">
-              <h3 class="home-card__title">Tu reçois un PDF prêt à réserver</h3>
-              <p class="home-card__text">
-                Un document clair, avec toutes les étapes + les liens utiles pour réserver sans y passer
-                des heures.
-              </p>
-            </article>
-          </div>
+          <a class="btn btn-primary" href="./questionnaire.html">Commencer</a>
         </div>
-      </section>
+      </div>
+    </section>
+  </main>
 
-      <!-- A PROPOS -->
-      <section class="home-section" id="about">
-        <div class="home-container">
-          <div class="home-section__head">
-            <div class="home-eyebrow">POURQUOI</div>
-            <h2 class="home-section__title">À propos</h2>
-            <p class="home-section__subtitle">
-              L’objectif : te proposer un itinéraire pertinent, optimisé, et adapté à ton budget, sans le
-              stress des comparateurs, des dizaines d’onglets et des pièges à touristes.
-            </p>
-          </div>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div class="footer-left">© 2025 TravelAI — Tous droits réservés.</div>
+      <div class="footer-right">
+        <a href="./legal.html">Mentions légales &amp; RGPD</a>
+        <a href="./contact.html">Nous contacter</a>
+      </div>
+    </div>
+  </footer>
 
-          <div class="home-cards home-cards--2">
-            <article class="home-card">
-              <h3 class="home-card__title">Ce que nous faisons</h3>
-              <ul class="home-list">
-                <li>Optimisation de budget (vols + hébergements + activités).</li>
-                <li>Itinéraire structuré par jours, quartiers, temps de transport.</li>
-                <li>Sélection d’options cohérentes selon ton style et tes contraintes.</li>
-                <li>PDF clair avec liens directs pour réserver rapidement.</li>
-              </ul>
-            </article>
+  <!-- Global JS -->
+  <script src="./global.js"></script>
 
-            <article class="home-card">
-              <h3 class="home-card__title">Ce que nous ne faisons pas</h3>
-              <ul class="home-list">
-                <li>Te balancer une liste random de spots sans logique.</li>
-                <li>Te forcer vers les mêmes “pièges à touristes”.</li>
-                <li>Te faire perdre du temps avec 40 onglets à comparer.</li>
-                <li>Un plan “copié-collé” identique pour tout le monde.</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA FIN -->
-      <section class="home-section home-section--cta">
-        <div class="home-container">
-          <div class="home-cta">
-            <div class="home-cta__text">
-              <h2 class="home-cta__title">Prêt à créer ton itinéraire ?</h2>
-              <p class="home-cta__subtitle">
-                Tu peux être très précis... ou nous laisser proposer. Dans tous les cas, on adapte à ton budget
-                et à ton style de voyage.
-              </p>
-            </div>
-            <a class="home-btn home-btn--primary home-cta__btn" href="./questionnaire.html">Commencer</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- FOOTER (home uniquement) -->
-      <footer class="home-footer">
-        <div class="home-container home-footer__inner">
-          <div class="home-footer__left">© 2025 TravelAI — Tous droits réservés.</div>
-          <div class="home-footer__right">
-            <a href="./legal.html">Mentions légales &amp; RGPD</a>
-            <a href="./contact.html">Nous contacter</a>
-          </div>
-        </div>
-      </footer>
-    </main>
-
-    <!-- Ton JS global (si tu en as besoin, sinon tu peux le laisser) -->
-    <script src="./global.js"></script>
-
-    <!-- THREE en version non-module (ULTRA compatible) -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.161.0/examples/js/controls/OrbitControls.js"></script>
-
-    <!-- Globe home -->
-   <script type="module" src="./home-globe.js"></script>
-  </body>
+  <!-- Globe accueil uniquement -->
+  <script type="module" src="./home-globe.js"></script>
+</body>
 </html>
 
