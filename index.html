@@ -5,46 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TravelAI — Accueil</title>
 
-    <!-- Global (commun à toutes les pages) -->
+    <!-- CSS global (commun à toutes les pages) -->
     <link rel="stylesheet" href="./global.css" />
-    <script defer src="./global.js"></script>
 
-    <!-- Home uniquement -->
+    <!-- CSS uniquement pour la home -->
     <link rel="stylesheet" href="./home.css" />
   </head>
 
-  <body>
-    <!-- NAV -->
-    <header class="nav">
-      <div class="nav__inner">
-        <a class="brand" href="./index.html" aria-label="TravelAI">
+  <body class="page-home">
+    <!-- Header: même structure / classes que les autres pages -->
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="./index.html" aria-label="TravelAI (Accueil)">
           <span class="brand__dot" aria-hidden="true"></span>
           <span class="brand__name">TravelAI</span>
         </a>
 
-        <nav class="menu" aria-label="Navigation principale">
-          <a class="menu__link is-active" href="./index.html">Accueil</a>
-          <a class="menu__link" href="./destinations.html">Destinations</a>
-          <a class="menu__link" href="./guides.html">Guides</a>
-          <a class="menu__link" href="./legal.html">Mentions légales</a>
-          <a class="menu__link" href="./contact.html">Nous contacter</a>
+        <nav class="nav" aria-label="Navigation principale">
+          <a class="nav__link is-active" href="./index.html">Accueil</a>
+          <a class="nav__link" href="./destinations.html">Destinations</a>
+          <a class="nav__link" href="./guides.html">Guides</a>
+          <a class="nav__link" href="./legal.html">Mentions légales</a>
+          <a class="nav__link" href="./contact.html">Nous contacter</a>
         </nav>
 
-        <a class="btn btn--pill btn--primary" href="./questionnaire.html">Commencer</a>
+        <!-- CTA du header : bleu + espacé (pas collé) -->
+        <a class="btn btn--primary header-cta" href="./questionnaire.html">Commencer</a>
       </div>
     </header>
 
     <main>
       <!-- HERO -->
-      <section class="section hero">
+      <section class="hero">
         <div class="container hero__grid">
-          <div class="hero__left">
-            <div class="kicker">VOYAGE &amp; IA</div>
+          <div class="hero__content">
+            <div class="eyebrow">VOYAGE &amp; IA</div>
 
             <h1 class="hero__title">
               Ton voyage sur-<br />
               mesure,<br />
-              <span class="hero__accent">optimisé par l’IA</span>
+              <span class="hero__title-accent">optimisé</span>
+              <span class="hero__title-accent2">par l’IA</span>
             </h1>
 
             <p class="hero__subtitle">
@@ -57,18 +58,27 @@
               <a class="btn btn--ghost" href="#process">Voir comment ça marche</a>
             </div>
 
-            <ul class="hero__bullets">
-              <li>🔎 <strong>Recherche IA</strong> + vérifications humaines</li>
-              <li>🧮 <strong>Optimisation prix</strong> &nbsp;pour un voyage low-cost intelligent</li>
-              <li>📄 <strong>PDF clair</strong> &nbsp;+ liens pour réserver en quelques clics</li>
+            <ul class="hero__bullets" aria-label="Avantages">
+              <li>
+                <span class="bullet-ico" aria-hidden="true">🔎</span>
+                Recherche IA <span class="muted">+ vérifications humaines</span>
+              </li>
+              <li>
+                <span class="bullet-ico" aria-hidden="true">🧮</span>
+                Optimisation prix <span class="muted">pour un voyage low-cost intelligent</span>
+              </li>
+              <li>
+                <span class="bullet-ico" aria-hidden="true">📄</span>
+                PDF clair <span class="muted">+ liens pour réserver en quelques clics</span>
+              </li>
             </ul>
           </div>
 
-          <div class="hero__right">
-            <!-- IMPORTANT : le globe vit ici -->
-            <div class="globeCard" aria-label="Globe interactif">
-              <canvas id="globeCanvas" class="globeCanvas"></canvas>
-              <div class="globeGlow" aria-hidden="true"></div>
+          <!-- Globe -->
+          <div class="hero__globe" aria-label="Globe interactif">
+            <div class="globe-card">
+              <canvas id="globeCanvas" class="globe-canvas"></canvas>
+              <div class="globe-hint">Clique &amp; glisse pour tourner</div>
             </div>
           </div>
         </div>
@@ -77,11 +87,15 @@
       <!-- PROCESS -->
       <section class="section" id="process">
         <div class="container">
-          <div class="kicker">PROCESS</div>
-          <h2 class="h2">Comment ça marche ?</h2>
-          <p class="lead">Un process simple, pour que tu gagnes du temps, de l’énergie et de l’argent.</p>
+          <div class="section__head">
+            <div class="eyebrow">PROCESS</div>
+            <h2 class="section__title">Comment ça marche ?</h2>
+            <p class="section__subtitle">
+              Un process simple, pour que tu gagnes du temps, de l’énergie et de l’argent.
+            </p>
+          </div>
 
-          <div class="grid3">
+          <div class="cards cards--3">
             <article class="card">
               <h3 class="card__title">Tu remplis le formulaire</h3>
               <p class="card__text">
@@ -106,87 +120,77 @@
               </p>
             </article>
           </div>
-
-          <!-- CTA sous "Comment ça marche ?" (tu disais qu’il manquait) -->
-          <div class="ctaInline">
-            <div class="ctaInline__text">
-              <h3 class="ctaInline__title">Prêt à commencer ?</h3>
-              <p class="ctaInline__sub">
-                Réponds au questionnaire, et reçois un itinéraire optimisé adapté à ton budget.
-              </p>
-            </div>
-            <a class="btn btn--primary" href="./questionnaire.html">Commencer</a>
-          </div>
         </div>
       </section>
 
       <!-- A PROPOS -->
-      <section class="section">
+      <section class="section" id="about">
         <div class="container">
-          <div class="kicker">POURQUOI</div>
-          <h2 class="h2">À propos</h2>
-          <p class="lead">
-            L’objectif : te proposer un itinéraire pertinent, optimisé, et adapté à ton budget, sans
-            le stress des comparateurs, des dizaines d’onglets et des pièges à touristes.
-          </p>
+          <div class="section__head">
+            <div class="eyebrow">POURQUOI</div>
+            <h2 class="section__title">À propos</h2>
+            <p class="section__subtitle">
+              L’objectif : te proposer un itinéraire pertinent, optimisé, et adapté à ton budget, sans
+              le stress des comparateurs, des dizaines d’onglets et des pièges à touristes.
+            </p>
+          </div>
 
-          <!-- Les 2 blocs que tu veux -->
-          <div class="grid2">
+          <div class="cards cards--2">
             <article class="card">
               <h3 class="card__title">Ce que nous faisons</h3>
               <ul class="list">
-                <li>Optimiser le rapport <strong>prix / temps / confort</strong>.</li>
-                <li>Proposer des étapes cohérentes (rythme, quartiers, transports).</li>
-                <li>Donner un rendu clair et actionnable (PDF + liens utiles).</li>
-                <li>Adapter le plan à ton style (culture, nature, food, détente, etc.).</li>
+                <li>Optimisation de budget (vols + hébergements + activités).</li>
+                <li>Itinéraire structuré par jours, quartiers, temps de transport.</li>
+                <li>Sélection d’options cohérentes selon ton style et tes contraintes.</li>
+                <li>PDF clair avec liens directs pour réserver rapidement.</li>
               </ul>
             </article>
 
             <article class="card">
               <h3 class="card__title">Ce que nous ne faisons pas</h3>
               <ul class="list">
-                <li>Te noyer sous 50 options sans conclusion.</li>
-                <li>Copier-coller des “tops” génériques sans cohérence.</li>
-                <li>Ignorer ton budget et tes contraintes réelles.</li>
-                <li>Te vendre du rêve sans plan concret derrière.</li>
+                <li>Te balancer une liste random de spots sans logique.</li>
+                <li>Te forcer vers les mêmes “pièges à touristes”.</li>
+                <li>Te faire perdre du temps avec 40 onglets à comparer.</li>
+                <li>Un plan “copié-collé” identique pour tout le monde.</li>
               </ul>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- CTA FIN DE PAGE -->
-      <section class="section">
+      <!-- CTA FIN -->
+      <section class="section section--cta">
         <div class="container">
-          <div class="ctaBig">
-            <div class="ctaBig__left">
-              <h2 class="ctaBig__title">Prêt à créer ton itinéraire ?</h2>
-              <p class="ctaBig__text">
-                Tu peux être très précis... ou nous laisser proposer. Dans tous les cas, on adapte à
-                ton budget et à ton style de voyage.
+          <div class="cta">
+            <div class="cta__text">
+              <h2 class="cta__title">Prêt à créer ton itinéraire ?</h2>
+              <p class="cta__subtitle">
+                Tu peux être très précis... ou nous laisser proposer. Dans tous les cas, on adapte à ton
+                budget et à ton style de voyage.
               </p>
             </div>
-
-            <div class="ctaBig__right">
-              <a class="btn btn--pill btn--primary" href="./questionnaire.html">Commencer</a>
-            </div>
+            <a class="btn btn--primary cta__btn" href="./questionnaire.html">Commencer</a>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div class="container footer__inner">
-        <div>© 2025 TravelAI — Tous droits réservés.</div>
-        <div class="footer__links">
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <div class="site-footer__left">© 2025 TravelAI — Tous droits réservés.</div>
+        <div class="site-footer__right">
           <a href="./legal.html">Mentions légales &amp; RGPD</a>
           <a href="./contact.html">Nous contacter</a>
         </div>
       </div>
     </footer>
 
-    <!-- JS du globe : uniquement sur l’accueil -->
+    <!-- JS global commun -->
+    <script src="./global.js"></script>
+
+    <!-- Globe home (module) -->
     <script type="module" src="./home-globe.js"></script>
   </body>
 </html>
+
