@@ -1,46 +1,87 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mentions légales – TravelAI</title>
   <link rel="stylesheet" href="global.css">
+  <link rel="stylesheet" href="pages.css">
 </head>
-
 <body>
 
-<section style="max-width:900px;margin:100px auto;padding:40px">
-  <h1>Mentions légales & RGPD</h1>
+<header class="header">
+  <div class="container">
+    <a class="brand" href="index.html"><span class="dot"></span> TravelAI</a>
+    <nav class="nav">
+      <a href="index.html">Accueil</a>
+      <a href="destinations.html">Destinations</a>
+      <a href="guides.html">Guides</a>
+      <a href="legal.html">Mentions légales</a>
+      <a href="contact.html">Nous contacter</a>
+    </nav>
+    <div class="header-cta"><a class="btn btn-primary" href="questionnaire.html">Commencer</a></div>
+  </div>
+</header>
 
-  <h2>Éditeur du site</h2>
-  <p>
-    Nom commercial : Astralis<br>
-    Statut : Micro-entreprise<br>
-    Responsable de publication : Baptiste Paixao<br>
-    Adresse : Ribécourt (France)
+<main class="container page-head">
+  <div class="badge">MENTIONS LÉGALES & RGPD</div>
+  <h1 style="margin-top:10px">Informations légales du site TravelAI</h1>
+  <p class="p intro">
+    Ces informations sont fournies conformément à la législation française, afin de préciser
+    qui est responsable du site, comment sont gérées les données et qui héberge la plateforme.
   </p>
 
-  <h2>Données personnelles</h2>
-  <p>
-    Les données collectées via les formulaires (nom, email, message)
-    sont strictement utilisées pour répondre aux demandes.
-    Aucune donnée n’est revendue.
-  </p>
+  <section class="section" style="padding-top:26px">
+    <div class="card card-pad">
+      <div class="card-title">Éditeur du site</div>
+      <p class="p">
+        <b>Nom commercial</b> : Astralis<br>
+        <b>Statut</b> : Micro-entreprise<br>
+        <b>Responsable de publication</b> : Baptiste Paixao<br>
+        <b>Adresse</b> : Ribécourt (France)
+      </p>
+    </div>
 
-  <h2>Durée de conservation</h2>
-  <p>
-    Les données sont conservées pendant un maximum de 3 ans.
-  </p>
+    <div style="height:18px"></div>
 
-  <h2>Droits</h2>
-  <p>
-    Conformément au RGPD, vous pouvez demander l’accès, la rectification
-    ou la suppression de vos données à : contact@travelai.fr
-  </p>
+    <div class="card card-pad">
+      <div class="card-title">RGPD – Données personnelles</div>
+      <p class="p">
+        Les données collectées via les formulaires (nom, email, message et informations de projet) sont utilisées
+        uniquement pour traiter ta demande, préparer un itinéraire, ou te recontacter.
+        Aucune donnée n’est vendue.
+      </p>
 
-  <p style="margin-top:40px;opacity:.7">
-    © 2025 TravelAI – Tous droits réservés
-  </p>
-</section>
+      <hr class="sep">
 
+      <p class="p">
+        <b>Finalités</b> : réponse aux demandes, préparation d’itinéraires, support client.<br>
+        <b>Base légale</b> : consentement (formulaires) / intérêt légitime (support).<br>
+        <b>Durée de conservation</b> : jusqu’à 3 ans maximum après le dernier échange.<br>
+        <b>Destinataires</b> : TravelAI uniquement (et prestataires techniques si nécessaire).<br>
+        <b>Droits</b> : accès, rectification, suppression, limitation, opposition.<br>
+        <b>Contact</b> : via la page “Nous contacter”.
+      </p>
+
+      <hr class="sep">
+
+      <p class="p">
+        <b>Cookies</b> : si des cookies de mesure d’audience sont ajoutés, un bandeau de consentement sera affiché.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div>© 2025 TravelAI — Tous droits réservés.</div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <a href="legal.html">Mentions légales & RGPD</a>
+      <a href="contact.html">Nous contacter</a>
+    </div>
+  </div>
+</footer>
+
+<script src="global.js"></script>
 </body>
 </html>
