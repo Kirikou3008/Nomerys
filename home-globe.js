@@ -1,14 +1,15 @@
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.158/build/three.module.js";
-import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.158/examples/jsm/controls/OrbitControls.js";
 
 const canvas = document.getElementById("globe-canvas");
 if (!canvas) {
-  // Pas sur la page d'accueil => on ne fait rien.
-  console.log("[globe] canvas introuvable, script ignoré.");
+  // pas sur l'accueil => aucun impact ailleurs
+  console.log("[home-globe] canvas introuvable, script ignoré.");
 } else {
-  const wrapper = canvas.closest(".globe-wrapper") || canvas.parentElement;
+  const wrapper = canvas.parentElement; // .globe-card
 
-  // ---- SIZING ROBUSTE ----
+  // ---------- utils size ----------
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+
   function getSize() {
     const r = wrapper.getBoundingClientRect();
     const w = Math.max(1, Math.floor(r.width));
@@ -16,26 +17,23 @@ if (!canvas) {
     return { w, h };
   }
 
-  // On attend que le layout soit prêt (très important sur GitHub Pages + fonts)
-  function waitForNonZeroSize(cb) {
-    const tick = () => {
+  function waitForSize(cb) {
+    const loop = () => {
       const { w, h } = getSize();
       if (w > 10 && h > 10) cb();
-      else requestAnimationFrame(tick);
+      else requestAnimationFrame(loop);
     };
-    tick();
+    loop();
   }
 
-  waitForNonZeroSize(() => {
-    // ---- SCÈNE ----
+  waitForSize(() => {
+    // ---------- scene ----------
     const scene = new THREE.Scene();
 
-    // ---- CAMÉRA ----
     const { w, h } = getSize();
-    const camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 1000);
-    camera.position.set(0, 0, 2.8);
+    const camera = new THREE.PerspectiveCamera(42, w / h, 0.1, 100);
+    camera.position.set(0, 0, 2.65);
 
-    // ---- RENDERER ----
     const renderer = new THREE.WebGLRenderer({
       canvas,
       alpha: true,
@@ -47,62 +45,107 @@ if (!canvas) {
     renderer.setSize(w, h, false);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-    // ---- LUMIÈRES ----
-    scene.add(new THREE.AmbientLight(0xffffff, 0.75));
+    // ---------- lights ----------
+    scene.add(new THREE.AmbientLight(0xffffff, 0.7));
 
     const dir = new THREE.DirectionalLight(0xffffff, 1.15);
-    dir.position.set(5, 2.5, 5);
+    dir.position.set(4, 2.5, 6);
     scene.add(dir);
 
-    // ---- TEXTURE ----
+    // petite rim light pour donner du relief
+    const rim = new THREE.DirectionalLight(0x6aa7ff, 0.35);
+    rim.position.set(-6, -2, -4);
+    scene.add(rim);
+
+    // ---------- earth mesh ----------
     const loader = new THREE.TextureLoader();
+
     const earthTexture = loader.load(
       "./assets/earth.jpg",
       () => {
-        // une fois la texture chargée, on force un rendu immédiat
         renderer.render(scene, camera);
       },
       undefined,
-      (err) => {
-        console.error("[globe] Erreur chargement texture earth.jpg", err);
-      }
+      (e) => console.error("[home-globe] earth.jpg introuvable ou non chargeable", e)
     );
-    earthTexture.colorSpace = THREE.SRGBColorSpace;
 
-    // ---- SPHÈRE ----
-    const geo = new THREE.SphereGeometry(1, 96, 96);
-    const mat = new THREE.MeshStandardMaterial({
+    earthTexture.colorSpace = THREE.SRGBColorSpace;
+    earthTexture.anisotropy = renderer.capabilities.getMaxAnisotropy?.() || 1;
+
+    const geometry = new THREE.SphereGeometry(1, 96, 96);
+    const material = new THREE.MeshStandardMaterial({
       map: earthTexture,
       roughness: 1,
       metalness: 0,
     });
 
-    const earth = new THREE.Mesh(geo, mat);
+    const earth = new THREE.Mesh(geometry, material);
     scene.add(earth);
 
-    // ---- CONTROLS (SOURIS) ----
-    const controls = new OrbitControls(camera, renderer.domElement);
+    // ---------- interaction (drag) ----------
+    let isDown = false;
+    let lastX = 0;
+    let lastY = 0;
 
-    // Rotation à la souris
-    controls.enableRotate = true;
+    // vitesse / inertie
+    let velX = 0;
+    let velY = 0;
 
-    // On bloque tout ce que tu ne veux pas
-    controls.enableZoom = false;
-    controls.enablePan = false;
+    // sensibilité
+    const dragSpeed = 0.0065;
 
-    // Douceur
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.06;
-    controls.rotateSpeed = 0.9;
+    function pointerPos(ev) {
+      const rect = canvas.getBoundingClientRect();
+      const x = (ev.clientX ?? 0) - rect.left;
+      const y = (ev.clientY ?? 0) - rect.top;
+      return { x, y };
+    }
 
-    // IMPORTANT : pas de rotation auto
-    controls.autoRotate = false;
+    canvas.style.cursor = "grab";
 
-    // Optionnel : on évite de pouvoir retourner la caméra “à l’envers”
-    controls.minPolarAngle = 0.25;
-    controls.maxPolarAngle = Math.PI - 0.25;
+    canvas.addEventListener("pointerdown", (ev) => {
+      canvas.setPointerCapture(ev.pointerId);
+      isDown = true;
+      const p = pointerPos(ev);
+      lastX = p.x;
+      lastY = p.y;
+      canvas.style.cursor = "grabbing";
+    });
 
-    // ---- RESIZE (SUPER ROBUSTE) ----
+    canvas.addEventListener("pointermove", (ev) => {
+      if (!isDown) return;
+      const p = pointerPos(ev);
+      const dx = p.x - lastX;
+      const dy = p.y - lastY;
+      lastX = p.x;
+      lastY = p.y;
+
+      // rotation direct
+      earth.rotation.y += dx * dragSpeed;
+      earth.rotation.x += dy * dragSpeed;
+
+      // clamp X pour pas “retourner” la planète
+      earth.rotation.x = clamp(earth.rotation.x, -1.2, 1.2);
+
+      // inertie
+      velX = dx * dragSpeed;
+      velY = dy * dragSpeed;
+    });
+
+    function endPointer(ev) {
+      isDown = false;
+      canvas.style.cursor = "grab";
+      try { canvas.releasePointerCapture(ev.pointerId); } catch {}
+    }
+
+    canvas.addEventListener("pointerup", endPointer);
+    canvas.addEventListener("pointercancel", endPointer);
+    canvas.addEventListener("pointerleave", () => {
+      isDown = false;
+      canvas.style.cursor = "grab";
+    });
+
+    // ---------- resize robust ----------
     function resize() {
       const { w, h } = getSize();
       renderer.setSize(w, h, false);
@@ -110,20 +153,32 @@ if (!canvas) {
       camera.updateProjectionMatrix();
     }
 
-    // ResizeObserver (mieux que window resize si ton layout change)
     const ro = new ResizeObserver(() => resize());
     ro.observe(wrapper);
-
     window.addEventListener("resize", resize);
 
-    // ---- LOOP ----
+    // ---------- render loop ----------
     function animate() {
       requestAnimationFrame(animate);
-      controls.update();
+
+      // si pas en drag, on applique l’inertie (et on la freine)
+      if (!isDown) {
+        earth.rotation.y += velX;
+        earth.rotation.x += velY;
+        earth.rotation.x = clamp(earth.rotation.x, -1.2, 1.2);
+
+        velX *= 0.92;
+        velY *= 0.92;
+
+        // petit mouvement très léger “vivant” (mais pas de rotation auto visible)
+        velX += 0.00002;
+      }
+
       renderer.render(scene, camera);
     }
+
     animate();
 
-    console.log("[globe] OK (Three.js + OrbitControls) rendu actif.");
+    console.log("[home-globe] OK: globe interactif actif (drag souris).");
   });
 }
