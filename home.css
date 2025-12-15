@@ -138,3 +138,20 @@
     height: 420px;
   }
 }
+
+/* === FIX DEFINITIF : suppression du cadre autour du globe === */
+.globe-container,
+.globe-wrapper,
+.globe-box {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Canvas globe propre */
+.globe-container canvas {
+  background: transparent !important;
+  border-radius: 50%;
+  box-shadow: none !important;
+}
