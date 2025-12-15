@@ -195,25 +195,24 @@
   aspect-ratio: 1 / 1;
   margin-left: auto;
 
-  /* SUPPRESSION DU CADRE */
+  /* PAS DE CADRE */
   background: transparent;
   border: none;
   box-shadow: none;
-  border-radius: 0;
 
-  overflow: visible;
+  /* MASQUE ROND (indispensable pour éviter les bords coupés/cheat) */
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .home-page #globe-canvas {
   display: block;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
 }
 
 .home-page .globe-hint {
-  background: rgba(0,0,0,.25);
-  border: none;
+  display: none;
 }
 
 /* =========================
