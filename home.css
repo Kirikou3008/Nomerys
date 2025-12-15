@@ -1,13 +1,27 @@
 /* =========================
    HOME ONLY (SCOPÉ)
    ========================= */
-.home-page {
-  /* fond uniforme (évite la “coupure” de couleur) */
+.home-page{
+  position: relative;
+  min-height: 100vh;
+
+  /* IMPORTANT : on met un fond de base neutre ici */
+  background: #05070c;
+  color: #e9eef7;
+}
+
+/* Calque fixe derrière toute la page => plus aucune "coupure" au scroll */
+.home-page::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
   background:
     radial-gradient(1200px 700px at 70% 25%, rgba(40,140,255,.20), transparent 60%),
     radial-gradient(900px 600px at 15% 55%, rgba(40,140,255,.12), transparent 60%),
     linear-gradient(180deg, #05070c 0%, #070d1a 35%, #05070c 100%);
-  color: #e9eef7;
 }
 
 /* Container */
@@ -311,7 +325,7 @@
 .home-page .site-footer {
   padding: 28px 0 40px;
   border-top: 1px solid rgba(255,255,255,.06);
-  background: rgba(0,0,0,.12);
+  background: transparent; /* <- plus de bande */
 }
 
 .home-page .footer-row {
