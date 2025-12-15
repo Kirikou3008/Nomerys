@@ -158,3 +158,38 @@ hr.sep{
   display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 }
 .footer a{opacity:.9}
+/* =========================
+   FOND UNIFORME (TOUTES PAGES SAUF HOME)
+   À COLLER TOUT EN BAS DU CSS GLOBAL
+   ========================= */
+
+body:not(.home-page) {
+  /* même fond partout -> plus aucune "coupure" */
+  background:
+    radial-gradient(1200px 700px at 70% 25%, rgba(40,140,255,.20), transparent 60%),
+    radial-gradient(900px 600px at 15% 55%, rgba(40,140,255,.12), transparent 60%),
+    linear-gradient(180deg, #05070c 0%, #070d1a 35%, #05070c 100%);
+  background-attachment: fixed; /* évite l’effet de bandes au scroll */
+  color: #e9eef7;
+}
+
+/* On enlève les backgrounds "par section" qui créent la délimitation */
+body:not(.home-page) main,
+body:not(.home-page) .page,
+body:not(.home-page) .section,
+body:not(.home-page) .site-footer,
+body:not(.home-page) footer {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* Si tu as un overlay/pseudo-element qui met une bande */
+body:not(.home-page) main::before,
+body:not(.home-page) .page::before,
+body:not(.home-page) .section::before,
+body:not(.home-page) main::after,
+body:not(.home-page) .page::after,
+body:not(.home-page) .section::after {
+  background: transparent !important;
+  box-shadow: none !important;
+}
