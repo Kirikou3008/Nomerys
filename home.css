@@ -189,17 +189,26 @@
 /* =========================
    GLOBE CARD (canvas toujours visible)
    ========================= */
-.home-page #globe-canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
+.home-page .globe-card {
+  position: relative;
+  width: min(520px, 100%);
+  aspect-ratio: 1 / 1;
+  margin-left: auto;
+
+  /* SUPPRESSION DU CADRE */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+
+  overflow: visible;
 }
 
 .home-page #globe-canvas {
   display: block;
   width: 100%;
   height: 100%;
+  border-radius: 50%;
 }
 
 .home-page .globe-hint {
