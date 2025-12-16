@@ -19,7 +19,9 @@
       <a href="legal.html">Mentions légales</a>
       <a href="contact.html">Nous contacter</a>
     </nav>
-    <div class="header-cta"><a class="btn btn-primary" href="questionnaire.html">Commencer</a></div>
+    <div class="header-cta">
+      <a class="btn btn-primary" href="questionnaire.html">Commencer</a>
+    </div>
   </div>
 </header>
 
@@ -44,29 +46,35 @@
         <hr class="sep">
 
         <p class="p">
-         Si quelque chose se passe mal avec ton pdf ou si tu as des questions sur quoi que ce sois, remplis se formulaire nous feront de notre mieux pour répondre au mieux à ta demande 
+          Si quelque chose se passe mal avec ton PDF ou si tu as une question,
+          remplis ce formulaire, nous ferons de notre mieux pour te répondre.
         </p>
       </div>
 
       <div class="card card-pad">
-        <form class="form-grid">
+        <form id="contactForm" class="form-grid">
           <div>
             <label>Prénom / Nom</label>
-            <input type="text" placeholder="Ex : Baptiste">
+            <input type="text" name="name" placeholder="Ex : Baptiste" required>
           </div>
           <div>
             <label>Email</label>
-            <input type="email" placeholder="toi@email.com">
+            <input type="email" name="email" placeholder="toi@email.com" required>
           </div>
           <div>
             <label>Sujet</label>
-            <input type="text" placeholder="Ex : Question sur un itinéraire">
+            <input type="text" name="subject" placeholder="Ex : Question sur un itinéraire" required>
           </div>
           <div>
             <label>Message</label>
-            <textarea placeholder="Explique-nous en quelques lignes ce que tu souhaites."></textarea>
+            <textarea name="message" placeholder="Explique-nous en quelques lignes ce que tu souhaites." required></textarea>
           </div>
-          <button class="btn btn-primary" type="submit">Envoyer mon message</button>
+
+          <button class="btn btn-primary" type="submit">
+            Envoyer mon message
+          </button>
+
+          <p id="contactStatus" class="p" style="margin-top:10px;opacity:.85"></p>
         </form>
       </div>
 
@@ -85,5 +93,36 @@
 </footer>
 
 <script src="global.js"></script>
+
+<script>
+const form = document.getElementById("contactForm");
+const statusEl = document.getElementById("contactStatus");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  statusEl.textContent = "Envoi en cours…";
+
+  const data = Object.fromEntries(new FormData(form).entries());
+
+  try {
+    const res = await fetch(
+      "https://baptistepaixao2.app.n8n.cloud/webhook/contact",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      }
+    );
+
+    if (!res.ok) throw new Error("Erreur serveur");
+
+    statusEl.textContent = "✅ Message envoyé avec succès.";
+    form.reset();
+  } catch (err) {
+    statusEl.textContent = "❌ Erreur lors de l’envoi. Réessaie plus tard.";
+  }
+});
+</script>
+
 </body>
 </html>
