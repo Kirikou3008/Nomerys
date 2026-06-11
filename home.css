@@ -406,13 +406,18 @@
   margin: 0 auto;
 }
 
-.home-page .nav-shell {
-  display: grid;
-  grid-template-columns: 240px 1fr 160px;
-
 .home-page .brand-logo {
-  width: 32px;
-  height: 32px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
   display: block;
+}
+
+.home-page .nav-shell {
+  width: min(1200px, calc(100% - 64px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 220px 1fr 180px;
+  align-items: center;
+  gap: 18px;
 }
