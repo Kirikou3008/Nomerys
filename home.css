@@ -400,3 +400,16 @@
     line-height: 1.15;
   }
 }
+
+.home-page .container,
+.home-page .nav-shell {
+  width: min(1200px, calc(100% - 64px));
+  margin: 0 auto;
+}
+
+.home-page .brand-logo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: block;
+}
