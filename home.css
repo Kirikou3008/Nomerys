@@ -401,15 +401,18 @@
   }
 }
 
-.home-page .container,
-.home-page .nav-shell {
-  width: min(1200px, calc(100% - 64px));
+.home-page .container {
+  width: min(1200px, calc(100% - 48px));
   margin: 0 auto;
 }
 
+.home-page .nav-shell {
+  display: grid;
+  grid-template-columns: 240px 1fr 160px;
+
 .home-page .brand-logo {
-  width: 22px;
-  height: 22px;
+  width: 32px;
+  height: 32px;
   object-fit: contain;
   display: block;
 }
