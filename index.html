@@ -61,7 +61,7 @@ gtag('config', 'G-PCENZLK3PM');
   class="cta-top"
   href="https://eu-submit.jotform.com/251902325951051"
   target="_self"
-  onclick="clarity('event','commencer_clicked')"
+  onclick="if(window.clarity){clarity('event','commencer_header');} if(window.gtag){gtag('event','commencer_header');}"
 >
   Commencer
 </a>
@@ -91,7 +91,7 @@ gtag('config', 'G-PCENZLK3PM');
   class="btn btn-primary"
   href="https://eu-submit.jotform.com/251902325951051"
   target="_self"
-  onclick="if(window.clarity){clarity('event','commencer_hero');}"
+  onclick="if(window.clarity){clarity('event','commencer_hero');} if(window.gtag){gtag('event','commencer_hero');}"
 >
   Commencer mon itinéraire
 </a>
@@ -195,7 +195,7 @@ gtag('config', 'G-PCENZLK3PM');
   class="btn btn-primary"
   href="https://eu-submit.jotform.com/251902325951051"
   target="_self"
-  onclick="if(window.clarity){clarity('event','commencer_footer');}"
+  onclick="if(window.clarity){clarity('event','commencer_footer');} if(window.gtag){gtag('event','commencer_footer');}"
 >
   Commencer
 </a>
