@@ -28,46 +28,81 @@
   <link rel="stylesheet" href="./pages.css" />
 
   <style>
-    .simple-header {
+    .page-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
+  gap: 28px;
+  padding: 18px 0;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  color: #eef5ff;
+  font-weight: 800;
+  font-size: 18px;
+  text-decoration: none;
   flex: 0 0 auto;
 }
 
-.brand-logo {
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #3aa3ff, #6977ff);
+  box-shadow: 0 0 18px rgba(58,163,255,.75);
 }
 
-.simple-header .btn {
+.desktop-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 34px;
+}
+
+.desktop-nav a {
+  color: rgba(238,245,255,.78);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.header-btn {
   flex: 0 0 auto;
 }
 
+/* MOBILE */
 @media (max-width: 820px) {
-  .simple-header {
+  .page-header {
     flex-direction: row;
+    padding: 18px 0;
   }
 
-  .simple-header .btn {
-    padding: 12px 24px;
+  .desktop-nav {
+    display: none;
+  }
+
+  .brand {
+    font-size: 22px;
+  }
+
+  .dot {
+    width: 13px;
+    height: 13px;
+  }
+
+  .header-btn {
+    padding: 12px 22px;
     font-size: 16px;
     width: auto;
+    border-radius: 999px;
+  }
+
+  .proof-hero {
+    padding-top: 58px;
   }
 }
-    .proof-hero {
-      padding: 72px 0 40px;
-      background: radial-gradient(circle at top right, rgba(73,145,255,.22), transparent 35%),
-                  linear-gradient(180deg, #0b1d35 0%, #070b12 100%);
-    }
 
     .proof-title {
       font-size: clamp(42px, 7vw, 82px);
@@ -209,14 +244,22 @@
 
 <body>
   <header class="header">
-  <div class="container simple-header">
+  <div class="container page-header">
     <a class="brand" href="./index.html">
-      <img class="brand-logo" src="./logo sans fond nomerys.png" alt="Nomerys">
+      <span class="dot"></span>
       <span>Nomerys</span>
     </a>
 
+    <nav class="nav desktop-nav">
+      <a href="./index.html">Accueil</a>
+      <a href="./destinations.html">Destinations</a>
+      <a href="./guides.html">Guides</a>
+      <a href="./legal.html">Mentions légales</a>
+      <a href="./contact.html">Nous contacter</a>
+    </nav>
+
     <a
-      class="btn btn-primary"
+      class="btn btn-primary header-btn"
       href="https://eu-submit.jotform.com/251902325951051"
       onclick="if(window.clarity){clarity('event','questionnaire_header');} if(window.gtag){gtag('event','questionnaire_header');}"
     >
