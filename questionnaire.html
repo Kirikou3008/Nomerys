@@ -28,6 +28,37 @@
   <link rel="stylesheet" href="./pages.css" />
 
   <style>
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+
+    .brand-logo {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+    }
+
+    .nav {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      gap: 34px;
+    }
+
+    .header-cta {
+      flex: 0 0 auto;
+    }
+
     .proof-hero {
       padding: 72px 0 40px;
       background: radial-gradient(circle at top right, rgba(73,145,255,.22), transparent 35%),
@@ -50,7 +81,7 @@
     }
 
     .proof-subtitle {
-      max-width: 720px;
+      max-width: 760px;
       font-size: 20px;
       line-height: 1.6;
       color: rgba(238,245,255,.78);
@@ -128,6 +159,26 @@
     }
 
     @media (max-width: 820px) {
+      .header .container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+      }
+
+      .brand {
+        justify-content: center;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px 24px;
+      }
+
+      .header-cta {
+        text-align: center;
+      }
+
       .proof-hero {
         padding: 48px 0 28px;
       }
@@ -135,14 +186,6 @@
       .step-card {
         grid-template-columns: 1fr;
         padding: 20px;
-      }
-
-      .step-card:nth-child(even) .step-copy {
-        order: 1;
-      }
-
-      .step-card:nth-child(even) .step-media {
-        order: 2;
       }
 
       .proof-subtitle {
@@ -165,7 +208,7 @@
     <div class="container">
       <a class="brand" href="./index.html">
         <img class="brand-logo" src="./logo sans fond nomerys.png" alt="Nomerys">
-        Nomerys
+        <span>Nomerys</span>
       </a>
 
       <nav class="nav">
@@ -199,8 +242,9 @@
         </h1>
 
         <p class="proof-subtitle">
-          Tu réponds à quelques questions, on recherche les vols, hôtels et activités,
-          puis tu reçois un voyage complet prêt à réserver.
+          Nomerys transforme ton idée de voyage en un document clair et prêt à utiliser.
+          Tu réponds à quelques questions, puis tu reçois une proposition organisée avec les vols,
+          les hébergements et les activités à réserver.
         </p>
 
         <a
@@ -217,8 +261,8 @@
               <div class="step-kicker">Étape 1</div>
               <h2 class="step-title">Tu remplis un court formulaire</h2>
               <p class="step-text">
-                Destination, dates, budget, voyageurs, style de voyage…
-                Tu nous donnes les infos importantes pour créer un voyage adapté.
+                Destination, dates, voyageurs, aéroport de départ, style de voyage et préférences :
+                tu donnes les informations essentielles pour que ton voyage soit adapté à ton projet.
               </p>
             </div>
             <div class="step-media">
@@ -228,14 +272,14 @@
 
           <article class="step-card">
             <div class="step-media">
-              <img class="proof-img" src="./screen-resultats.png" alt="Aperçu des recherches Nomerys">
+              <img class="proof-img" src="./screen-recherches.png" alt="Aperçu des recherches Nomerys">
             </div>
             <div class="step-copy">
               <div class="step-kicker">Étape 2</div>
-              <h2 class="step-title">On recherche les meilleures options</h2>
+              <h2 class="step-title">Nomerys organise les recherches</h2>
               <p class="step-text">
-                Vols, hôtels et activités sont organisés pour te faire gagner du temps
-                et t’aider à réserver plus simplement.
+                Le système rassemble les éléments importants de ton voyage pour structurer une proposition cohérente :
+                vols, hébergements, activités, liens utiles et informations pratiques.
               </p>
             </div>
           </article>
@@ -243,21 +287,35 @@
           <article class="step-card">
             <div class="step-copy">
               <div class="step-kicker">Étape 3</div>
-              <h2 class="step-title">Tu reçois ton PDF prêt à réserver</h2>
+              <h2 class="step-title">Tu obtiens un PDF clair</h2>
               <p class="step-text">
-                Un document clair avec les liens utiles, les informations importantes
-                et une vision complète de ton voyage.
+                Ton voyage est présenté dans un document simple à lire, avec les informations principales,
+                les liens de réservation et une vision globale de ton séjour.
               </p>
             </div>
             <div class="step-media">
               <img class="proof-img" src="./screen-pdf.png" alt="Aperçu du PDF Nomerys">
             </div>
           </article>
+
+          <article class="step-card">
+            <div class="step-media">
+              <img class="proof-img" src="./screen-resultats.png" alt="Aperçu des résultats Nomerys">
+            </div>
+            <div class="step-copy">
+              <div class="step-kicker">Étape 4</div>
+              <h2 class="step-title">Tu réserves plus facilement</h2>
+              <p class="step-text">
+                Une fois le PDF reçu, tu peux comparer les options proposées et accéder rapidement aux liens
+                pour réserver les vols, les hébergements et les activités qui t'intéressent.
+              </p>
+            </div>
+          </article>
         </div>
 
         <div class="proof-final">
           <h2>Prêt à créer ton voyage ?</h2>
-          <p>Vols • Hôtels • Activités — pour seulement 10€.</p>
+          <p>Un formulaire, un PDF clair, et ton voyage organisé beaucoup plus simplement.</p>
           <a
             class="btn btn-primary"
             href="https://eu-submit.jotform.com/251902325951051"
