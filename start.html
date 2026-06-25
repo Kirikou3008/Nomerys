@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#071A24" />
+  <title>Nomerys — Commencer</title>
+  <meta name="description" content="Prépare ton voyage avec Nomerys en quelques étapes simples." />
+  <link rel="stylesheet" href="./start.css" />
+</head>
+<body>
+  <div class="ambient">
+    <div class="aurora aurora-a"></div>
+    <div class="aurora aurora-b"></div>
+    <div class="aurora aurora-c"></div>
+    <div class="stars" aria-hidden="true"></div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <header class="header">
+    <a class="brand" href="/" aria-label="Retour accueil Nomerys">
+      <span class="brand-mark">N</span>
+      <span>
+        <strong>Nomerys</strong>
+        <em>Travel request</em>
+      </span>
+    </a>
+
+    <div class="top-progress" aria-label="Progression du formulaire">
+      <div class="top-progress-text">
+        <span id="sectionName">Départ</span>
+        <b id="progressLabel">0%</b>
+      </div>
+      <div class="top-progress-track"><div id="topProgressFill"></div></div>
+    </div>
+
+    <div class="security">
+      <span class="pulse"></span>
+      Paiement sécurisé
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="story-panel" aria-hidden="false">
+      <div class="passport-card">
+        <div class="passport-top">
+          <span>Nomerys Pass</span>
+          <strong id="passStatus">En préparation</strong>
+        </div>
+        <div class="route-visual">
+          <div class="planet">
+            <span class="orbit orbit-1"></span>
+            <span class="orbit orbit-2"></span>
+            <span class="plane-icon">✈</span>
+          </div>
+        </div>
+        <div class="pass-lines">
+          <div><small>Destination</small><b id="miniDestination">À définir</b></div>
+          <div><small>Dates</small><b id="miniDates">—</b></div>
+          <div><small>Voyageurs</small><b id="miniTravellers">—</b></div>
+        </div>
+      </div>
+
+      <div class="promise">
+        <p class="eyebrow">Simple. Fluide. Clair.</p>
+        <h1>Ton prochain voyage commence ici.</h1>
+        <p>
+          Une question à la fois. Des choix simples. Une demande propre envoyée à Nomerys après paiement.
+        </p>
+      </div>
+    </aside>
+
+    <section class="form-shell" aria-label="Formulaire Nomerys">
+      <div class="mobile-summary">
+        <strong>Nomerys</strong>
+        <span id="mobileMini">Étape 1</span>
+      </div>
+
+      <form id="nomerysForm" class="wizard" autocomplete="on" novalidate>
+        <div id="stepMount"></div>
+
+        <div id="inlineError" class="inline-error" role="alert" aria-live="assertive">
+          <b>Petit blocage</b>
+          <span id="inlineErrorText"></span>
+        </div>
+
+        <nav class="controls" aria-label="Navigation formulaire">
+          <button id="backBtn" type="button" class="btn btn-secondary">Retour</button>
+          <button id="nextBtn" type="button" class="btn btn-primary">
+            <span>Continuer</span>
+            <i>→</i>
+          </button>
+        </nav>
+      </form>
+
+      <p class="tiny-note">
+        Les informations servent uniquement à préparer ta proposition de voyage. Ne ferme pas la page pendant la redirection.
+      </p>
+    </section>
+  </main>
+
+  <div id="loadingScreen" class="loading-screen" aria-hidden="true">
+    <div class="loading-card">
+      <div class="loading-globe">
+        <span></span>
+      </div>
+      <h2>Redirection vers le paiement sécurisé</h2>
+      <p id="loadingText">Nous préparons ta demande...</p>
+      <div class="loading-steps">
+        <div class="active">Validation</div>
+        <div>Paiement</div>
+        <div>Préparation</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./start.js"></script>
+</body>
+</html>
