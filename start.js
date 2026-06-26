@@ -41,7 +41,6 @@ const state = {
 };
 
 const steps = [
-  {
     {
   key: "welcome",
   name: "Départ",
