@@ -746,4 +746,32 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-renderStep();
+function safeRender(){
+  try {
+    renderStep();
+  } catch (error) {
+    console.error("Erreur formulaire Nomerys :", error);
+
+    const mount = document.querySelector("#stepMount");
+    if (mount) {
+      mount.innerHTML = `
+        <section class="step">
+          <div class="step-kicker">Erreur temporaire</div>
+          <h2>Recharge la page.</h2>
+          <p class="step-desc">
+            Le formulaire a rencontré un petit problème d’affichage. Recharge la page ou réessaie dans quelques secondes.
+          </p>
+        </section>
+      `;
+    }
+  }
+}
+
+safeRender();
+
+setTimeout(() => {
+  const mount = document.querySelector("#stepMount");
+  if (mount && mount.innerHTML.trim() === "") {
+    safeRender();
+  }
+}, 500);
