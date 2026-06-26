@@ -682,43 +682,6 @@ function updateMini(){
   const miniStatus = $("#miniStatus");
   if (miniStatus) miniStatus.textContent = currentStep()?.submit ? "Prête" : "En cours";
 
-  updateGlobeRoute(destination);
-}
-
-function updateGlobeRoute(destination){
-  const plane = $("#planeIcon");
-  const pin = $("#destinationPin");
-  const globeStage = $("#globeStage");
-
-  if (!plane || !pin || !globeStage) return;
-
-  const hasKnownDestination =
-    state.data.q36_avezvousDeja === "Oui j'ai déjà une destination" &&
-    destination &&
-    destination !== "À définir";
-
-  if (!hasKnownDestination) {
-    plane.classList.remove("landed");
-    pin.classList.remove("active");
-    globeStage.dataset.destination = "unknown";
-    return;
-  }
-
-  const clean = destination.toLowerCase();
-
-  let destKey = "generic";
-  if (clean.includes("tokyo") || clean.includes("japon")) destKey = "tokyo";
-  if (clean.includes("phuket") || clean.includes("thailande") || clean.includes("thaïlande")) destKey = "phuket";
-  if (clean.includes("bali")) destKey = "bali";
-  if (clean.includes("new york")) destKey = "newyork";
-  if (clean.includes("hanoi") || clean.includes("hanoï") || clean.includes("vietnam")) destKey = "hanoi";
-  if (clean.includes("paris")) destKey = "paris";
-
-  globeStage.dataset.destination = destKey;
-  plane.classList.add("landed");
-  pin.classList.add("active");
-}
-
 function formatDates(){
   if (!state.data.startDateRaw || !state.data.endDateRaw) return "";
   return `${formatFrenchDate(state.data.startDateRaw)} → ${formatFrenchDate(state.data.endDateRaw)}`;
