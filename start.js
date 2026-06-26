@@ -41,10 +41,10 @@ const state = {
 };
 
 const steps = [
-    {
-  key: "welcome",
-  name: "Départ",
-  kicker: "Bienvenue",
+  {
+    key: "welcome",
+    name: "Départ",
+    kicker: "Bienvenue",
   title: "On prépare ton voyage, sans prise de tête.",
   desc: "Réponds à quelques questions simples. Une seule étape à la fois, rien de compliqué.",
   html: () => `
