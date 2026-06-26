@@ -14,6 +14,7 @@
 */
 
 const WEBHOOK_URL = "https://baptistepaixao2.app.n8n.cloud/webhook/voyage-form";
+const SKIP_PAYMENT_FOR_TEST = true;
 const MAX_TRAVELLERS = 10;
 const MAX_TRIP_DAYS = 45;
 
@@ -514,15 +515,21 @@ async function submit(){
       throw new Error(raw || `Erreur n8n ${response.status}`);
     }
 
-    const checkoutUrl = data.checkout_url || data.checkoutUrl || data.url;
+   const checkoutUrl = data.checkout_url || data.checkoutUrl || data.url;
 
-    if (!checkoutUrl || !/^https:\/\/checkout\.stripe\.com\//.test(checkoutUrl)) {
-      showLoading(false);
-      showToast("n8n a reçu le formulaire, mais n’a pas renvoyé d’URL Stripe valide. Il faut répondre avec checkout_url.");
-      return;
-    }
+if (SKIP_PAYMENT_FOR_TEST) {
+  showLoading(false);
+  showToast("Mode test : formulaire envoyé à n8n sans paiement Stripe.");
+  return;
+}
 
-    window.location.assign(checkoutUrl);
+if (!checkoutUrl || !/^https:\/\/checkout\.stripe\.com\//.test(checkoutUrl)) {
+  showLoading(false);
+  showToast("n8n a reçu le formulaire, mais n’a pas renvoyé d’URL Stripe valide. Il faut répondre avec checkout_url.");
+  return;
+}
+
+window.location.assign(checkoutUrl);
   }catch(error){
     showLoading(false);
     if (error.name === "AbortError") {
