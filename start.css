@@ -803,3 +803,34 @@ button{-webkit-tap-highlight-color:transparent}
   font-size:14px;
   line-height:1.25;
 }
+
+/* === FIX FINAL FORM DESKTOP === */
+
+/* 1. Supprime le vieux globe fantôme en double */
+.story-panel .travel-visual-card{
+  display:none !important;
+}
+
+/* 2. Empêche le panneau gauche d’agrandir la page inutilement */
+.story-panel{
+  max-height:calc(100vh - 130px);
+  overflow:hidden;
+}
+
+/* 3. Aligne correctement prénom/nom et dates */
+.split{
+  align-items:end;
+}
+
+.split .field{
+  margin:0;
+}
+
+/* 4. Espace vraiment les deux champs de la page destination */
+.step[data-key="destination_known"] .field{
+  margin:0;
+}
+
+.step[data-key="destination_known"] .field + .field{
+  margin-top:42px !important;
+}
