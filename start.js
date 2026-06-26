@@ -42,23 +42,27 @@ const state = {
 
 const steps = [
   {
-    key: "welcome",
-    name: "Départ",
-    kicker: "Bienvenue",
-    title: "On prépare ton voyage, sans prise de tête.",
-    desc: "Réponds à quelques questions simples. Une seule étape à la fois, rien de compliqué.",
-    html: () => `
-      <div class="choice-grid">
-        ${card("start", "✨", "Commencer ma demande", "Je remplis le formulaire normalement")}
-        ${card("paid", "🔁", "J’ai déjà payé", "Je corrige une demande après une erreur")}
-      </div>
-    `,
-    bind: () => bindSingleChoice("introChoice", "start"),
-    validate: () => required("introChoice", "Choisis une option pour continuer."),
-    beforeNext: () => {
-      state.data.q64_already_paid = state.data.introChoice === "paid" ? "true" : "";
-    }
+    {
+  key: "welcome",
+  name: "Départ",
+  kicker: "Bienvenue",
+  title: "On prépare ton voyage, sans prise de tête.",
+  desc: "Réponds à quelques questions simples. Une seule étape à la fois, rien de compliqué.",
+  html: () => `
+    <div class="choice-grid single-choice">
+      ${card("start", "✨", "Commencer ma demande", "Je remplis le formulaire normalement")}
+    </div>
+  `,
+  bind: () => {
+    state.data.introChoice = "start";
+    bindSingleChoice("introChoice", "start");
+    document.querySelector(".choice[data-value='start']")?.classList.add("selected");
   },
+  validate: () => true,
+  beforeNext: () => {
+    state.data.q64_already_paid = "";
+  }
+},
   {
     key: "identity",
     name: "Contact",
@@ -205,28 +209,34 @@ const steps = [
     }
   },
   {
-    key: "mood",
-    name: "Style",
-    kicker: "Ambiance",
-    title: "Quelle ambiance tu veux ?",
-    desc: "Choisis rapidement. Tu peux laisser vide si tu es flexible.",
-    html: () => `
-      ${choiceGroup("Climat souhaité", "q41_q_climate", [
-        ["Chaud", "☀️", "Soleil, chaleur"],
-        ["Doux", "🌤️", "Tempéré, agréable"],
-        ["Froid", "❄️", "Neige, hiver, cozy"],
-        ["Peu importe", "🌈", "Flexible"]
-      ])}
-      ${choiceGroup("Ambiance de voyage", "q48_q_style", [
-        ["Relax", "🧘", "Repos, calme"],
-        ["Aventure", "🚀", "Découverte, adrénaline"],
-        ["Culture", "🏛️", "Musées, monuments"],
-        ["Luxe simple", "✨", "Beau, propre, confortable"]
-      ])}
-    `,
-    bind: bindInputsAndChoices,
-    validate: () => true
-  },
+  key: "mood",
+  name: "Style",
+
+  show: () => state.data.q36_avezvousDeja === "Non je n'ai pas d'idée",
+
+  kicker: "Ambiance",
+  title: "Quelle ambiance tu veux ?",
+  desc: "Choisis rapidement. Tu peux laisser vide si tu es flexible.",
+
+  html: () => `
+    ${choiceGroup("Climat souhaité", "q41_q_climate", [
+      ["Chaud", "☀️", "Soleil, chaleur"],
+      ["Doux", "🌤️", "Tempéré, agréable"],
+      ["Froid", "❄️", "Neige, hiver, cozy"],
+      ["Peu importe", "🌈", "Flexible"]
+    ])}
+
+    ${choiceGroup("Ambiance de voyage", "q48_q_style", [
+      ["Relax", "🧘", "Repos, calme"],
+      ["Aventure", "🚀", "Découverte, adrénaline"],
+      ["Culture", "🏛️", "Musées, monuments"],
+      ["Luxe simple", "✨", "Beau, propre, confortable"]
+    ])}
+  `,
+
+  bind: bindInputsAndChoices,
+  validate: () => true
+},
   {
     key: "activities",
     name: "Activités",
@@ -319,7 +329,9 @@ function updateUI(){
   $("#mobileMini").textContent = `Étape ${state.current + 1} / ${list.length}`;
 
   backBtn.disabled = state.current === 0;
-  nextBtn.querySelector("span").textContent = step.submit ? "Payer 1€ et lancer ma demande" : "Continuer";
+  nextBtn.querySelector("span").textContent = step.submit
+  ? (SKIP_PAYMENT_FOR_TEST ? "Envoyer le test sans paiement" : "Payer 1€ et lancer ma demande")
+  : "Continuer";
 }
 
 function bindInputs(){
@@ -626,10 +638,53 @@ function showLoading(show){
 }
 
 function updateMini(){
-  $("#miniDestination").textContent = state.data.q37_q_arrive_city || (state.data.q36_avezvousDeja === "Non je n'ai pas d'idée" ? "À proposer" : "À définir");
+  const destination = state.data.q37_q_arrive_city || (
+    state.data.q36_avezvousDeja === "Non je n'ai pas d'idée" ? "À proposer" : "À définir"
+  );
+
+  $("#miniDestination").textContent = destination;
   $("#miniDates").textContent = formatDates() || "—";
   $("#miniTravellers").textContent = state.data.q54_nombreDe ? `${state.data.q54_nombreDe} personne(s)` : "—";
   $("#passStatus").textContent = currentStep()?.name || "En préparation";
+
+  const miniStatus = $("#miniStatus");
+  if (miniStatus) miniStatus.textContent = currentStep()?.submit ? "Prête" : "En cours";
+
+  updateGlobeRoute(destination);
+}
+
+function updateGlobeRoute(destination){
+  const plane = $("#planeIcon");
+  const pin = $("#destinationPin");
+  const globeStage = $("#globeStage");
+
+  if (!plane || !pin || !globeStage) return;
+
+  const hasKnownDestination =
+    state.data.q36_avezvousDeja === "Oui j'ai déjà une destination" &&
+    destination &&
+    destination !== "À définir";
+
+  if (!hasKnownDestination) {
+    plane.classList.remove("landed");
+    pin.classList.remove("active");
+    globeStage.dataset.destination = "unknown";
+    return;
+  }
+
+  const clean = destination.toLowerCase();
+
+  let destKey = "generic";
+  if (clean.includes("tokyo") || clean.includes("japon")) destKey = "tokyo";
+  if (clean.includes("phuket") || clean.includes("thailande") || clean.includes("thaïlande")) destKey = "phuket";
+  if (clean.includes("bali")) destKey = "bali";
+  if (clean.includes("new york")) destKey = "newyork";
+  if (clean.includes("hanoi") || clean.includes("hanoï") || clean.includes("vietnam")) destKey = "hanoi";
+  if (clean.includes("paris")) destKey = "paris";
+
+  globeStage.dataset.destination = destKey;
+  plane.classList.add("landed");
+  pin.classList.add("active");
 }
 
 function formatDates(){
