@@ -302,19 +302,52 @@ function currentStep(){
 }
 
 function renderStep(){
-  hideError();
-  const step = currentStep();
-  mount.innerHTML = `
-    <section class="step" data-key="${step.key}">
-      <div class="step-kicker">${step.kicker}</div>
-      <h2>${step.title}</h2>
-      <p class="step-desc">${step.desc}</p>
-      <div class="step-content">${step.html()}</div>
-    </section>
-  `;
-  step.bind?.();
-  updateUI();
-  updateMini();
+  try {
+    hideError();
+
+    const list = visibleSteps();
+    if (!list.length) throw new Error("Aucune étape visible");
+
+    if (state.current < 0) state.current = 0;
+    if (state.current >= list.length) state.current = list.length - 1;
+
+    const step = currentStep();
+    if (!step) throw new Error("Étape introuvable");
+
+    mount.innerHTML = `
+      <section class="step" data-key="${step.key}">
+        <div class="step-kicker">${step.kicker}</div>
+        <h2>${step.title}</h2>
+        <p class="step-desc">${step.desc}</p>
+        <div class="step-content">${step.html()}</div>
+      </section>
+    `;
+
+    if (typeof step.bind === "function") step.bind();
+
+    updateUI();
+    updateMini();
+
+  } catch (error) {
+    console.error("Nomerys render error:", error);
+
+    mount.innerHTML = `
+      <section class="step">
+        <div class="step-kicker">Bienvenue</div>
+        <h2>On prépare ton voyage.</h2>
+        <p class="step-desc">
+          Le formulaire a eu un petit problème d’affichage. Clique sur le bouton ci-dessous pour le relancer.
+        </p>
+        <div class="choice-grid single-choice">
+          <button type="button" class="choice selected" onclick="location.reload()">
+            <span class="choice-icon">🔄</span>
+            <strong>Relancer le formulaire</strong>
+            <small>Recharge proprement la page</small>
+          </button>
+        </div>
+      </section>
+    `;
+  }
 }
 
 function updateUI(){
@@ -746,32 +779,37 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-function safeRender(){
+function bootNomerys(){
   try {
     renderStep();
-  } catch (error) {
-    console.error("Erreur formulaire Nomerys :", error);
 
-    const mount = document.querySelector("#stepMount");
-    if (mount) {
-      mount.innerHTML = `
-        <section class="step">
-          <div class="step-kicker">Erreur temporaire</div>
-          <h2>Recharge la page.</h2>
-          <p class="step-desc">
-            Le formulaire a rencontré un petit problème d’affichage. Recharge la page ou réessaie dans quelques secondes.
-          </p>
-        </section>
-      `;
-    }
+    setTimeout(() => {
+      if (!mount || mount.innerHTML.trim() === "") {
+        console.warn("Nomerys empty mount detected. Re-rendering...");
+        renderStep();
+      }
+    }, 300);
+
+    setTimeout(() => {
+      if (!mount || mount.innerHTML.trim() === "") {
+        console.warn("Nomerys second empty mount detected. Showing fallback...");
+        mount.innerHTML = `
+          <section class="step">
+            <div class="step-kicker">Bienvenue</div>
+            <h2>Commence ta demande.</h2>
+            <p class="step-desc">Recharge la page si le formulaire ne s’affiche pas correctement.</p>
+          </section>
+        `;
+      }
+    }, 1200);
+
+  } catch (error) {
+    console.error("Nomerys boot error:", error);
   }
 }
 
-safeRender();
-
-setTimeout(() => {
-  const mount = document.querySelector("#stepMount");
-  if (mount && mount.innerHTML.trim() === "") {
-    safeRender();
-  }
-}, 500);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", bootNomerys);
+} else {
+  bootNomerys();
+}
