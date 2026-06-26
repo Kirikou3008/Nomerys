@@ -609,7 +609,7 @@ button{-webkit-tap-highlight-color:transparent}
   *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
 
-/* === NOMERYS V2 — LEFT PANEL / GLOBE / DATES FIX === */
+/* === NOMERYS V2 LITE — STABLE / NO LAG === */
 
 .travel-visual-card{
   align-self:flex-end;
@@ -618,15 +618,13 @@ button{-webkit-tap-highlight-color:transparent}
   border-radius:30px;
   padding:18px;
   background:rgba(6,21,30,.62);
-  backdrop-filter:blur(20px);
-  box-shadow:0 24px 70px rgba(0,0,0,.30);
-  animation:cardFloat 5s var(--ease) infinite;
+  backdrop-filter:blur(18px);
+  box-shadow:0 24px 70px rgba(0,0,0,.28);
 }
 
 .travel-visual-top{
   display:flex;
   justify-content:space-between;
-  gap:12px;
   align-items:center;
   color:var(--muted);
   font-size:12px;
@@ -634,11 +632,10 @@ button{-webkit-tap-highlight-color:transparent}
 
 .travel-visual-top strong{
   color:var(--mint);
-  font-size:12px;
 }
 
 .globe-stage{
-  height:240px;
+  height:220px;
   display:grid;
   place-items:center;
   position:relative;
@@ -646,23 +643,17 @@ button{-webkit-tap-highlight-color:transparent}
 }
 
 .globe{
-  width:165px;
-  height:165px;
+  width:160px;
+  height:160px;
   border-radius:50%;
   position:relative;
   background:
-    radial-gradient(circle at 34% 28%, rgba(255,255,255,.58), transparent 9%),
-    radial-gradient(circle at 68% 54%, rgba(241,215,160,.28), transparent 24%),
-    linear-gradient(145deg,rgba(120,215,255,.72),rgba(145,242,208,.36) 48%,rgba(241,215,160,.42));
+    radial-gradient(circle at 32% 26%, rgba(255,255,255,.55), transparent 10%),
+    radial-gradient(circle at 65% 62%, rgba(241,215,160,.28), transparent 25%),
+    linear-gradient(145deg,rgba(120,215,255,.72),rgba(145,242,208,.38),rgba(241,215,160,.36));
   box-shadow:
-    inset -28px -34px 58px rgba(0,0,0,.30),
-    0 0 70px rgba(120,215,255,.22);
-  animation:globeRotate 10s linear infinite;
-}
-
-@keyframes globeRotate{
-  0%{transform:rotate(0deg)}
-  100%{transform:rotate(360deg)}
+    inset -28px -34px 58px rgba(0,0,0,.32),
+    0 0 55px rgba(120,215,255,.20);
 }
 
 .globe-shine{
@@ -672,34 +663,32 @@ button{-webkit-tap-highlight-color:transparent}
   border-radius:50%;
   top:28px;
   left:42px;
-  background:rgba(255,255,255,.38);
+  background:rgba(255,255,255,.34);
   filter:blur(4px);
 }
 
 .globe-grid{
   position:absolute;
-  inset:-22px;
-  border:1px solid rgba(255,255,255,.20);
+  inset:-24px;
+  border:1px solid rgba(255,255,255,.18);
   border-radius:50%;
   transform:rotate(-22deg) scaleX(1.55);
 }
 
 .globe-grid-b{
-  inset:-42px;
-  opacity:.42;
-  animation:orbitPulse 3.5s infinite;
+  inset:-44px;
+  opacity:.35;
 }
 
 .flight-path{
   position:absolute;
-  width:155px;
-  height:90px;
-  border-top:2px dashed rgba(145,242,208,.65);
+  width:150px;
+  height:88px;
+  border-top:2px dashed rgba(145,242,208,.55);
   border-radius:50%;
-  left:-18px;
-  top:54px;
-  transform:rotate(-20deg);
-  opacity:.85;
+  left:-14px;
+  top:56px;
+  transform:rotate(-18deg);
 }
 
 .destination-pin{
@@ -708,11 +697,11 @@ button{-webkit-tap-highlight-color:transparent}
   height:14px;
   border-radius:50% 50% 50% 0;
   background:var(--mint);
-  right:28px;
-  top:64px;
+  right:30px;
+  top:66px;
   transform:rotate(-45deg) scale(0);
-  box-shadow:0 0 18px rgba(145,242,208,.9);
-  transition:.45s var(--ease);
+  box-shadow:0 0 18px rgba(145,242,208,.85);
+  transition:.35s var(--ease);
 }
 
 .destination-pin.active{
@@ -725,24 +714,19 @@ button{-webkit-tap-highlight-color:transparent}
   left:-34px;
   top:46%;
   filter:drop-shadow(0 10px 16px rgba(0,0,0,.35));
-  animation:planeOrbit 5s var(--ease) infinite;
-  transition:.8s var(--ease);
+  animation:planeSoftMove 4.5s ease-in-out infinite;
 }
 
 #planeIcon.landed{
   left:108px;
   top:66px;
   animation:none;
-  transform:rotate(20deg);
+  transform:rotate(18deg);
 }
 
-@keyframes planeOrbit{
+@keyframes planeSoftMove{
   0%,100%{transform:translate(0,0) rotate(18deg)}
-  50%{transform:translate(58px,-34px) rotate(30deg)}
-}
-
-.enhanced-pass-lines{
-  gap:0;
+  50%{transform:translate(46px,-24px) rotate(28deg)}
 }
 
 .enhanced-pass-lines div{
@@ -755,7 +739,6 @@ button{-webkit-tap-highlight-color:transparent}
   white-space:normal;
   overflow:visible;
   text-overflow:unset;
-  color:var(--white);
 }
 
 .enhanced-pass-lines .date-line b{
@@ -764,12 +747,15 @@ button{-webkit-tap-highlight-color:transparent}
   text-align:right;
 }
 
-/* Plus d’espace entre deux champs empilés */
 .field + .field{
-  margin-top:28px;
+  margin-top:30px;
 }
 
-/* Mobile */
+.choice-grid.single-choice{
+  grid-template-columns:1fr;
+  max-width:460px;
+}
+
 @media(max-width:980px){
   .travel-visual-card{
     display:none;
