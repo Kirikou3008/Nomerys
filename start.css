@@ -761,3 +761,45 @@ button{-webkit-tap-highlight-color:transparent}
     display:none;
   }
 }
+
+/* === CORRECTIONS FORMULAIRE STABLE === */
+
+.choice-grid.single-choice{
+  grid-template-columns:1fr;
+  max-width:560px;
+  width:100%;
+  margin:34px auto 0;
+}
+
+.choice-grid.single-choice .choice{
+  min-height:132px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.step[data-key="welcome"]{
+  justify-content:center;
+}
+
+.step[data-key="welcome"] .step-content{
+  width:100%;
+}
+
+.step[data-key="destination_known"] .field + .field{
+  margin-top:34px;
+}
+
+.pass-lines b{
+  max-width:260px;
+  white-space:normal;
+  overflow:visible;
+  text-overflow:unset;
+}
+
+.pass-lines .date-line b{
+  font-size:14px;
+  line-height:1.25;
+}
