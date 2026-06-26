@@ -681,6 +681,7 @@ function updateMini(){
 
   const miniStatus = $("#miniStatus");
   if (miniStatus) miniStatus.textContent = currentStep()?.submit ? "Prête" : "En cours";
+}
 
 function formatDates(){
   if (!state.data.startDateRaw || !state.data.endDateRaw) return "";
