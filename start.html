@@ -8,6 +8,7 @@
   <meta name="description" content="Prépare ton voyage avec Nomerys en quelques étapes simples." />
   <link rel="stylesheet" href="./start.css" />
 </head>
+
 <body>
   <div class="ambient">
     <div class="aurora aurora-a"></div>
@@ -32,7 +33,9 @@
         <span id="sectionName">Départ</span>
         <b id="progressLabel">0%</b>
       </div>
-      <div class="top-progress-track"><div id="topProgressFill"></div></div>
+      <div class="top-progress-track">
+        <div id="topProgressFill"></div>
+      </div>
     </div>
 
     <div class="security">
@@ -43,22 +46,43 @@
 
   <main class="layout">
     <aside class="story-panel" aria-hidden="false">
-      <div class="passport-card">
-        <div class="passport-top">
+      <div class="travel-visual-card">
+        <div class="travel-visual-top">
           <span>Nomerys Pass</span>
           <strong id="passStatus">En préparation</strong>
         </div>
-        <div class="route-visual">
-          <div class="planet">
-            <span class="orbit orbit-1"></span>
-            <span class="orbit orbit-2"></span>
-            <span class="plane-icon">✈</span>
+
+        <div class="globe-stage" id="globeStage">
+          <div class="globe" id="globe">
+            <span class="globe-shine"></span>
+            <span class="globe-grid globe-grid-a"></span>
+            <span class="globe-grid globe-grid-b"></span>
+            <span class="destination-pin" id="destinationPin"></span>
+            <span class="flight-path" id="flightPath"></span>
+            <span class="plane-icon" id="planeIcon">✈</span>
           </div>
         </div>
-        <div class="pass-lines">
-          <div><small>Destination</small><b id="miniDestination">À définir</b></div>
-          <div><small>Dates</small><b id="miniDates">—</b></div>
-          <div><small>Voyageurs</small><b id="miniTravellers">—</b></div>
+
+        <div class="pass-lines enhanced-pass-lines">
+          <div>
+            <small>Destination</small>
+            <b id="miniDestination">À définir</b>
+          </div>
+
+          <div class="date-line">
+            <small>Dates</small>
+            <b id="miniDates">—</b>
+          </div>
+
+          <div>
+            <small>Voyageurs</small>
+            <b id="miniTravellers">—</b>
+          </div>
+
+          <div>
+            <small>Demande</small>
+            <b id="miniStatus">En cours</b>
+          </div>
         </div>
       </div>
 
@@ -95,7 +119,7 @@
       </form>
 
       <p class="tiny-note">
-        Les informations servent uniquement à préparer ta proposition de voyage. Ne ferme pas la page pendant la redirection.
+        Tes informations sont sécurisées et servent uniquement à préparer ta proposition de voyage.
       </p>
     </section>
   </main>
