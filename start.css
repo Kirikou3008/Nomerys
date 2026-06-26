@@ -608,3 +608,170 @@ button{-webkit-tap-highlight-color:transparent}
 @media(prefers-reduced-motion:reduce){
   *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+
+/* === NOMERYS V2 — LEFT PANEL / GLOBE / DATES FIX === */
+
+.travel-visual-card{
+  align-self:flex-end;
+  width:min(390px,100%);
+  border:1px solid var(--line2);
+  border-radius:30px;
+  padding:18px;
+  background:rgba(6,21,30,.62);
+  backdrop-filter:blur(20px);
+  box-shadow:0 24px 70px rgba(0,0,0,.30);
+  animation:cardFloat 5s var(--ease) infinite;
+}
+
+.travel-visual-top{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.travel-visual-top strong{
+  color:var(--mint);
+  font-size:12px;
+}
+
+.globe-stage{
+  height:240px;
+  display:grid;
+  place-items:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.globe{
+  width:165px;
+  height:165px;
+  border-radius:50%;
+  position:relative;
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255,255,255,.58), transparent 9%),
+    radial-gradient(circle at 68% 54%, rgba(241,215,160,.28), transparent 24%),
+    linear-gradient(145deg,rgba(120,215,255,.72),rgba(145,242,208,.36) 48%,rgba(241,215,160,.42));
+  box-shadow:
+    inset -28px -34px 58px rgba(0,0,0,.30),
+    0 0 70px rgba(120,215,255,.22);
+  animation:globeRotate 10s linear infinite;
+}
+
+@keyframes globeRotate{
+  0%{transform:rotate(0deg)}
+  100%{transform:rotate(360deg)}
+}
+
+.globe-shine{
+  position:absolute;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  top:28px;
+  left:42px;
+  background:rgba(255,255,255,.38);
+  filter:blur(4px);
+}
+
+.globe-grid{
+  position:absolute;
+  inset:-22px;
+  border:1px solid rgba(255,255,255,.20);
+  border-radius:50%;
+  transform:rotate(-22deg) scaleX(1.55);
+}
+
+.globe-grid-b{
+  inset:-42px;
+  opacity:.42;
+  animation:orbitPulse 3.5s infinite;
+}
+
+.flight-path{
+  position:absolute;
+  width:155px;
+  height:90px;
+  border-top:2px dashed rgba(145,242,208,.65);
+  border-radius:50%;
+  left:-18px;
+  top:54px;
+  transform:rotate(-20deg);
+  opacity:.85;
+}
+
+.destination-pin{
+  position:absolute;
+  width:14px;
+  height:14px;
+  border-radius:50% 50% 50% 0;
+  background:var(--mint);
+  right:28px;
+  top:64px;
+  transform:rotate(-45deg) scale(0);
+  box-shadow:0 0 18px rgba(145,242,208,.9);
+  transition:.45s var(--ease);
+}
+
+.destination-pin.active{
+  transform:rotate(-45deg) scale(1);
+}
+
+#planeIcon{
+  position:absolute;
+  font-size:30px;
+  left:-34px;
+  top:46%;
+  filter:drop-shadow(0 10px 16px rgba(0,0,0,.35));
+  animation:planeOrbit 5s var(--ease) infinite;
+  transition:.8s var(--ease);
+}
+
+#planeIcon.landed{
+  left:108px;
+  top:66px;
+  animation:none;
+  transform:rotate(20deg);
+}
+
+@keyframes planeOrbit{
+  0%,100%{transform:translate(0,0) rotate(18deg)}
+  50%{transform:translate(58px,-34px) rotate(30deg)}
+}
+
+.enhanced-pass-lines{
+  gap:0;
+}
+
+.enhanced-pass-lines div{
+  min-height:44px;
+  align-items:center;
+}
+
+.enhanced-pass-lines b{
+  max-width:none;
+  white-space:normal;
+  overflow:visible;
+  text-overflow:unset;
+  color:var(--white);
+}
+
+.enhanced-pass-lines .date-line b{
+  font-size:14px;
+  line-height:1.25;
+  text-align:right;
+}
+
+/* Plus d’espace entre deux champs empilés */
+.field + .field{
+  margin-top:28px;
+}
+
+/* Mobile */
+@media(max-width:980px){
+  .travel-visual-card{
+    display:none;
+  }
+}
