@@ -834,3 +834,41 @@ button{-webkit-tap-highlight-color:transparent}
 .step[data-key="destination_known"] .field + .field{
   margin-top:42px !important;
 }
+
+/* === FIX FINAL V2 === */
+
+/* Supprime le tableau fantôme en bas du panneau gauche */
+.story-panel > .pass-lines,
+.story-panel > .enhanced-pass-lines{
+  display:none !important;
+}
+
+/* Garde uniquement les lignes dans la vraie carte Nomerys Pass */
+.passport-card .pass-lines{
+  display:grid !important;
+}
+
+/* Redonne de l’air au texte en bas à gauche */
+.promise{
+  margin-top:32px;
+  position:relative;
+  z-index:2;
+}
+
+/* Espacement propre entre Prénom/Nom et Email */
+.step[data-key="identity"] .split{
+  margin-bottom:32px !important;
+}
+
+.step[data-key="identity"] .field{
+  margin-top:0;
+}
+
+/* Espacement propre entre Ville et Lieu précis */
+.step[data-key="destination_known"] .field:first-child{
+  margin-bottom:34px !important;
+}
+
+.step[data-key="destination_known"] .field + .field{
+  margin-top:0 !important;
+}
