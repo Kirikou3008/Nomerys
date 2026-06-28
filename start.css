@@ -916,17 +916,22 @@ button{-webkit-tap-highlight-color:transparent}
   margin:0 !important;
 }
 
-/* Cache le paragraphe sous le gros titre à gauche */
+/* Bloc texte gauche propre */
+.promise{
+  margin-top:22px !important;
+  padding:24px 26px 28px !important;
+  border-radius:26px;
+  background:linear-gradient(to top, rgba(6,21,30,.86), rgba(6,21,30,.48), transparent);
+  overflow:visible !important;
+}
+
 .promise p:not(.eyebrow){
   display:none !important;
 }
 
-/* Ajuste le bloc pour qu’il ne déborde plus */
-.promise{
-  padding-bottom:28px !important;
-  overflow:hidden !important;
-}
-
 .promise h1{
-  margin-bottom:0 !important;
+  font-size:clamp(42px,4.4vw,60px) !important;
+  line-height:.9 !important;
+  margin:0 !important;
+  max-width:520px;
 }
