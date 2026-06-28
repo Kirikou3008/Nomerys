@@ -609,161 +609,9 @@ button{-webkit-tap-highlight-color:transparent}
   *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
 
-/* === NOMERYS V2 LITE — STABLE / NO LAG === */
+/* === NOMERYS FINAL FIXES — CLEAN === */
 
-.travel-visual-card{
-  align-self:flex-end;
-  width:min(390px,100%);
-  border:1px solid var(--line2);
-  border-radius:30px;
-  padding:18px;
-  background:rgba(6,21,30,.62);
-  backdrop-filter:blur(18px);
-  box-shadow:0 24px 70px rgba(0,0,0,.28);
-}
-
-.travel-visual-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  color:var(--muted);
-  font-size:12px;
-}
-
-.travel-visual-top strong{
-  color:var(--mint);
-}
-
-.globe-stage{
-  height:220px;
-  display:grid;
-  place-items:center;
-  position:relative;
-  overflow:hidden;
-}
-
-.globe{
-  width:160px;
-  height:160px;
-  border-radius:50%;
-  position:relative;
-  background:
-    radial-gradient(circle at 32% 26%, rgba(255,255,255,.55), transparent 10%),
-    radial-gradient(circle at 65% 62%, rgba(241,215,160,.28), transparent 25%),
-    linear-gradient(145deg,rgba(120,215,255,.72),rgba(145,242,208,.38),rgba(241,215,160,.36));
-  box-shadow:
-    inset -28px -34px 58px rgba(0,0,0,.32),
-    0 0 55px rgba(120,215,255,.20);
-}
-
-.globe-shine{
-  position:absolute;
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  top:28px;
-  left:42px;
-  background:rgba(255,255,255,.34);
-  filter:blur(4px);
-}
-
-.globe-grid{
-  position:absolute;
-  inset:-24px;
-  border:1px solid rgba(255,255,255,.18);
-  border-radius:50%;
-  transform:rotate(-22deg) scaleX(1.55);
-}
-
-.globe-grid-b{
-  inset:-44px;
-  opacity:.35;
-}
-
-.flight-path{
-  position:absolute;
-  width:150px;
-  height:88px;
-  border-top:2px dashed rgba(145,242,208,.55);
-  border-radius:50%;
-  left:-14px;
-  top:56px;
-  transform:rotate(-18deg);
-}
-
-.destination-pin{
-  position:absolute;
-  width:14px;
-  height:14px;
-  border-radius:50% 50% 50% 0;
-  background:var(--mint);
-  right:30px;
-  top:66px;
-  transform:rotate(-45deg) scale(0);
-  box-shadow:0 0 18px rgba(145,242,208,.85);
-  transition:.35s var(--ease);
-}
-
-.destination-pin.active{
-  transform:rotate(-45deg) scale(1);
-}
-
-#planeIcon{
-  position:absolute;
-  font-size:30px;
-  left:-34px;
-  top:46%;
-  filter:drop-shadow(0 10px 16px rgba(0,0,0,.35));
-  animation:planeSoftMove 4.5s ease-in-out infinite;
-}
-
-#planeIcon.landed{
-  left:108px;
-  top:66px;
-  animation:none;
-  transform:rotate(18deg);
-}
-
-@keyframes planeSoftMove{
-  0%,100%{transform:translate(0,0) rotate(18deg)}
-  50%{transform:translate(46px,-24px) rotate(28deg)}
-}
-
-.enhanced-pass-lines div{
-  min-height:44px;
-  align-items:center;
-}
-
-.enhanced-pass-lines b{
-  max-width:none;
-  white-space:normal;
-  overflow:visible;
-  text-overflow:unset;
-}
-
-.enhanced-pass-lines .date-line b{
-  font-size:14px;
-  line-height:1.25;
-  text-align:right;
-}
-
-.field + .field{
-  margin-top:30px;
-}
-
-.choice-grid.single-choice{
-  grid-template-columns:1fr;
-  max-width:460px;
-}
-
-@media(max-width:980px){
-  .travel-visual-card{
-    display:none;
-  }
-}
-
-/* === CORRECTIONS FORMULAIRE STABLE === */
-
+/* Accueil : carte unique centrée */
 .choice-grid.single-choice{
   grid-template-columns:1fr;
   max-width:560px;
@@ -788,10 +636,24 @@ button{-webkit-tap-highlight-color:transparent}
   width:100%;
 }
 
-.step[data-key="destination_known"] .field + .field{
-  margin-top:34px;
+/* Panneau gauche : stabilité visuelle */
+.story-panel{
+  max-height:calc(100vh - 130px);
+  overflow:hidden;
 }
 
+/* Anciennes versions de globe / pass désactivées si encore présentes */
+.story-panel .travel-visual-card,
+.story-panel > .pass-lines,
+.story-panel > .enhanced-pass-lines{
+  display:none;
+}
+
+.passport-card .pass-lines{
+  display:grid;
+}
+
+/* Dates lisibles dans la carte gauche */
 .pass-lines b{
   max-width:260px;
   white-space:normal;
@@ -804,20 +666,54 @@ button{-webkit-tap-highlight-color:transparent}
   line-height:1.25;
 }
 
-/* === FIX FINAL FORM DESKTOP === */
-
-/* 1. Supprime le vieux globe fantôme en double */
-.story-panel .travel-visual-card{
-  display:none !important;
+/* Texte gauche : plus de cadre sombre, rendu propre sur image */
+.promise{
+  position:relative;
+  z-index:2;
+  max-width:520px;
+  margin-top:26px;
+  padding:0;
+  background:none;
+  border:none;
+  box-shadow:none;
+  backdrop-filter:none;
+  overflow:visible;
 }
 
-/* 2. Empêche le panneau gauche d’agrandir la page inutilement */
-.story-panel{
-  max-height:calc(100vh - 130px);
-  overflow:hidden;
+.promise::before{
+  content:"";
+  position:absolute;
+  inset:-30px -25px;
+  z-index:-1;
+  border-radius:24px;
+  background:linear-gradient(
+    to top,
+    rgba(5,18,27,.88),
+    rgba(5,18,27,.55),
+    transparent 90%
+  );
+  pointer-events:none;
 }
 
-/* 3. Aligne correctement prénom/nom et dates */
+.promise .eyebrow{
+  margin:0 0 14px;
+  font-size:12px;
+  letter-spacing:.18em;
+}
+
+.promise h1{
+  font-size:clamp(42px,4.4vw,60px);
+  line-height:.9;
+  letter-spacing:-.075em;
+  margin:0;
+  max-width:520px;
+}
+
+.promise p:not(.eyebrow){
+  display:none;
+}
+
+/* Alignement propre des groupes en deux colonnes */
 .split{
   align-items:end;
 }
@@ -826,86 +722,16 @@ button{-webkit-tap-highlight-color:transparent}
   margin:0;
 }
 
-/* 4. Espace vraiment les deux champs de la page destination */
-.step[data-key="destination_known"] .field{
-  margin:0;
-}
-
-.step[data-key="destination_known"] .field + .field{
-  margin-top:42px !important;
-}
-
-/* === FIX FINAL V2 === */
-
-/* Supprime le tableau fantôme en bas du panneau gauche */
-.story-panel > .pass-lines,
-.story-panel > .enhanced-pass-lines{
-  display:none !important;
-}
-
-/* Garde uniquement les lignes dans la vraie carte Nomerys Pass */
-.passport-card .pass-lines{
-  display:grid !important;
-}
-
-/* Redonne de l’air au texte en bas à gauche */
-.promise{
-  margin-top:32px;
-  position:relative;
-  z-index:2;
-}
-
-/* Espacement propre entre Prénom/Nom et Email */
+/* Espacement entre Prénom/Nom et Email */
 .step[data-key="identity"] .split{
-  margin-bottom:32px !important;
+  margin-bottom:32px;
 }
 
 .step[data-key="identity"] .field{
   margin-top:0;
 }
 
-/* Espacement propre entre Ville et Lieu précis */
-.step[data-key="destination_known"] .field:first-child{
-  margin-bottom:34px !important;
-}
-
-.step[data-key="destination_known"] .field + .field{
-  margin-top:0 !important;
-}
-
-/* === FINAL POLISH LEFT TEXT + DESTINATION SPACING === */
-
-/* Texte gauche plus premium et mieux intégré */
-.promise{
-  margin-top:26px !important;
-  padding:22px 24px 24px;
-  border-radius:26px;
-  background:linear-gradient(to top, rgba(6,21,30,.82), rgba(6,21,30,.38), transparent);
-  backdrop-filter:blur(10px);
-}
-
-.promise .eyebrow{
-  margin:0 0 10px;
-  font-size:12px;
-  letter-spacing:.18em;
-}
-
-.promise h1{
-  font-size:clamp(38px,4.2vw,58px) !important;
-  line-height:.94 !important;
-  letter-spacing:-.075em !important;
-  margin:0 0 16px !important;
-  max-width:520px;
-}
-
-.promise p:not(.eyebrow){
-  font-size:16px !important;
-  line-height:1.5 !important;
-  max-width:430px;
-  margin:0;
-}
-
-/* VRAI espace entre Ville / zone d’arrivée et Lieu précis */
+/* Espacement net entre Ville / zone d'arrivée et Lieu précis */
 .step[data-key="destination_known"] .step-content{
   display:flex;
   flex-direction:column;
@@ -913,25 +739,13 @@ button{-webkit-tap-highlight-color:transparent}
 }
 
 .step[data-key="destination_known"] .field{
-  margin:0 !important;
+  margin:0;
 }
 
-/* Bloc texte gauche propre */
-.promise{
-  margin-top:22px !important;
-  padding:24px 26px 28px !important;
-  border-radius:26px;
-  background:linear-gradient(to top, rgba(6,21,30,.86), rgba(6,21,30,.48), transparent);
-  overflow:visible !important;
+/* Mobile : garde le comportement existant */
+@media(max-width:980px){
+  .story-panel .travel-visual-card{
+    display:none;
+  }
 }
 
-.promise p:not(.eyebrow){
-  display:none !important;
-}
-
-.promise h1{
-  font-size:clamp(42px,4.4vw,60px) !important;
-  line-height:.9 !important;
-  margin:0 !important;
-  max-width:520px;
-}
