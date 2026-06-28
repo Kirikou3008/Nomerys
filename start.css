@@ -915,3 +915,18 @@ button{-webkit-tap-highlight-color:transparent}
 .step[data-key="destination_known"] .field{
   margin:0 !important;
 }
+
+/* Cache le paragraphe sous le gros titre à gauche */
+.promise p:not(.eyebrow){
+  display:none !important;
+}
+
+/* Ajuste le bloc pour qu’il ne déborde plus */
+.promise{
+  padding-bottom:28px !important;
+  overflow:hidden !important;
+}
+
+.promise h1{
+  margin-bottom:0 !important;
+}
