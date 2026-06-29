@@ -13,8 +13,14 @@
   q51_activitesA51, q64_already_paid
 */
 
-const WEBHOOK_URL = "https://baptistepaixao2.app.n8n.cloud/webhook-test/voyage-form";
+const DEV_MODE = true; // true = webhook-test | false = webhook production
+
+const WEBHOOK_URL = DEV_MODE
+  ? "https://baptistepaixao2.app.n8n.cloud/webhook-test/voyage-form"
+  : "https://baptistepaixao2.app.n8n.cloud/webhook/voyage-form";
+
 const SKIP_PAYMENT_FOR_TEST = false;
+
 const MAX_TRAVELLERS = 10;
 const MAX_TRIP_DAYS = 45;
 
