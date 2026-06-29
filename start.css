@@ -749,3 +749,103 @@ button{-webkit-tap-highlight-color:transparent}
   }
 }
 
+/* === MOBILE WOW + SUPPRESSION OMBRES BOUTONS === */
+
+@media(max-width:980px){
+
+  /* Supprime l’ombre noire derrière les boutons */
+  .controls{
+    background:none !important;
+    box-shadow:none !important;
+  }
+
+  .controls::before,
+  .controls::after{
+    display:none !important;
+    content:none !important;
+  }
+
+  /* Halo premium derrière la carte mobile */
+  .form-shell::before{
+    content:"";
+    position:absolute;
+    inset:70px 18px auto 18px;
+    height:260px;
+    border-radius:999px;
+    background:radial-gradient(circle, rgba(120,215,255,.22), transparent 70%);
+    filter:blur(38px);
+    pointer-events:none;
+    z-index:-1;
+  }
+
+  /* Apparition progressive */
+  .step-kicker,
+  .step h2,
+  .step-desc,
+  .step-content{
+    animation:mobileFadeUp .55s var(--ease) both;
+  }
+
+  .step h2{animation-delay:.06s}
+  .step-desc{animation-delay:.12s}
+  .step-content{animation-delay:.18s}
+
+  @keyframes mobileFadeUp{
+    from{
+      opacity:0;
+      transform:translateY(16px);
+      filter:blur(6px);
+    }
+    to{
+      opacity:1;
+      transform:translateY(0);
+      filter:blur(0);
+    }
+  }
+
+  /* Bouton principal plus premium */
+  .choice-grid.single-choice .choice{
+    box-shadow:
+      0 0 0 1px rgba(145,242,208,.35),
+      0 22px 55px rgba(145,242,208,.13) !important;
+    animation:softBreath 3.2s ease-in-out infinite;
+  }
+
+  @keyframes softBreath{
+    0%,100%{
+      transform:translateY(0);
+      box-shadow:
+        0 0 0 1px rgba(145,242,208,.35),
+        0 22px 55px rgba(145,242,208,.12);
+    }
+    50%{
+      transform:translateY(-2px);
+      box-shadow:
+        0 0 0 1px rgba(145,242,208,.65),
+        0 28px 68px rgba(145,242,208,.22);
+    }
+  }
+
+  /* Reflet animé dans la barre de progression */
+  .top-progress-track{
+    position:relative;
+    overflow:hidden;
+  }
+
+  .top-progress-track::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-40%;
+    width:40%;
+    height:100%;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+    animation:progressShine 2.8s ease-in-out infinite;
+  }
+
+  @keyframes progressShine{
+    0%{left:-45%}
+    55%,100%{left:110%}
+  }
+}
+
