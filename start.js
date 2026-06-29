@@ -14,7 +14,7 @@
 */
 
 const WEBHOOK_URL = "https://baptistepaixao2.app.n8n.cloud/webhook-test/voyage-form";
-const SKIP_PAYMENT_FOR_TEST = true;
+const SKIP_PAYMENT_FOR_TEST = false;
 const MAX_TRAVELLERS = 10;
 const MAX_TRIP_DAYS = 45;
 
