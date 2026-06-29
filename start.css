@@ -849,3 +849,25 @@ button{-webkit-tap-highlight-color:transparent}
   }
 }
 
+/* === FIX MOBILE DATES INPUT WIDTH === */
+
+@media(max-width:980px){
+  .step[data-key="dates"] .split{
+    grid-template-columns:1fr !important;
+    gap:22px;
+  }
+
+  .step[data-key="dates"] .field,
+  .step[data-key="dates"] .input{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+  }
+
+  .step[data-key="dates"] input[type="date"]{
+    appearance:none;
+    -webkit-appearance:none;
+    box-sizing:border-box;
+  }
+}
+
