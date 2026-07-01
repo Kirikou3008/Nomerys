@@ -13,7 +13,7 @@
   q51_activitesA51, q64_already_paid
 */
 
-const DEV_MODE = false; // true = webhook-test | false = webhook production
+const DEV_MODE = true; // true = webhook-test | false = webhook production
 
 const WEBHOOK_URL = DEV_MODE
   ? "https://baptistepaixao2.app.n8n.cloud/webhook-test/voyage-form"
