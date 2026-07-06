@@ -558,15 +558,20 @@ async function submit(){
     clearTimeout(timeout);
 
     const raw = await response.text();
-    let data = {};
-    try { data = JSON.parse(raw); } catch(e) {}
+let data = {};
+try { data = JSON.parse(raw); } catch(e) {}
 
-    if (!response.ok) {
-      throw new Error(raw || `Erreur n8n ${response.status}`);
-    }
+console.log("Réponse n8n brute:", raw);
+console.log("Réponse n8n JSON:", data);
 
-   const checkoutUrl = data.checkout_url || data.checkoutUrl || data.url;
+if (!response.ok) {
+  throw new Error(raw || `Erreur n8n ${response.status}`);
+}
 
+const checkoutUrl = Array.isArray(data)
+  ? (data[0]?.checkout_url || data[0]?.checkoutUrl || data[0]?.url)
+  : (data.checkout_url || data.checkoutUrl || data.url);
+    
 if (SKIP_PAYMENT_FOR_TEST) {
   showLoading(false);
   showToast("Mode test : formulaire envoyé à n8n sans paiement Stripe.");
