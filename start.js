@@ -105,6 +105,100 @@ const steps = [
     validate: () => required("q36_avezvousDeja", "Dis-nous si tu as déjà une destination.")
   },
   {
+  key: "comfort_level",
+  name: "Confort",
+  kicker: "Niveau de confort",
+  title: "Quel niveau de confort souhaites-tu ?",
+  desc: "Cela nous permet de choisir des hébergements réellement adaptés à ta façon de voyager.",
+
+  html: () => `
+    <div class="choice-grid comfort-grid">
+
+      <button
+        type="button"
+        class="choice comfort-choice"
+        data-name="q66_niveauConfort"
+        data-value="backpacking"
+      >
+        <span class="choice-icon">🎒</span>
+
+        <span class="comfort-heading">
+          <strong>Low-cost / backpacking</strong>
+          <span class="comfort-badge">Budget minimum</span>
+        </span>
+
+        <small>
+          Auberges, dortoirs, chambres partagées et solutions très économiques
+          peuvent être proposées.
+        </small>
+
+        <span class="comfort-details">
+          Idéal pour voyager au prix le plus bas possible.
+        </span>
+      </button>
+
+      <button
+        type="button"
+        class="choice comfort-choice"
+        data-name="q66_niveauConfort"
+        data-value="comfort"
+      >
+        <span class="choice-icon">🛏️</span>
+
+        <span class="comfort-heading">
+          <strong>Confort</strong>
+          <span class="comfort-badge recommended">Recommandé</span>
+        </span>
+
+        <small>
+          Chambre ou logement privé, salle de bain privée, bonnes évaluations
+          et emplacement pratique.
+        </small>
+
+        <span class="comfort-details">
+          Le meilleur équilibre entre prix et qualité.
+        </span>
+      </button>
+
+      <button
+        type="button"
+        class="choice comfort-choice"
+        data-name="q66_niveauConfort"
+        data-value="luxury"
+      >
+        <span class="choice-icon">✨</span>
+
+        <span class="comfort-heading">
+          <strong>Luxe</strong>
+          <span class="comfort-badge">Expérience premium</span>
+        </span>
+
+        <small>
+          Hôtels 4 ou 5 étoiles, établissements haut de gamme et services
+          premium.
+        </small>
+
+        <span class="comfort-details">
+          Priorité au confort, au service et à l’expérience.
+        </span>
+      </button>
+
+    </div>
+
+    <div class="comfort-note">
+      Tu pourras toujours comparer plusieurs prix dans le guide final.
+    </div>
+  `,
+
+  bind: bindInputsAndChoices,
+
+  validate: () =>
+    required(
+      "q66_niveauConfort",
+      "Choisis le niveau de confort souhaité pour ton voyage."
+    )
+},
+  {
     key: "destination_known",
     name: "Destination",
     show: () => state.data.q36_avezvousDeja === "Oui j'ai déjà une destination",
