@@ -7,7 +7,7 @@
   { "checkout_url": "https://checkout.stripe.com/..." }
 
   Champs Jotform conservés :
-  q3_nom, q4_email, q36_avezvousDeja, q54_nombreDe, q65_ageDe,
+  q3_nom, q4_email, q36_avezvousDeja, q66_niveauConfort, q54_nombreDe, q65_ageDe,
   q37_q_arrive_city, q38_q_date_start, q39_q_date_end, q53_lieuPrecis,
   q41_q_climate, q47_q_regions, q48_q_style, q56_typeDe,
   q51_activitesA51, q64_already_paid
@@ -610,6 +610,7 @@ function buildPayload(){
     },
     q4_email: state.data.q4_email || "",
     q36_avezvousDeja: state.data.q36_avezvousDeja || "",
+    q66_niveauConfort: state.data.q66_niveauConfort || "",
     q54_nombreDe: state.data.q54_nombreDe || "",
     q65_ageDe: state.data.q65_ageDe || "",
     q37_q_arrive_city: state.data.q37_q_arrive_city || "",
