@@ -6,6 +6,62 @@
   <meta name="theme-color" content="#071A24" />
   <title>Nomerys — Commencer</title>
   <meta name="description" content="Prépare ton voyage avec Nomerys en quelques étapes simples." />
+
+  <!--
+    TRACKING :
+    1) Remplace G-REMPLACE_MOI par ton identifiant GA4.
+    2) Remplace CLARITY_REMPLACE_MOI par ton identifiant de projet Clarity.
+    3) Garde ces balises reliées à ton bandeau cookies / CMP.
+  -->
+
+  <!-- Google Analytics 4 -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    window.gtag = window.gtag || gtag;
+
+    gtag("consent", "default", {
+      analytics_storage: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      wait_for_update: 500
+    });
+
+    const NOMERYS_GA4_ID = "G-REMPLACE_MOI";
+
+    if (NOMERYS_GA4_ID && !NOMERYS_GA4_ID.includes("REMPLACE_MOI")) {
+      const gaScript = document.createElement("script");
+      gaScript.async = true;
+      gaScript.src =
+        "https://www.googletagmanager.com/gtag/js?id=" +
+        encodeURIComponent(NOMERYS_GA4_ID);
+
+      document.head.appendChild(gaScript);
+
+      gtag("js", new Date());
+      gtag("config", NOMERYS_GA4_ID, {
+        send_page_view: true
+      });
+    }
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script>
+    const NOMERYS_CLARITY_ID = "CLARITY_REMPLACE_MOI";
+
+    if (NOMERYS_CLARITY_ID && !NOMERYS_CLARITY_ID.includes("REMPLACE_MOI")) {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);
+        t.async=1;
+        t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", NOMERYS_CLARITY_ID);
+    }
+  </script>
+
   <link rel="stylesheet" href="./start.css" />
 </head>
 
@@ -65,12 +121,10 @@
             <small>Destination</small>
             <b id="miniDestination">À définir</b>
           </div>
-
           <div class="date-line">
             <small>Dates</small>
             <b id="miniDates">—</b>
           </div>
-
           <div>
             <small>Voyageurs</small>
             <b id="miniTravellers">—</b>
@@ -80,7 +134,6 @@
 
       <div class="promise">
         <p class="eyebrow">Simple. Fluide. Clair.</p>
-
         <h1>
           Ton prochain<br>
           voyage<br>
@@ -133,6 +186,6 @@
     </div>
   </div>
 
-  <script src="./start.js?v=10"></script>
+  <script src="./start.js?v=11"></script>
 </body>
 </html>
