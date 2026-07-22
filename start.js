@@ -213,7 +213,7 @@ const steps = [
     kicker: "Bienvenue",
     title: "Ton prochain voyage. Pensé pour toi.",
     desc:
-      "Décris simplement tes envies. Notre IA construit un voyage personnalisé, prêt à réserver, en comparant les meilleures options pour toi selon ton budget.est ce que on peut vraiment parler de budget ",
+      "Décris simplement tes envies. Notre IA construit un voyage personnalisé, prêt à réserver, en comparant les meilleures options pour toi selon ton niveau de confort.",
     html: () => `
       <div class="choice-grid single-choice">
         ${card(
