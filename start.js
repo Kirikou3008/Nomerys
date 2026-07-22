@@ -211,9 +211,9 @@ const steps = [
     key: "welcome",
     name: "Départ",
     kicker: "Bienvenue",
-    title: "On prépare ton voyage, sans prise de tête.",
+    title: "Ton prochain voyage. Pensé pour toi.",
     desc:
-      "Réponds à quelques questions simples. Une seule étape à la fois, rien de compliqué.",
+      "Décris simplement tes envies. Notre IA construit un voyage personnalisé, prêt à réserver, en comparant les meilleures options pour toi selon ton budget.est ce que on peut vraiment parler de budget ",
     html: () => `
       <div class="choice-grid single-choice">
         ${card(
