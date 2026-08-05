@@ -1047,3 +1047,8 @@ button{-webkit-tap-highlight-color:transparent}
     font-size: 17px;
   }
 }
+
+/* Espacement de la page Activités */
+.step[data-key="activities"] .field + .field {
+  margin-top: 32px;
+}
