@@ -765,17 +765,17 @@ const steps = [
 
     html: () => `
       ${input(
-        "Lieu précis à visiter",
-        "q53_lieuPrecis",
-        "text",
-        "Optionnel : musée, monument, temple, quartier ou autre ville..."
-      )}
+  "Lieu précis à visiter (optionnel)",
+  "q53_lieuPrecis",
+  "text",
+  "Ex : musée, monument, temple, quartier ou autre ville..."
+)}
 
-      ${textarea(
-        "Activités à faire",
-        "q51_activitesA51",
-        "Ex : restaurants locaux, musées, plage, shopping, quartiers animés, lieux Instagram, parcs..."
-      )}
+${textarea(
+  "Activités à faire (optionnel)",
+  "q51_activitesA51",
+  "Ex : restaurants locaux, musées, plage, shopping, quartiers animés, lieux Instagram, parcs..."
+)}
     `,
 
     bind: bindInputs,
