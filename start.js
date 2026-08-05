@@ -6,9 +6,10 @@
   Le webhook n8n doit créer Stripe Checkout et renvoyer :
   { "checkout_url": "https://checkout.stripe.com/..." }
 
-  Champs Jotform conservés :
+    Champs du formulaire :
   q3_nom, q4_email, q36_avezvousDeja, q66_niveauConfort, q54_nombreDe, q65_ageDe,
-  q37_q_arrive_city, q38_q_date_start, q39_q_date_end, q53_lieuPrecis,
+  q68_aeroportDepart, q37_q_arrive_city, q67_villeZoneArrivee,
+  q38_q_date_start, q39_q_date_end, q53_lieuPrecis,
   q41_q_climate, q47_q_regions, q48_q_style, q56_typeDe,
   q51_activitesA51, q64_already_paid
 */
@@ -44,7 +45,7 @@ const NOMERYS_TRACKING = {
 function trackNomerysEvent(eventName, parameters = {}) {
   const safeParameters = {
     form_name: "nomerys_premium_form",
-    form_version: "v11",
+    form_version: "v12",
     tracking_session_id: NOMERYS_TRACKING.sessionId,
     ...parameters
   };
@@ -171,6 +172,10 @@ function maskSensitiveFieldsForClarity() {
     "[name='firstName']",
     "[name='lastName']",
     "[name='q4_email']",
+    "[name='q68_aeroportDepart']",
+    "[name='q37_q_arrive_city']",
+    "[name='q67_villeZoneArrivee']",
+    "[name='q53_lieuPrecis']",
     "[name='q51_activitesA51']",
     ".summary-card"
   ];
@@ -313,6 +318,32 @@ const steps = [
         "Dis-nous si tu as déjà une destination."
       )
   },
+   {
+    key: "departure_airport",
+    name: "Départ",
+    kicker: "Ton point de départ",
+    title: "D’où veux-tu partir ?",
+
+    desc:
+      "Indique une ville ou un aéroport. Nomerys pourra ensuite comparer les départs les plus pertinents autour de ce point.",
+
+    html: () => `
+      ${input(
+        "Aéroport ou ville de départ",
+        "q68_aeroportDepart",
+        "text",
+        "Ex : Lille, Paris-CDG, Bruxelles, Lyon..."
+      )}
+    `,
+
+    bind: bindInputs,
+
+    validate: () =>
+      required(
+        "q68_aeroportDepart",
+        "Indique ta ville ou ton aéroport de départ."
+      )
+  },
   {
     key: "comfort_level",
     name: "Confort",
@@ -408,7 +439,7 @@ const steps = [
         "Choisis le niveau de confort souhaité pour ton voyage."
       )
   },
-  {
+    {
     key: "destination_known",
     name: "Destination",
 
@@ -420,21 +451,21 @@ const steps = [
     title: "Où veux-tu aller ?",
 
     desc:
-      "Mets la ville, la zone ou le pays. Tu peux aussi ajouter un lieu précis.",
+      "Indique d’abord le pays. Tu peux ensuite préciser une ville, une île ou une région.",
 
     html: () => `
       ${input(
-        "Ville / zone d’arrivée",
+        "Pays d’arrivée",
         "q37_q_arrive_city",
         "text",
-        "Ex : Tokyo, Hanoï, Bali, New York"
+        "Ex : Japon, Portugal, Thaïlande, États-Unis..."
       )}
 
       ${input(
-        "Lieu précis à visiter",
-        "q53_lieuPrecis",
+        "Ville / île / région souhaitée",
+        "q67_villeZoneArrivee",
         "text",
-        "Optionnel : Shibuya, Osaka, quartier précis..."
+        "Optionnel : Tokyo, Algarve, Bali, Cyclades..."
       )}
     `,
 
@@ -443,7 +474,7 @@ const steps = [
     validate: () =>
       required(
         "q37_q_arrive_city",
-        "Indique au moins une ville ou une zone d’arrivée."
+        "Indique le pays d’arrivée."
       )
   },
   {
@@ -723,7 +754,7 @@ const steps = [
     bind: bindInputsAndChoices,
     validate: () => true
   },
-  {
+    {
     key: "activities",
     name: "Activités",
     kicker: "Détails",
@@ -733,6 +764,13 @@ const steps = [
       "Optionnel. Plus tu donnes d’idées, plus la proposition peut être adaptée.",
 
     html: () => `
+      ${input(
+        "Lieu précis à visiter",
+        "q53_lieuPrecis",
+        "text",
+        "Optionnel : musée, monument, temple, quartier ou autre ville..."
+      )}
+
       ${textarea(
         "Activités à faire",
         "q51_activitesA51",
@@ -815,15 +853,26 @@ const steps = [
           state.data.q4_email || "—"
         )}
 
+                ${summaryLine(
+          "Départ",
+          state.data.q68_aeroportDepart || "—"
+        )}
+
         ${summaryLine(
           "Destination",
-          state.data.q37_q_arrive_city ||
-            (
-              state.data.q36_avezvousDeja ===
-              "Non je n'ai pas d'idée"
-                ? "À proposer"
-                : "—"
-            )
+          state.data.q37_q_arrive_city
+            ? [
+                state.data.q37_q_arrive_city,
+                state.data.q67_villeZoneArrivee
+              ]
+                .filter(Boolean)
+                .join(" — ")
+            : (
+                state.data.q36_avezvousDeja ===
+                "Non je n'ai pas d'idée"
+                  ? "À proposer"
+                  : "—"
+              )
         )}
 
         ${summaryLine(
@@ -1460,6 +1509,10 @@ function buildPayload() {
       state.data.q36_avezvousDeja ||
       "",
 
+        q68_aeroportDepart:
+      state.data.q68_aeroportDepart ||
+      "",
+
     q66_niveauConfort:
       state.data.q66_niveauConfort ||
       "",
@@ -1474,6 +1527,10 @@ function buildPayload() {
 
     q37_q_arrive_city:
       state.data.q37_q_arrive_city ||
+      "",
+
+        q67_villeZoneArrivee:
+      state.data.q67_villeZoneArrivee ||
       "",
 
     q38_q_date_start:
@@ -2068,16 +2125,27 @@ function showLoading(show) {
 }
 
 function updateMini() {
+   const destinationCountry =
+    state.data.q37_q_arrive_city ||
+    "";
+
+  const destinationArea =
+    state.data.q67_villeZoneArrivee ||
+    "";
+
   const destination =
-    state.data
-      .q37_q_arrive_city ||
-    (
-      state.data
-        .q36_avezvousDeja ===
-      "Non je n'ai pas d'idée"
-        ? "À proposer"
-        : "À définir"
-    );
+    destinationCountry
+      ? (
+          destinationArea
+            ? `${destinationArea} — ${destinationCountry}`
+            : destinationCountry
+        )
+      : (
+          state.data.q36_avezvousDeja ===
+          "Non je n'ai pas d'idée"
+            ? "À proposer"
+            : "À définir"
+        );
 
   $("#miniDestination")
     .textContent =
