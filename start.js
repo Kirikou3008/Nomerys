@@ -771,10 +771,12 @@ const steps = [
   "Ex : musée, monument, temple, quartier ou autre ville..."
 )}
 
+<div class="activities-separator"></div>
+
 ${textarea(
   "Activités à faire (optionnel)",
   "q51_activitesA51",
-  "Ex : restaurants locaux, musées, plage, shopping, quartiers animés, lieux Instagram, parcs..."
+  "Ex : restaurants locaux, musées, plage..."
 )}
     `,
 
