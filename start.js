@@ -1996,9 +1996,7 @@ function textarea(
           ${label}
         </span>
 
-        <span class="hint">
-          optionnel
-        </span>
+        
       </span>
 
       <textarea
